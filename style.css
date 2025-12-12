@@ -1,0 +1,11 @@
+.input > submit {
+  margin-top: 12px;
+}
+
+.forms {
+  display: flex;
+  flex-direction: row;
+  padding: 14px;
+  align-content: space-around;
+  width: 20%;
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="login.css" href="style.css" />
+    <title>Forever Events</title>
+  </head>
+
+  <body>
+    <div class="nav-bar">
+      <h2 class="navBar-title"></h2>
+    </div>
+    <div class="Login">
+      <h1>Login</h1>
+      <div class="forms">
+        <form action="login.php" method="post">
+          <label for=""> User </label>
+          <input type="email" name="user" id="user" minlength="5" />
+          <br />
+          <label for=""> Password </label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            minlength="5"
+            maxlength="10"
+          />
+          <br />
+          <input type="submit" value="Login" />
+        </form>
+      </div>
+      <a href="#">Create an account</a>
+    </div>
+  </body>
+</html>
