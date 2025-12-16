@@ -24,6 +24,11 @@
   width: 90px;
 }
 
+#accountButton {
+  width: 30px;
+  height: 30px;
+}
+
 .input > submit {
   margin-top: 12px;
 }
