@@ -1,3 +1,4 @@
 body {
   background-color: var(---primary-bg-color);
+  font-family: var(---font-primary);
 }
