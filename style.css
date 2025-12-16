@@ -1,8 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
 :root {
   ---primary-bg-color: #024ddf;
   ---primary-color: #ffffff;
   ---accent-color: #e8aa00;
   ---button-color: #000000;
+  --font-primary: "Inter", sans-serif;
 }
 
 /*body {
