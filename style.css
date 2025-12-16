@@ -1,4 +1,23 @@
 
+:root {
+  --primary-bg-color: #024DDF;
+  --primary-color: #ffffff;
+  ---accent-color: #E8AA00;
+  ---button-color: #000000;
+}
+
+
+/*body {
+  background-color: var(--primary-bg-color);
+}
+**/
+
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 
 
 .input > submit {
