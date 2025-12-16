@@ -19,6 +19,11 @@
   box-sizing: border-box;
 }
 
+.logo {
+  transform: rotate(109deg);
+  width: 90px;
+}
+
 .input > submit {
   margin-top: 12px;
 }
