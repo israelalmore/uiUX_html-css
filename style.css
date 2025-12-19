@@ -5,10 +5,15 @@
   ---button-color: #000000;
 }
 
-/*body {
-  background-color: var(--primary-bg-color);
+#accountButton {
+  background: transparent;
+  border: none;
+  cursor: pointer;
 }
-**/
+
+#accountButton > img {
+  width: 50px;
+}
 
 * {
   padding: 0;
