@@ -11,7 +11,7 @@
 
   <body>
     <div class="nav-bar">
-      <a class="navBar-title">Inicio</a>
+      <a href="landingPage.html" class="navBar-title">Inicio</a>
       <a class="navBar-title">Eventos</a>
       <a class="navBar-title">Crear Eventos</a>
       <img class="logo" src="/img/logoForever.png" />
@@ -19,11 +19,9 @@
         <input type="search" name="search" id="search" />
       </form>
       <button id="login-button">Iniciar Sesión</button>
-      <button class="account-button">
-        <a href="landingPage.html" target="_blank">
-          <img src="/img/accountLogo.png" alt="account" />
-        </a>
-      </button>
+      <a href="register.html" id="accountButton">
+        <img src="/img/account.png" alt="account settings" />
+      </a>
     </div>
     <div class="Login">
       <h1>Login</h1>
@@ -37,8 +35,8 @@
             type="password"
             name="password"
             id="password"
-            minlength="5"
-            maxlength="10"
+            minlength="1"
+            maxlength="100"
           />
           <br />
           <input type="submit" value="Login" />
