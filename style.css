@@ -12,6 +12,27 @@ header.nav-bar {
   text-align: right;
 }
 
+<<<<<<< Updated upstream
+=======
+.nav-bar {
+  width: 100%;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 20px;
+  box-sizing: border-box;
+}
+
+.navBar-title {
+  text-decoration: none;
+  margin-right: 15px;
+}
+
+>>>>>>> Stashed changes
 .nav-container ul,
 .nav-container img,
 .nav-container form,
