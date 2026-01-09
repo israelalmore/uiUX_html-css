@@ -1,3 +1,21 @@
 body {
   background-color: var(---primary-bg-color);
 }
+.search-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.search-wrapper i {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+  pointer-events: none;
+}
+
+.search-wrapper input {
+  width: 100%;
+  padding-left: 40px;
+}
