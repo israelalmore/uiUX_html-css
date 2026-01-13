@@ -1,9 +1,51 @@
 body {
   background-color: var(---primary-bg-color);
+  margin: 0;
 }
+.nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px;
+  position: relative;
+}
+
+/* IZQUIERDA */
+.nav-left {
+  display: flex;
+  gap: 50px;
+}
+
+.nav-left a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+/* CENTRO */
+.nav-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* DERECHA */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* BUSCADOR */
 .search-wrapper {
   position: relative;
-  width: 100%;
+}
+
+.search-wrapper input {
+  padding: 8px 12px 8px 35px;
+  border-radius: 20px;
+  border: none;
+  outline: none;
 }
 
 .search-wrapper i {
@@ -12,10 +54,120 @@ body {
   top: 50%;
   transform: translateY(-50%);
   color: #666;
-  pointer-events: none;
 }
 
-.search-wrapper input {
+/* BOTÓN */
+#login-button {
+  background-color: white; /* azul */
+  color: black;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* ICONO CUENTA */
+#account-button {
+  position: absolute;
+}
+
+/* -------------------------------------- */
+/* MAIN PAGE OF LOG IN */
+/* Modifica todo el contenedor del login */
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  padding-left: 40px;
+  padding: 0 20px; /* Agrega padding lateral */
+}
+
+.forms {
+  width: 100%; /* Cambia de 900px a 100% */
+  max-width: 600px; /* Establece un máximo más ancho */
+  display: flex;
+  justify-content: center;
+}
+
+.forms form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.login > h1 {
+  color: white;
+  font-size: 32px;
+  font-weight: bold;
+  margin: 0;
+}
+
+
+
+
+
+.forms label {
+  color: white;
+  font-size: 14px;
+}
+
+/* Agrega esto a tu login.css */
+#user,
+#password {
+  width: 100%; /* Ya está al 100%, pero puedes ajustar el contenedor */
+  padding: 14px;
+  border-radius: 6px;
+  border: none;
+  font-size: 14px;
+  /* Añade si quieres un ancho mínimo */
+  min-width: 400px; /* O el valor que prefieras */
+}
+
+/* FORGOT PASSWORD */
+.forms a {
+  align-self: center;
+  background-color: white;
+  color: black;
+  padding: 10px 20px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+/* BOTÓN LOGIN */
+.forms input[type="submit"] {
+  align-self: center;
+  background-color: #ffd700;
+  color: black;
+  border: none;
+  padding: 14px 40px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* ---------------- CREAR CUENTA ---------------- */
+
+.crearCuenta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  color: white;
+}
+
+.crearCuenta span {
+  font-size: 16px;
+}
+
+.crearCuenta a {
+  background-color: white;
+  color: black;
+  padding: 12px 30px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
 }
