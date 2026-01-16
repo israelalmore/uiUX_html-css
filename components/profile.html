@@ -5,23 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="/profile.css" />
+    <link rel="stylesheet" href="/Assets/css/main.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
   </head>
   <body>
-    <div class="nav-bar">
-      <a class="navBar-title">Inicio</a>
-      <a class="navBar-title">Eventos</a>
-      <a class="navBar-title">Crear Eventos</a>
-      <img class="logo" src="/img/logoForever.png" />
-      <form action="" method="get">
-        <input type="search" name="search" id="search" />
-      </form>
-      <button id="login-button">Iniciar Sesión</button>
-      <button class="account-button">
-        <a href="landingPage.html" target="_blank">
-          <img src="/img/accountLogo.png" alt="account" />
-        </a>
-      </button>
-    </div>
+   <header class="nav-bar">
+        <!-- IZQUIERDA -->
+        <nav class="nav-left">
+          <a href="landingPage.html">Inicio</a>
+          <a href="#">Eventos</a>
+          <a href="#">Crear Eventos</a>
+        </nav>
+
+        <!-- CENTRO -->
+        <div class="nav-center">
+          <img class="logo" src="/Assets/img/logoForever.png" alt="logotipo" />
+        </div>
+
+        <!-- DERECHA -->
+        <div class="nav-right">
+          <form class="search-wrapper">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="search" placeholder="Buscador de eventos" />
+          </form>
+
+          <button id="login-button">Iniciar Sesión</button>
+
+          <a href="settings.html" id="accountButton">
+            <img src="/Assets/img/icons/account.png" alt="account settings" />
+          </a>
+        </div>
+    </header>
     <div class="profile">
       <h1>TU PERFIL:</h1>
       <div class="text">

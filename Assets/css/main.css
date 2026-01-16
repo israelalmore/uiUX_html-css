@@ -1,0 +1,10 @@
+/* Global CSS */
+@import url("base/style.css");
+/* Paginas Principales */
+@import url("pages/landingpage.css");
+@import url("pages/login.css");
+@import url("pages/profile.css");
+@import url("pages/register.css");
+@import url("pages/landingpage.css");
+/* Componentes */
+@import url("components/navbar.css");
