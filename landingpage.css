@@ -1,3 +1,68 @@
 body {
   background-color: var(---primary-bg-color);
+  color: white;
+  height: 100vh;
+}
+
+/* Background Main-Page*/
+.background-image {
+  background-image: url(/img/landingPage.jpg);
+  height: 500px;
+  max-width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.8;
+  position: relative;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.title {
+  margin-top: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+.title h1 {
+  margin-bottom: 1rem;
+  width: 450px;
+  flex-wrap: wrap;
+}
+.title h2 {
+  margin-bottom: 2rem;
+}
+
+.btn {
+  padding: 1rem;
+  background-color: #ffd700;
+  border-radius: 0.5rem;
+  width: 200px;
+  font-weight: bold;
+  font-size: 1rem;
+}
+.background-image2 {
+  background-image: url(/img/LandingPage2.avif);
+  height: 500px;
+  max-width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.8;
+  position: relative;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.subtitle {
+  margin-bottom: 1rem;
+  width: 450px;
+  flex-wrap: wrap;
+}
+.subtitle h3{
+  
 }
