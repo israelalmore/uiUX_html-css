@@ -1,5 +1,5 @@
 body {
-  background-color: var(---primary-bg-color);
+  background-color: var(--primary-bg-color);
   color: white;
   height: 100vh;
 }
@@ -7,22 +7,32 @@ body {
 /* Background Main-Page*/
 .background-image {
   background-image: url(/Assets/img/images/landingPage.jpg);
-  height: 500px;
+  height: 600px;
   max-width: 100%;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.8;
+  background-size: cover;
   position: relative;
-  margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 2rem;
 }
+/* Improve opacity */
+.background-image::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
 .title {
-  margin-top: 5rem;
+  padding: 20px;
   display: flex;
-  justify-content: center;
+  z-index: 1;
+  max-width: 800px;
   align-items: center;
   flex-direction: column;
   text-align: center;
@@ -31,6 +41,7 @@ body {
   margin-bottom: 1rem;
   width: 450px;
   flex-wrap: wrap;
+  font-weight: 700;
 }
 .title h2 {
   margin-bottom: 2rem;
@@ -47,21 +58,35 @@ body {
 .background-image2 {
   background-image: url(/Assets/img/images/LandingPage2.avif);
   height: 500px;
-  max-width: 100%;
+  max-width: 1200px;
+  width: 80%;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.8;
   position: relative;
   margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 2rem;
+  position: relative;
+}
+.background-image2::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
 }
 .subtitle {
   margin-bottom: 1rem;
   width: 450px;
   flex-wrap: wrap;
+  color: var(--primary-color);
+  z-index: 1;
 }
 .subtitle h3 {
+  font-size: 2rem;
+  font-weight: 600;
 }

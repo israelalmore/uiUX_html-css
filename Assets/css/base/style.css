@@ -1,11 +1,35 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
 :root {
-  ---primary-bg-color: #024ddf;
-  ---primary-color: #ffffff;
-  ---accent-color: #e8aa00;
-  ---button-color: #000000;
+  --primary-bg-color: #024ddf;
+  --primary-color: #ffffff;
+  --accent-color: #e8aa00;
+  --button-color: #000000;
   --font-primary: "Inter", sans-serif;
+}
+/* Reset para eliminar margenes ocultos (*) seleccionador global */
+* { 
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body{
+  font-family: var(--font-primary);
+  color: var(---primary-color);
+  line-height: 1.6;
+}
+img{
+  max-width: 100%;
+  height: auto;
+}
+
+a{
+  text-decoration: none;
+}
+/* Utilizará la fuente primaria que en este caso es Inter */
+button, input, select{ 
+  font-family: inherit;
 }
 
 header.nav-bar {
@@ -68,11 +92,7 @@ header.nav-bar {
   width: 50px;
 }
 
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
+
 
 .logo {
   transform: rotate(109deg);
