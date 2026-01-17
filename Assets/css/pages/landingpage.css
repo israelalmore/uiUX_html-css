@@ -6,7 +6,7 @@ body {
 
 /* Background Main-Page*/
 .background-image {
-  background-image: url(/img/landingPage.jpg);
+  background-image: url(/Assets/img/images/landingPage.jpg);
   height: 500px;
   max-width: 100%;
   background-position: center;
@@ -45,7 +45,7 @@ body {
   font-size: 1rem;
 }
 .background-image2 {
-  background-image: url(/img/LandingPage2.avif);
+  background-image: url(/Assets/img/images/LandingPage2.avif);
   height: 500px;
   max-width: 100%;
   background-position: center;
@@ -63,6 +63,5 @@ body {
   width: 450px;
   flex-wrap: wrap;
 }
-.subtitle h3{
-  
+.subtitle h3 {
 }
