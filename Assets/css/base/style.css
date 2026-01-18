@@ -1,11 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
-
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 :root {
   --primary-bg-color: #024ddf;
   --primary-color: #ffffff;
   --accent-color: #e8aa00;
   --button-color: #000000;
   --font-primary: "Inter", sans-serif;
+  --font-title: "Monsterrat", sans-serif;
 }
 /* Reset para eliminar margenes ocultos (*) seleccionador global */
 * { 
@@ -15,9 +16,12 @@
 }
 
 body{
-  font-family: var(--font-primary);
-  color: var(---primary-color);
+  color: var(--primary-color);
   line-height: 1.6;
+  font-family: var(--font-primary);
+}
+h1{
+  font-family:var(--font-title);
 }
 img{
   max-width: 100%;
@@ -26,92 +30,20 @@ img{
 
 a{
   text-decoration: none;
+  color: inherit;
 }
 /* Utilizará la fuente primaria que en este caso es Inter */
 button, input, select{ 
   font-family: inherit;
 }
 
-header.nav-bar {
-  text-align: right;
-}
-
-.nav-bar {
-  width: 100%;
-}
-
-.nav-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  padding: 10px 20px;
-  box-sizing: border-box;
-}
-
-.navBar-title {
-  text-decoration: none;
-  margin-right: 15px;
-}
-
-.nav-container ul,
-.nav-container img,
-.nav-container form,
-.nav-container button,
-.nav-container a {
-  display: inline-block;
-  vertical-align: middle;
-  margin: 0 10px;
-}
-
-.nav-bar {
-  width: 100%;
-}
-
-.nav-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  padding: 10px 20px;
-  box-sizing: border-box;
-}
-
-.navBar-title {
-  text-decoration: none;
-  margin-right: 15px;
-}
-
-#accountButton {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-}
-
-#accountButton > img {
-  width: 50px;
-}
 
 
 
-.logo {
-  transform: rotate(109deg);
-  width: 90px;
-}
 
-#accountButton {
-  width: 30px;
-  height: 30px;
-}
 
-.input > submit {
-  margin-top: 12px;
-}
 
-.forms {
-  display: flex;
-  flex-direction: row;
-  padding: 14px;
-  align-content: space-around;
-  width: 20%;
-}
+
+
+
+
