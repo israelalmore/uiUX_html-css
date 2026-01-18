@@ -66,3 +66,13 @@
 #account-button {
   position: absolute;
 }
+.logo {
+  transform: rotate(109deg);
+  width: 90px;
+}
+
+#accountButton {
+  width: 30px;
+  height: 30px;
+}
+
