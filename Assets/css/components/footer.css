@@ -32,7 +32,6 @@
   text-decoration: none;
 }
 
-/* MAPA */
 .footer-map img {
   width: 100%;
   max-width: 420px;
@@ -42,7 +41,6 @@
   margin-left: auto;
 }
 
-/* FILA INFERIOR */
 .footer-bottom {
   display: grid;
   grid-template-columns: 1fr 1fr;
