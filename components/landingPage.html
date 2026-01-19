@@ -1,13 +1,20 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Forever Events | Organizador de Eventos Avanzado</title>
+    <meta
+      name="description"
+      content="Organiza bodas, eventos corporativos y celebraciones sin estrés con Forever Events. Gestión de eventos avanzada y profesional."
+    />
 
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -15,140 +22,154 @@
       rel="stylesheet"
     />
 
-    <!-- GLOBAL CSS todo el css esta aqui -->
     <link rel="stylesheet" href="/Assets/css/main.css" />
   </head>
 
   <body>
+    <header class="nav-bar">
+      <nav class="nav-left" aria-label="Navegación principal">
+        <a href="landingPage.html">Inicio</a>
+        <a href="#">Eventos</a>
+        <a href="#">Crear Eventos</a>
+      </nav>
+
+      <div class="nav-center">
+        <a href="landingPage.html" aria-label="Forever Events inicio">
+          <img
+            class="logo"
+            src="/Assets/img/logoForever.png"
+            alt="Logotipo de Forever Events"
+          />
+        </a>
+      </div>
+
+      <div class="nav-right">
+        <form class="search-wrapper" role="search">
+          <label for="event-search" class="sr-only">Buscar eventos</label>
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input
+            id="event-search"
+            type="search"
+            placeholder="Buscador de eventos"
+          />
+        </form>
+
+        <button id="login-button">
+          <a href="login.html">Iniciar Sesión</a>
+        </button>
+        <a
+          href="profile.html"
+          id="accountButton"
+          aria-label="Perfil de usuario"
+        >
+          <img
+            src="/Assets/img/icons/account.png"
+            alt="Acceso al perfil de usuario"
+          />
+        </a>
+      </div>
+    </header>
+
     <main>
-      <header class="nav-bar">
-        <!-- IZQUIERDA -->
-        <nav class="nav-left">
-          <a href="landingPage.html">Inicio</a>
-          <a href="#">Eventos</a>
-          <a href="#">Crear Eventos</a>
-        </nav>
-
-        <!-- CENTRO -->
-        <div class="nav-center">
-          <img class="logo" src="/Assets/img/logoForever.png" alt="logotipo" />
-        </div>
-
-        <!-- DERECHA -->
-        <div class="nav-right">
-          <form class="search-wrapper">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="search" placeholder="Buscador de eventos" />
-          </form>
-
-          <button id="login-button">
-            <a href="login.html">Iniciar Sesión</a>
-          </button>
-
-          <a href="profile.html" id="accountButton">
-            <img src="/Assets/img/icons/account.png" alt="account settings" />
-          </a>
-        </div>
-      </header>
-
-      <!-- NAVEGACION -->
       <article>
         <section class="background-image">
           <div class="title">
             <h1>Organizador de Eventos Avanzado</h1>
             <h2>
-              Eventos perfectos sin estrés. Bodas, corporativos, cumpleaños
+              Eventos perfectos sin estrés. Bodas, corporativos y cumpleaños
             </h2>
-            <button class="btn"><a href="login.html">Descubre cómo</a></button>
+            <a href="login.html" class="btn">Descubre cómo</a>
           </div>
         </section>
-        <div class="subtitle">
+
+        <section class="subtitle">
           <h3>Gestión de eventos sin complicaciones</h3>
-        </div>
-        <section class="background-image2"></section>
+        </section>
+
+        <section class="background-image2" aria-hidden="true"></section>
       </article>
+    </main>
 
-      <footer class="site-footer">
-        <h2 class="footer-title">Forever Events</h2>
-        <div class="footer-container">
-          <!-- Columna izquierda: Contacto -->
-          <section class="footer-contact">
-            <address class="contact-info">
-              <p><strong>Contacto:</strong></p>
-              <p>Teléfono: <a href="tel:+34676676767">+34 676 67 67</a></p>
-              <p>
-                Email:
-                <a href="mailto:contact@foreverevents.com"
-                  >contact@foreverevents.com</a
-                >
-              </p>
-              <p>Ubicación: Calle Ramón Llull, 67</p>
-            </address>
-          </section>
+    <footer class="site-footer">
+      <h2 class="footer-title">Forever Events</h2>
 
-          <!-- Columna derecha: Mapa -->
-          <section class="footer-map">
+      <div class="footer-container">
+        <section class="footer-contact">
+          <address class="contact-info">
+            <p><strong>Contacto</strong></p>
+            <p>
+              Teléfono:
+              <a href="tel:+34676676767">+34 676 67 67</a>
+            </p>
+            <p>
+              Email:
+              <a href="mailto:contact@foreverevents.com">
+                contact@foreverevents.com
+              </a>
+            </p>
+            <p>Dirección: Calle Ramón Llull, 67</p>
+          </address>
+        </section>
+
+        <section class="footer-map">
+          <figure>
             <img
               src="/Assets/img/mapa.png"
-              alt="Ubicación de Forever Events en Calle Ramón Llull, 67"
+              alt="Mapa de ubicación de Forever Events en Calle Ramón Llull, 67"
             />
-          </section>
-        </div>
+          </figure>
+        </section>
+      </div>
 
-        <!-- Fila inferior -->
-        <div class="footer-bottom">
-          <!-- Redes sociales -->
-          <nav class="footer-social" aria-label="Redes sociales">
-            <h3>Redes Sociales</h3>
+      <div class="footer-bottom">
+        <nav class="footer-social" aria-label="Redes sociales">
+          <h3>Redes Sociales</h3>
+          <ul>
+            <li>
+              <a href="#" aria-label="Instagram Forever Events">
+                <img
+                  src="/Assets/img/icons/instagramLogo.png"
+                  alt="Instagram Forever Events"
+                />
+              </a>
+            </li>
+            <li>
+              <a href="#" aria-label="Facebook Forever Events">
+                <img
+                  src="/Assets/img/icons/facebookLogo.png"
+                  alt="Facebook Forever Events"
+                />
+              </a>
+            </li>
+            <li>
+              <a href="#" aria-label="YouTube Forever Events">
+                <img
+                  src="/Assets/img/icons/youtubeLogo.png"
+                  alt="YouTube Forever Events"
+                />
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <nav class="footer-legal" aria-label="Información legal">
+          <h3>Políticas</h3>
+          <div class="legal-links">
             <ul>
-              <li>
-                <a href="#" aria-label="Instagram">
-                  <img
-                    src="/Assets/img/icons/instagramLogo.png"
-                    alt="Instagram Forever Events"
-                  />
-                </a>
-              </li>
-              <li>
-                <a href="#" aria-label="Facebook">
-                  <img
-                    src="/Assets/img/icons/facebookLogo.png"
-                    alt="Facebook Forever Events"
-                  />
-                </a>
-              </li>
-              <li>
-                <a href="#" aria-label="YouTube">
-                  <img
-                    src="/Assets/img/icons/youtubeLogo.png"
-                    alt="YouTube Forever Events"
-                  />
-                </a>
-              </li>
+              <li><a href="#">Política de privacidad</a></li>
+              <li><a href="#">Aviso Legal</a></li>
             </ul>
-          </nav>
+            <ul>
+              <li><a href="#">Términos y condiciones</a></li>
+              <li><a href="#">Cookies</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
 
-          <!-- Políticas -->
-          <nav class="footer-legal" aria-label="Políticas legales">
-            <h3>Políticas</h3>
-            <div class="legal-links">
-              <ul>
-                <li><a href="#">Políticas de privacidad</a></li>
-                <li><a href="#">Aviso Legal</a></li>
-              </ul>
-              <ul>
-                <li><a href="#">Términos y condiciones</a></li>
-                <li><a href="#">Cookies</a></li>
-              </ul>
-            </div>
-          </nav>
-        </div>
-
-        <!-- Copyright -->
-        <div class="footer-copy">
-          <p>© 2025 Forever Events. Todos los derechos reservados.</p>
-        </div>
-      </footer>
-    </main>
+      <div class="footer-copy">
+        <p>© 2025 Forever Events. Todos los derechos reservados.</p>
+      </div>
+    </footer>
   </body>
 </html>
