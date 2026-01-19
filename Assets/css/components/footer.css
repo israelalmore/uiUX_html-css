@@ -1,0 +1,99 @@
+.site-footer {
+  background-color: var(--primary-bg-color);
+  color: var(--primary-color);
+  font-family: var(--font-primary);
+  padding: 60px 80px 30px;
+}
+
+/* CONTENEDOR SUPERIOR */
+.footer-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+  margin-bottom: 60px;
+}
+
+/* CONTACTO */
+.footer-title {
+  font-family: var(--font-title);
+  font-size: 28px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.contact-info p {
+  margin-bottom: 14px;
+  font-size: 16px;
+}
+
+.contact-info a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+/* MAPA */
+.footer-map img {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  border-radius: 16px;
+  display: block;
+  margin-left: auto;
+}
+
+/* FILA INFERIOR */
+.footer-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  margin-bottom: 40px;
+}
+
+/* REDES SOCIALES */
+.footer-social h3,
+.footer-legal h3 {
+  font-family: var(--font-title);
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.footer-social ul {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+  padding: 0;
+}
+
+.footer-social img {
+  width: 36px;
+  height: 36px;
+}
+
+/* POLÍTICAS */
+.legal-links {
+  display: flex;
+  gap: 60px;
+}
+
+.legal-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.legal-links li {
+  margin-bottom: 12px;
+}
+
+.footer-legal a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-size: 15px;
+}
+
+/* COPYRIGHT */
+.footer-copy {
+  text-align: center;
+  font-size: 14px;
+  opacity: 0.9;
+}
