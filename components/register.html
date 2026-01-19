@@ -57,6 +57,7 @@
       <h1>Crear Cuenta</h1>
       <div class="text">
         <div class="short">
+
           <label for="idioma">Idioma</label>
           <select name="idioma" id="idioma" required>
             <option value="">Selecciona idioma</option>
@@ -64,7 +65,7 @@
             <option value="en">Inglés</option>
             <option value="ca">Catalán</option>
           </select>
-          <br>
+
           <label for="nombre">Nombre</label>
           <input
             type="text"
@@ -74,7 +75,7 @@
             placeholder="Introduce tu nombre"
             required
           />
-          <br>
+      
           <label for="primer_apellido">Primer Apellido</label>
           <input
             type="text"
@@ -84,7 +85,7 @@
             placeholder="Introduce tu primer apellido"
             required
           />
-          <br>
+        
           <label for="segundo_apellido">Segundo Apellido</label>
           <input
             type="text"
@@ -92,7 +93,7 @@
             id="segundo_apellido"
             placeholder="Introduce tu segundo apellido"
           />
-          <br>
+        
           <label for="fecha_nacimiento">Fecha de Nacimiento</label>
           <input
             type="date"
@@ -101,12 +102,12 @@
             placeholder="dd/mm/aaaa"
             required
           />
-          <br>
         </div>
-        <div class="imagen perfil">
-          <div class="circulo"></div>
-        </div>
-        <br>
+
+        <section class="circulo">
+                <img src="" alt="">
+        </section>
+
         <div class="long">
           <label for="correo">Correo Electrónico</label>
           <input
@@ -116,7 +117,7 @@
             placeholder="Introduce tu correo electrónico"
             required
           />
-          <br>
+      
           <label for="telefono">Teléfono</label>
           <input
             type="tel"
@@ -125,7 +126,7 @@
             placeholder="Introduce tu teléfono"
             required
           />
-          <br>
+      
           <label for="tipo_documento">Tipo de Documento</label>
           <select name="tipo_documento" id="tipo_documento">
             <option value="">Selecciona documento</option>
@@ -133,7 +134,7 @@
             <option value="nif">NIF</option>
             <option value="nie">NIE</option>
           </select>
-          <br>
+  
           <label for="documento_identidad">Documento de Identidad</label>
           <input
             type="text"
@@ -142,7 +143,7 @@
             placeholder="Introduce tu documento de identidad"
             required
           />
-          <br>
+  
           <label for="ciudad">Ciudad</label>
           <select id="ciudad" name="ciudad" required>
             <option value="">Selecciona una ciudad</option>
@@ -151,7 +152,7 @@
             <option value="valencia">Valencia</option>
             <option value="sevilla">Sevilla</option>
           </select>
-          <br>
+    
           <label for="codigo_postal">Código Postal</label>
           <input
             type="text"
@@ -161,16 +162,16 @@
             maxlength="5"
             pattern="[0-9]{5}"
           />
-          <br>
+      
           <label for="provincia">Provincia</label>
-          <select name="provincia" id="provincia">
+          <select name="provincia" id="provincia" required>
             <option value="">Selecciona provincia</option>
             <option value="barcelona">Barcelona</option>
             <option value="madrid">Madrid</option>
             <option value="sevilla">Sevilla</option>
             <option value="valencia">Valencia</option>
           </select>
-          <br>
+    
           <label for="clave_de_acceso">Clave de Acceso</label>
           <input
             type="password"
@@ -180,7 +181,7 @@
             minlength="8"
             required
           />
-          <br>
+      
           <label for="repetir_clave_de_acceso">Repetir Clave de Acceso</label>
           <input
             type="password"
@@ -191,6 +192,7 @@
             required
           />
         </div>
+        
         <button type="submit">Crear Cuenta</button>
       </div>
     </div>
