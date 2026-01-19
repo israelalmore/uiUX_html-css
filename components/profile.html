@@ -1,325 +1,274 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="/Assets/css/main.css">
+
+    <title>Perfil de Usuario | Forever Events</title>
+    <meta
+      name="description"
+      content="Gestiona y actualiza tu perfil de usuario en Forever Events. Información personal, contacto y preferencias."
+    />
+
+    <link rel="stylesheet" href="/Assets/css/main.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
   </head>
+
   <body>
-   <header class="nav-bar">
-        <!-- IZQUIERDA -->
-        <nav class="nav-left">
-          <a href="landingPage.html">Inicio</a>
-          <a href="#">Eventos</a>
-          <a href="#">Crear Eventos</a>
-        </nav>
+    <header class="nav-bar">
+      <nav class="nav-left" aria-label="Navegación principal">
+        <a href="landingPage.html">Inicio</a>
+        <a href="#">Eventos</a>
+        <a href="#">Crear Eventos</a>
+      </nav>
 
-        <!-- CENTRO -->
-        <div class="nav-center">
-          <a href="landingPage.html">
-            <img
-              class="logo"
-              src="/Assets/img/logoForever.png"
-              alt="logotipo"
-            />
-          </a>
-        </div>
+      <div class="nav-center">
+        <a href="landingPage.html" aria-label="Forever Events inicio">
+          <img
+            class="logo"
+            src="/Assets/img/logoForever.png"
+            alt="Logotipo de Forever Events"
+          />
+        </a>
+      </div>
 
-        <!-- DERECHA -->
-        <div class="nav-right">
-          <form class="search-wrapper">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="search" placeholder="Buscador de eventos" />
-          </form>
+      <div class="nav-right">
+        <form class="search-wrapper" role="search">
+          <label for="search-events" class="sr-only">Buscar eventos</label>
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input
+            id="search-events"
+            type="search"
+            placeholder="Buscador de eventos"
+          />
+        </form>
 
-            <button id="login-button"><a href="login.html">Iniciar Sesión</a></button>
+        <button id="login-button">
+          <a href="login.html">Iniciar Sesión</a>
+        </button>
 
-          <a href="profile.html" id="accountButton">
-            <img src="/Assets/img/icons/account.png" alt="account settings" />
-          </a>
-        </div>
+        <a
+          href="profile.html"
+          id="accountButton"
+          aria-label="Perfil de usuario"
+        >
+          <img
+            src="/Assets/img/icons/account.png"
+            alt="Acceso al perfil de usuario"
+          />
+        </a>
+      </div>
     </header>
 
-    <!-- AJUSTES DE PERFIL -->
-    <div class="profile">
-      <h1>TU PERFIL:</h1>
-      <div class="text">
-        <div class="short">
-          <h4>NOMBRE</h4>
-          <div class="input">
-            <input
-              type="text"
-              name="nombre"
-              id="nombre"
-              minlength="2"
-              placeholder="Nombre de usuario"
-            />
-          </div>
-          <h4>APELLIDO 1</h4>
-          <div class="input">
-            <input
-              type="text"
-              name="apellido1"
-              id="apellido1"
-              minlength="2"
-              placeholder="Primer apellido"
-            />
-          </div>
-          <h4>APELLIDO 2</h4>
-          <div class="input">
-            <input
-              type="text"
-              name="apellido2"
-              id="apellido2"
-              minlength="2"
-              placeholder="Segundo apellido"
-            />
-          </div>
-          <h4>GÉNERO</h4>
-          <div class="input">
-            <select name="genero" id="genero">
-              <option value="">Selecciona</option>
-              <option value="hombre">Hombre</option>
-              <option value="mujer">Mujer</option>
-            </select>
-          </div>
-          <h4>FECHA DE NACIMIENTO</h4>
-          <div class="input">
-            <input
-              type="date"
-              name="fecha_nacimiento"
-              id="fecha_nacimiento"
-              placeholder="16/09/2000"
-            />
-          </div>
-          <h4>IDIOMA</h4>
-          <div class="input-right">
-            <select name="idioma" id="idioma">
-              <option value="">Selecciona idioma</option>
-              <option value="es">Español</option>
-              <option value="en">Inglés</option>
-              <option value="ca">Catalán</option>
-            </select>
-          </div>
-          <h4>TELÉFONO</h4>
-          <div class="input">
-            <input
-              type="tel"
-              name="telefono"
-              id="telefono"
-              placeholder="+34 --"
-            />
-          </div>
-          <h4>DOCUMENTO DE IDENTIDAD</h4>
-          <div class="input-right">
-            <input
-              type="text"
-              name="documento_identidad"
-              id="documento_identidad"
-              placeholder="Documento de usuario"
-            />
-          </div>
-          <h4>CORREO ELECTRÓNICO</h4>
-          <div class="input">
-            <input
-              type="email"
-              name="correo"
-              id="correo"
-              placeholder="mail@gmail.com"
-            />
-          </div>
-          <h4>CIUDAD</h4>
-          <div class="input-right">
-            <select id="ciudad" name="ciudad">
-              <option value="">Selecciona una ciudad</option>
-              <option value="madrid">Madrid</option>
-              <option value="barcelona">Barcelona</option>
-              <option value="valencia">Valencia</option>
-              <option value="sevilla">Sevilla</option>
-              <option value="zaragoza">Zaragoza</option>
-              <option value="malaga">Málaga</option>
-              <option value="murcia">Murcia</option>
-              <option value="palma">Palma de Mallorca</option>
-              <option value="las_palmas">Las Palmas de Gran Canaria</option>
-              <option value="bilbao">Bilbao</option>
-              <option value="alicante">Alicante</option>
-              <option value="cordoba">Córdoba</option>
-              <option value="valladolid">Valladolid</option>
-              <option value="vigo">Vigo</option>
-              <option value="gijon">Gijón</option>
-              <option value="hospitalet">L'Hospitalet de Llobregat</option>
-              <option value="la_coruna">A Coruña</option>
-              <option value="granada">Granada</option>
-              <option value="oviedo">Oviedo</option>
-              <option value="santander">Santander</option>
-            </select>
-          </div>
-        </div>
-        <div class="long">
-          <h4>CÓDIGO POSTAL</h4>
-            <input 
-                type="text" 
-                name="codigo_postal"
-                id="codigo_postal"
-                placeholder="08005"
-            />
-          </div>
-          <h4>POBLACIÓN</h4>
-          <div class="input_long">
-            <select name="provincia" id="provincia">
-                <option value="">Selecciona provincia</option>
-                <option value="alava">Álava</option>
-                <option value="albacete">Albacete</option>
-                <option value="alicante">Alicante</option>
-                <option value="almeria">Almería</option>
-                <option value="asturias">Asturias</option>
-                <option value="avila">Ávila</option>
-                <option value="badajoz">Badajoz</option>
-                <option value="barcelona">Barcelona</option>
-                <option value="burgos">Burgos</option>
-                <option value="caceres">Cáceres</option>
-                <option value="cadiz">Cádiz</option>
-                <option value="cantabria">Cantabria</option>
-                <option value="castellon">Castellón</option>
-                <option value="ciudad-real">Ciudad Real</option>
-                <option value="cordoba">Córdoba</option>
-                <option value="cuenca">Cuenca</option>
-                <option value="girona">Girona</option>
-                <option value="granada">Granada</option>
-                <option value="guadalajara">Guadalajara</option>
-                <option value="guipuzcoa">Guipúzcoa</option>
-                <option value="huelva">Huelva</option>
-                <option value="huesca">Huesca</option>
-                <option value="illes-balears">Illes Balears</option>
-                <option value="jaen">Jaén</option>
-                <option value="la-coruna">La Coruña</option>
-                <option value="la-rioja">La Rioja</option>
-                <option value="las-palmas">Las Palmas</option>
-                <option value="leon">León</option>
-                <option value="lleida">Lleida</option>
-                <option value="lugo">Lugo</option>
-                <option value="madrid">Madrid</option>
-                <option value="malaga">Málaga</option>
-                <option value="murcia">Murcia</option>
-                <option value="navarra">Navarra</option>
-                <option value="ourense">Ourense</option>
-                <option value="palencia">Palencia</option>
-                <option value="pontevedra">Pontevedra</option>
-                <option value="salamanca">Salamanca</option>
-                <option value="santa-cruz-tenerife">Santa Cruz de Tenerife</option>
-                <option value="segovia">Segovia</option>
-                <option value="sevilla">Sevilla</option>
-                <option value="soria">Soria</option>
-                <option value="tarragona">Tarragona</option>
-                <option value="teruel">Teruel</option>
-                <option value="toledo">Toledo</option>
-                <option value="valencia">Valencia</option>
-                <option value="valladolid">Valladolid</option>
-                <option value="vizcaya">Vizcaya</option>
-                <option value="zamora">Zamora</option>
-                <option value="zaragoza">Zaragoza</option>
-                <option value="ceuta">Ceuta</option>
-                <option value="melilla">Melilla</option>
-            </select>
-          </div>
-          <h4>CONTRASEÑA</h4>
-          <div class="input_long">
-           <input
-            type="password"
-            name="contrasena"
-            id="contrasena"
-            placeholder="***********"
-            />
-          </div>
-        </div>
-        <button>Guardar Perfil</button>
-      </div>
-    </div>
-          <footer class="site-footer">
-        <h2 class="footer-title">Forever Events</h2>
-        <div class="footer-container">
-          <!-- Columna izquierda: Contacto -->
-          <section class="footer-contact">
-            <address class="contact-info">
-              <p><strong>Contacto:</strong></p>
-              <p>Teléfono: <a href="tel:+34676676767">+34 676 67 67</a></p>
-              <p>
-                Email:
-                <a href="mailto:contact@foreverevents.com"
-                  >contact@foreverevents.com</a
-                >
-              </p>
-              <p>Ubicación: Calle Ramón Llull, 67</p>
-            </address>
-          </section>
+    <main>
+      <section class="profile">
+        <header>
+          <h1>Tu perfil</h1>
+        </header>
 
-          <!-- Columna derecha: Mapa -->
-          <section class="footer-map">
+        <form>
+          <fieldset class="text">
+            <legend class="sr-only">Datos personales</legend>
+
+            <div class="short">
+              <label for="nombre"><h4>Nombre</h4></label>
+              <div class="input">
+                <input
+                  type="text"
+                  id="nombre"
+                  name="nombre"
+                  minlength="2"
+                  placeholder="Nombre de usuario"
+                />
+              </div>
+
+              <label for="apellido1"><h4>Apellido 1</h4></label>
+              <div class="input">
+                <input
+                  type="text"
+                  id="apellido1"
+                  name="apellido1"
+                  minlength="2"
+                  placeholder="Primer apellido"
+                />
+              </div>
+
+              <label for="apellido2"><h4>Apellido 2</h4></label>
+              <div class="input">
+                <input
+                  type="text"
+                  id="apellido2"
+                  name="apellido2"
+                  minlength="2"
+                  placeholder="Segundo apellido"
+                />
+              </div>
+
+              <label for="genero"><h4>Género</h4></label>
+              <div class="input">
+                <select id="genero" name="genero">
+                  <option value="">Selecciona</option>
+                  <option value="hombre">Hombre</option>
+                  <option value="mujer">Mujer</option>
+                </select>
+              </div>
+
+              <label for="fecha_nacimiento"><h4>Fecha de nacimiento</h4></label>
+              <div class="input">
+                <input
+                  type="date"
+                  id="fecha_nacimiento"
+                  name="fecha_nacimiento"
+                />
+              </div>
+
+              <label for="idioma"><h4>Idioma</h4></label>
+              <div class="input-right">
+                <select id="idioma" name="idioma">
+                  <option value="">Selecciona idioma</option>
+                  <option value="es">Español</option>
+                  <option value="en">Inglés</option>
+                  <option value="ca">Catalán</option>
+                </select>
+              </div>
+
+              <label for="telefono"><h4>Teléfono</h4></label>
+              <div class="input">
+                <input
+                  type="tel"
+                  id="telefono"
+                  name="telefono"
+                  placeholder="+34 --"
+                />
+              </div>
+
+              <label for="documento_identidad"
+                ><h4>Documento de identidad</h4></label
+              >
+              <div class="input-right">
+                <input
+                  type="text"
+                  id="documento_identidad"
+                  name="documento_identidad"
+                  placeholder="Documento de usuario"
+                />
+              </div>
+
+              <label for="correo"><h4>Correo electrónico</h4></label>
+              <div class="input">
+                <input
+                  type="email"
+                  id="correo"
+                  name="correo"
+                  placeholder="mail@gmail.com"
+                />
+              </div>
+
+              <label for="ciudad"><h4>Ciudad</h4></label>
+              <div class="input-right">
+                <select id="ciudad" name="ciudad">
+                  <option value="">Selecciona una ciudad</option>
+                  <option value="madrid">Madrid</option>
+                  <option value="barcelona">Barcelona</option>
+                  <option value="valencia">Valencia</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="long">
+              <label for="codigo_postal"><h4>Código postal</h4></label>
+              <input
+                type="text"
+                id="codigo_postal"
+                name="codigo_postal"
+                placeholder="08005"
+              />
+
+              <label for="provincia"><h4>Población</h4></label>
+              <div class="input_long">
+                <select id="provincia" name="provincia">
+                  <option value="">Selecciona provincia</option>
+                  <option value="madrid">Madrid</option>
+                  <option value="barcelona">Barcelona</option>
+                </select>
+              </div>
+
+              <label for="contrasena"><h4>Contraseña</h4></label>
+              <div class="input_long">
+                <input
+                  type="password"
+                  id="contrasena"
+                  name="contrasena"
+                  placeholder="***********"
+                />
+              </div>
+            </div>
+
+            <button type="submit">Guardar Perfil</button>
+          </fieldset>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <h2 class="footer-title">Forever Events</h2>
+
+      <div class="footer-container">
+        <section class="footer-contact">
+          <address class="contact-info">
+            <p><strong>Contacto</strong></p>
+            <p>Teléfono: <a href="tel:+34676676767">+34 676 67 67</a></p>
+            <p>
+              Email:
+              <a href="mailto:contact@foreverevents.com">
+                contact@foreverevents.com
+              </a>
+            </p>
+            <p>Ubicación: Calle Ramón Llull, 67</p>
+          </address>
+        </section>
+
+        <section class="footer-map">
+          <figure>
             <img
               src="/Assets/img/mapa.png"
               alt="Ubicación de Forever Events en Calle Ramón Llull, 67"
             />
-          </section>
-        </div>
+          </figure>
+        </section>
+      </div>
 
-        <!-- Fila inferior -->
-        <div class="footer-bottom">
-          <!-- Redes sociales -->
-          <nav class="footer-social" aria-label="Redes sociales">
-            <h3>Redes Sociales</h3>
-            <ul>
-              <li>
-                <a href="#" aria-label="Instagram">
-                  <img
-                    src="/Assets/img/icons/instagramLogo.png"
-                    alt="Instagram Forever Events"
-                  />
-                </a>
-              </li>
-              <li>
-                <a href="#" aria-label="Facebook">
-                  <img
-                    src="/Assets/img/icons/facebookLogo.png"
-                    alt="Facebook Forever Events"
-                  />
-                </a>
-              </li>
-              <li>
-                <a href="#" aria-label="YouTube">
-                  <img
-                    src="/Assets/img/icons/youtubeLogo.png"
-                    alt="YouTube Forever Events"
-                  />
-                </a>
-              </li>
-            </ul>
-          </nav>
+      <div class="footer-bottom">
+        <nav class="footer-social" aria-label="Redes sociales">
+          <h3>Redes Sociales</h3>
+          <ul>
+            <li>
+              <a href="#" aria-label="Instagram Forever Events">
+                <img
+                  src="/Assets/img/icons/instagramLogo.png"
+                  alt="Instagram Forever Events"
+                />
+              </a>
+            </li>
+          </ul>
+        </nav>
 
-          <!-- Políticas -->
-          <nav class="footer-legal" aria-label="Políticas legales">
-            <h3>Políticas</h3>
-            <div class="legal-links">
-              <ul>
-                <li><a href="#">Políticas de privacidad</a></li>
-                <li><a href="#">Aviso Legal</a></li>
-              </ul>
-              <ul>
-                <li><a href="#">Términos y condiciones</a></li>
-                <li><a href="#">Cookies</a></li>
-              </ul>
-            </div>
-          </nav>
-        </div>
+        <nav class="footer-legal" aria-label="Información legal">
+          <h3>Políticas</h3>
+          <ul>
+            <li><a href="#">Política de privacidad</a></li>
+            <li><a href="#">Aviso legal</a></li>
+            <li><a href="#">Cookies</a></li>
+          </ul>
+        </nav>
+      </div>
 
-        <!-- Copyright -->
-        <div class="footer-copy">
-          <p>© 2025 Forever Events. Todos los derechos reservados.</p>
-        </div>
-      </footer>
+      <div class="footer-copy">
+        <p>© 2025 Forever Events. Todos los derechos reservados.</p>
+      </div>
+    </footer>
   </body>
 </html>

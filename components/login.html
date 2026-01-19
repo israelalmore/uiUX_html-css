@@ -1,82 +1,110 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Iniciar Sesión | Forever Events</title>
+    <meta
+      name="description"
+      content="Accede a tu cuenta de Forever Events y gestiona tus eventos de forma rápida y segura."
+    />
+
     <link rel="stylesheet" href="/Assets/css/main.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
-    <title>Forever Events</title>
   </head>
+
   <body>
     <header class="nav-bar">
-      <!-- IZQUIERDA -->
-      <nav class="nav-left">
+      <nav class="nav-left" aria-label="Navegación principal">
         <a href="landingPage.html">Inicio</a>
         <a href="#">Eventos</a>
         <a href="#">Crear Eventos</a>
       </nav>
 
-      <!-- CENTRO -->
       <div class="nav-center">
-        <a href="landingPage.html">
-          <img class="logo" src="/Assets/img/logoForever.png" alt="logotipo" />
+        <a href="landingPage.html" aria-label="Forever Events inicio">
+          <img
+            class="logo"
+            src="/Assets/img/logoForever.png"
+            alt="Logotipo de Forever Events"
+          />
         </a>
       </div>
 
-      <!-- DERECHA -->
       <div class="nav-right">
-        <form class="search-wrapper">
+        <form class="search-wrapper" role="search">
+          <label for="event-search" class="sr-only">Buscar eventos</label>
           <i class="fa-solid fa-magnifying-glass"></i>
-          <input type="search" placeholder="Buscador de eventos" />
+          <input
+            id="event-search"
+            type="search"
+            placeholder="Buscador de eventos"
+          />
         </form>
 
         <button id="login-button">
           <a href="login.html">Iniciar Sesión</a>
         </button>
 
-        <a href="profile.html" id="accountButton">
-          <img src="/Assets/img/icons/account.png" alt="account settings" />
+        <a
+          href="profile.html"
+          id="accountButton"
+          aria-label="Perfil de usuario"
+        >
+          <img
+            src="/Assets/img/icons/account.png"
+            alt="Acceso al perfil de usuario"
+          />
         </a>
       </div>
     </header>
 
-    <!-- LOGIN -->
-    <div class="login">
-      <h1>Iniciar Sesión</h1>
-      <div class="forms">
-        <form action="login.php" method="post">
-          <label for="user"> Correo Electrónico </label>
-          <input
-            type="email"
-            name="user"
-            id="user"
-            minlength="5"
-            placeholder="Introduce tu correo electrónico"
-          />
-          <br />
-          <label for="password"> Contraseña </label>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            minlength="1"
-            maxlength="100"
-            placeholder="Introduce tu contraseña"
-          />
-          <a href="forgotPassword.html">¿Has olvidado tu contraseña?</a> <br />
-          <br />
-          <input type="submit" value="Login" />
-        </form>
-      </div>
+    <main>
+      <!-- LOGIN -->
+      <div class="login">
+        <h1>Iniciar Sesión</h1>
 
-      <!-- CREAR USUARIO-->
-      <div class="crearCuenta">
-        <span>¿Usuario nuevo?</span>
-        <a href="register.html">Crear cuenta</a>
+        <div class="forms">
+          <form action="login.php" method="post">
+            <label for="user">Correo Electrónico</label>
+            <input
+              type="email"
+              name="user"
+              id="user"
+              minlength="5"
+              placeholder="Introduce tu correo electrónico"
+              required
+            />
+
+            <label for="password">Contraseña</label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              minlength="1"
+              maxlength="100"
+              placeholder="Introduce tu contraseña"
+              required
+            />
+
+            <a href="forgotPassword.html">
+              ¿Has olvidado tu contraseña?
+            </a>
+
+            <input type="submit" value="Login" />
+          </form>
+        </div>
+
+        <div class="crearCuenta">
+          <span>¿Usuario nuevo?</span>
+          <a href="register.html">Crear cuenta</a>
+        </div>
       </div>
-    </div>
+    </main>
   </body>
 </html>
+
