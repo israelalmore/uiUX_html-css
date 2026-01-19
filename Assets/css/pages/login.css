@@ -65,7 +65,7 @@ body {
 /* BOTÓN LOGIN */
 .forms input[type="submit"] {
   align-self: center;
-  background-color: #ffd700;
+  background-color: var(--accent-color);
   color: black;
   border: none;
   padding: 14px 40px;
