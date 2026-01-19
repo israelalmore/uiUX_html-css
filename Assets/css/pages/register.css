@@ -1,35 +1,71 @@
-body {
-  background-color: var(---primary-bg-color);
-  color: white;
-  margin: 0;
-}
-
-.register {
+.register-section {
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.text > div {
-  width: 100%;
-  display: flex;
+  padding: 60px 0;
   flex-direction: column;
 }
-
-#createAccount-button {
-  background-color: white; /* azul */
-  color: black;
-  border: none;
-  padding: 8px 14px;
-  border-radius: 6px;
-  cursor: pointer;
+.register-section h1{
+  text-align: center;
+  font-size: 3rem;
 }
 
-.circulo {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    background-color: #e0e0e0;
+.register-form {
+  width: 1100px;
+}
+
+.register-grid {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  column-gap: 50px;
+  row-gap: 16px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field.full {
+  grid-column: 1 / -1;
+}
+
+.avatar {
+  grid-column: 2;
+  grid-row: 1 / 6; 
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  justify-self: center;
+}
+
+label {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+input,
+select {
+  height: 42px;
+  border-radius: 8px;
+  border: none;
+  padding: 0 14px;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.actions button {
+  background-color: #ffd400;
+  color: #000;
+  padding: 16px 70px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
 }

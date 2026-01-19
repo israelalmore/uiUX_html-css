@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -15,267 +15,214 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="/Assets/css/main.css">
+    <link rel="stylesheet" href="/Assets/css/main.css" />
+  </head>
   <body>
-        <header class="nav-bar">
-      <!-- IZQUIERDA -->
-      <nav class="nav-left">
+    <header class="nav-bar">
+      <nav class="nav-left" aria-label="Navegación principal">
         <a href="landingPage.html">Inicio</a>
         <a href="#">Eventos</a>
         <a href="#">Crear Eventos</a>
       </nav>
 
-      <!-- CENTRO -->
-        <div class="nav-center">
-          <a href="landingPage.html">
-            <img
-              class="logo"
-              src="/Assets/img/logoForever.png"
-              alt="logotipo"
-            />
-          </a>
-        </div>
+      <div class="nav-center">
+        <a href="landingPage.html" aria-label="Forever Events inicio">
+          <img
+            class="logo"
+            src="/Assets/img/logoForever.png"
+            alt="Logotipo de Forever Events"
+          />
+        </a>
+      </div>
 
-      <!-- DERECHA -->
       <div class="nav-right">
-        <form class="search-wrapper">
+        <form class="search-wrapper" role="search">
+          <label for="event-search" class="sr-only">Buscar eventos</label>
           <i class="fa-solid fa-magnifying-glass"></i>
-          <input type="search" placeholder="Buscador de eventos" />
+          <input
+            id="event-search"
+            type="search"
+            placeholder="Buscador de eventos"
+          />
         </form>
 
-        <button id="login-button"><a href="login.html">Iniciar Sesión</a></button>
+        <button id="login-button">
+          <a href="login.html">Iniciar Sesión</a>
+        </button>
 
-        <a href="profile.html" id="accountButton">
-          <img src="/Assets/img/icons/account.png" alt="account settings" />
+        <a
+          href="profile.html"
+          id="accountButton"
+          aria-label="Perfil de usuario"
+        >
+          <img
+            src="/Assets/img/icons/account.png"
+            alt="Acceso al perfil de usuario"
+          />
         </a>
       </div>
     </header>
-
-    <!-- REGISTRO DE PERFIL -->
     <main>
-<form class="register">
-      <h1>Crear Cuenta</h1>
-      <div class="text">
-        <div class="short">
+      <section class="register-section">
+        <header>
+          <h1>Crear Cuenta</h1>
+        </header>
+        <form class="register-form">
+          <div class="register-grid">
+            <div class="field">
+              <label for="idioma">Idioma</label>
+              <select id="idioma"></select>
+            </div>
 
-          <label for="idioma">Idioma</label>
-          <select name="idioma" id="idioma" required>
-            <option value="">Selecciona idioma</option>
-            <option value="es">Español</option>
-            <option value="en">Inglés</option>
-            <option value="ca">Catalán</option>
-          </select>
+            <aside class="avatar" aria-hidden="true"></aside>
 
-          <label for="nombre">Nombre</label>
-          <input
-            type="text"
-            name="nombre"
-            id="nombre"
-            minlength="1"
-            placeholder="Introduce tu nombre"
-            required
-          />
-      
-          <label for="primer_apellido">Primer Apellido</label>
-          <input
-            type="text"
-            name="primer_apellido"
-            id="primer_apellido"
-            minlength="1"
-            placeholder="Introduce tu primer apellido"
-            required
-          />
-        
-          <label for="segundo_apellido">Segundo Apellido</label>
-          <input
-            type="text"
-            name="segundo_apellido"
-            id="segundo_apellido"
-            placeholder="Introduce tu segundo apellido"
-          />
-        
-          <label for="fecha_nacimiento">Fecha de Nacimiento</label>
-          <input
-            type="date"
-            name="fecha_nacimiento"
-            id="fecha_nacimiento"
-            placeholder="dd/mm/aaaa"
-            required
-          />
-        </div>
+            <div class="field">
+              <label for="nombre">Nombre</label>
+              <input id="nombre" type="text" />
+            </div>
 
-        <section class="circulo">
-                <img src="" alt="">
+            <div class="field">
+              <label for="apellido1">Primer Apellido</label>
+              <input id="apellido1" type="text" />
+            </div>
+
+            <div class="field">
+              <label for="apellido2">Segundo Apellido</label>
+              <input id="apellido2" type="text" />
+            </div>
+
+            <div class="field">
+              <label for="fecha">Fecha de Nacimiento</label>
+              <input id="fecha" type="date" />
+            </div>
+
+            <div class="field full">
+              <label for="correo">Correo Electrónico</label>
+              <input id="correo" type="email" />
+            </div>
+
+            <div class="field full">
+              <label for="telefono">Teléfono</label>
+              <input id="telefono" type="tel" />
+            </div>
+
+            <div class="field full">
+              <label for="tipo_doc">Tipo de Documento</label>
+              <select id="tipo_doc"></select>
+            </div>
+
+            <div class="field full">
+              <label for="doc">Documento de Identidad</label>
+              <input id="doc" type="text" />
+            </div>
+
+            <div class="field full">
+              <label for="ciudad">Ciudad</label>
+              <input id="ciudad" type="text" />
+            </div>
+
+            <div class="field full">
+              <label for="cp">Código Postal</label>
+              <input id="cp" type="text" />
+            </div>
+
+            <div class="field full">
+              <label for="provincia">Provincia</label>
+              <input id="provincia" type="text" />
+            </div>
+
+            <div class="field full">
+              <label for="pass">Clave de Acceso</label>
+              <input id="pass" type="password" />
+            </div>
+
+            <div class="field full">
+              <label for="pass2">Repetir Clave de Acceso</label>
+              <input id="pass2" type="password" />
+            </div>
+
+            <div class="actions full">
+              <button type="submit">Crear Cuenta</button>
+            </div>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <h2 class="footer-title">Forever Events</h2>
+      <div class="footer-container">
+        <section class="footer-contact">
+          <address class="contact-info">
+            <p><strong>Contacto:</strong></p>
+            <p>Teléfono: <a href="tel:+34676676767">+34 676 67 67</a></p>
+            <p>
+              Email:
+              <a href="mailto:contact@foreverevents.com"
+                >contact@foreverevents.com</a
+              >
+            </p>
+            <p>Ubicación: Calle Ramón Llull, 67</p>
+          </address>
         </section>
 
-        <div class="long">
-          <label for="correo">Correo Electrónico</label>
-          <input
-            type="email"
-            name="correo"
-            id="correo"
-            placeholder="Introduce tu correo electrónico"
-            required
+        <section class="footer-map">
+          <img
+            src="/Assets/img/mapa.png"
+            alt="Ubicación de Forever Events en Calle Ramón Llull, 67"
           />
-      
-          <label for="telefono">Teléfono</label>
-          <input
-            type="tel"
-            name="telefono"
-            id="telefono"
-            placeholder="Introduce tu teléfono"
-            required
-          />
-      
-          <label for="tipo_documento">Tipo de Documento</label>
-          <select name="tipo_documento" id="tipo_documento">
-            <option value="">Selecciona documento</option>
-            <option value="dni">DNI</option>
-            <option value="nif">NIF</option>
-            <option value="nie">NIE</option>
-          </select>
-  
-          <label for="documento_identidad">Documento de Identidad</label>
-          <input
-            type="text"
-            name="documento_identidad"
-            id="documento_identidad"
-            placeholder="Introduce tu documento de identidad"
-            required
-          />
-  
-          <label for="ciudad">Ciudad</label>
-          <select id="ciudad" name="ciudad" required>
-            <option value="">Selecciona una ciudad</option>
-            <option value="madrid">Madrid</option>
-            <option value="barcelona">Barcelona</option>
-            <option value="valencia">Valencia</option>
-            <option value="sevilla">Sevilla</option>
-          </select>
-    
-          <label for="codigo_postal">Código Postal</label>
-          <input
-            type="text"
-            name="codigo_postal"
-            id="codigo_postal"
-            placeholder="Introduce tu código postal"
-            maxlength="5"
-            pattern="[0-9]{5}"
-          />
-      
-          <label for="provincia">Provincia</label>
-          <select name="provincia" id="provincia" required>
-            <option value="">Selecciona provincia</option>
-            <option value="barcelona">Barcelona</option>
-            <option value="madrid">Madrid</option>
-            <option value="sevilla">Sevilla</option>
-            <option value="valencia">Valencia</option>
-          </select>
-    
-          <label for="clave_de_acceso">Clave de Acceso</label>
-          <input
-            type="password"
-            name="clave_de_acceso"
-            id="clave_de_acceso"
-            placeholder="Introduce una clave de acceso"
-            minlength="8"
-            required
-          />
-      
-          <label for="repetir_clave_de_acceso">Repetir Clave de Acceso</label>
-          <input
-            type="password"
-            name="repetir_clave_de_acceso"
-            id="repetir_clave_de_acceso"
-            placeholder="Vuelve a introducir tu clave de acceso"
-            minlength="8"
-            required
-          />
-        </div>
-        
-        <button type="submit">Crear Cuenta</button>
+        </section>
       </div>
-    </div>
-    <footer class="site-footer">
-        <h2 class="footer-title">Forever Events</h2>
-        <div class="footer-container">
-          <!-- Columna izquierda: Contacto -->
-          <section class="footer-contact">
-            <address class="contact-info">
-              <p><strong>Contacto:</strong></p>
-              <p>Teléfono: <a href="tel:+34676676767">+34 676 67 67</a></p>
-              <p>
-                Email:
-                <a href="mailto:contact@foreverevents.com"
-                  >contact@foreverevents.com</a
-                >
-              </p>
-              <p>Ubicación: Calle Ramón Llull, 67</p>
-            </address>
-          </section>
 
-          <!-- Columna derecha: Mapa -->
-          <section class="footer-map">
-            <img
-              src="/Assets/img/mapa.png"
-              alt="Ubicación de Forever Events en Calle Ramón Llull, 67"
-            />
-          </section>
-        </div>
+      <div class="footer-bottom">
+        <nav class="footer-social" aria-label="Redes sociales">
+          <h3>Redes Sociales</h3>
+          <ul>
+            <li>
+              <a href="#" aria-label="Instagram">
+                <img
+                  src="/Assets/img/icons/instagramLogo.png"
+                  alt="Instagram Forever Events"
+                />
+              </a>
+            </li>
+            <li>
+              <a href="#" aria-label="Facebook">
+                <img
+                  src="/Assets/img/icons/facebookLogo.png"
+                  alt="Facebook Forever Events"
+                />
+              </a>
+            </li>
+            <li>
+              <a href="#" aria-label="YouTube">
+                <img
+                  src="/Assets/img/icons/youtubeLogo.png"
+                  alt="YouTube Forever Events"
+                />
+              </a>
+            </li>
+          </ul>
+        </nav>
 
-        <!-- Fila inferior -->
-        <div class="footer-bottom">
-          <!-- Redes sociales -->
-          <nav class="footer-social" aria-label="Redes sociales">
-            <h3>Redes Sociales</h3>
+        <nav class="footer-legal" aria-label="Políticas legales">
+          <h3>Políticas</h3>
+          <div class="legal-links">
             <ul>
-              <li>
-                <a href="#" aria-label="Instagram">
-                  <img
-                    src="/Assets/img/icons/instagramLogo.png"
-                    alt="Instagram Forever Events"
-                  />
-                </a>
-              </li>
-              <li>
-                <a href="#" aria-label="Facebook">
-                  <img
-                    src="/Assets/img/icons/facebookLogo.png"
-                    alt="Facebook Forever Events"
-                  />
-                </a>
-              </li>
-              <li>
-                <a href="#" aria-label="YouTube">
-                  <img
-                    src="/Assets/img/icons/youtubeLogo.png"
-                    alt="YouTube Forever Events"
-                  />
-                </a>
-              </li>
+              <li><a href="#">Políticas de privacidad</a></li>
+              <li><a href="#">Aviso Legal</a></li>
             </ul>
-          </nav>
+            <ul>
+              <li><a href="#">Términos y condiciones</a></li>
+              <li><a href="#">Cookies</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
 
-          <!-- Políticas -->
-          <nav class="footer-legal" aria-label="Políticas legales">
-            <h3>Políticas</h3>
-            <div class="legal-links">
-              <ul>
-                <li><a href="#">Políticas de privacidad</a></li>
-                <li><a href="#">Aviso Legal</a></li>
-              </ul>
-              <ul>
-                <li><a href="#">Términos y condiciones</a></li>
-                <li><a href="#">Cookies</a></li>
-              </ul>
-            </div>
-          </nav>
-        </div>
-
-        <!-- Copyright -->
-        <div class="footer-copy">
-          <p>© 2025 Forever Events. Todos los derechos reservados.</p>
-        </div>
-      </footer>
+      <div class="footer-copy">
+        <p>© 2025 Forever Events. Todos los derechos reservados.</p>
+      </div>
+    </footer>
   </body>
 </html>

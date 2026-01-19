@@ -2,9 +2,9 @@ body {
   background-color: var(--primary-bg-color);
   color: white;
   height: 100vh;
+  margin: 0;
 }
 
-/* Background Main-Page*/
 .background-image {
   background-image: url(/Assets/img/images/landingPage.jpg);
   height: 600px;
@@ -17,8 +17,8 @@ body {
   justify-content: center;
   align-items: center;
   margin-bottom: 2rem;
+  width: 100vw; 
 }
-/* Improve opacity */
 .background-image::before {
   content: "";
   position: absolute;

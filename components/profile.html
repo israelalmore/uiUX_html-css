@@ -64,151 +64,116 @@
     </header>
 
     <main>
-      <section class="profile">
-        <header>
-          <h1>Tu perfil:</h1>
+      <section class="profile" aria-labelledby="profile-title">
+        <header class="profile-header">
+          <h1 id="profile-title">Tu perfil:</h1>
         </header>
 
-        <form>
-          <fieldset class="text">
+        <form class="profile-form" aria-describedby="profile-desc">
+          <p id="profile-desc" class="sr-only">
+            Formulario de edición del perfil de usuario
+          </p>
+          <fieldset class="profile-fieldset">
             <legend class="sr-only">Datos personales</legend>
-            <div class="short">
-              <label for="nombre">NOMBRE</label>
-              <input
-                type="text"
-                id="nombre"
-                name="nombre"
-                minlength="2"
-                placeholder="Nombre de usuario"
-                required
-              />
 
-              <label for="apellido1">APELLIDO 1</label>
-              <input
-                type="text"
-                id="apellido1"
-                name="apellido1"
-                minlength="1"
-                placeholder="Primer apellido"
-                required
-              />
-
-              <label for="apellido2">APELLIDO 2</label>
-              <input
-                type="text"
-                id="apellido2"
-                name="apellido2"
-                placeholder="Segundo apellido"
-              />
-
-              <label for="genero">GÉNERO</label>
-              <select id="genero" name="genero">
-                <option value="">Selecciona</option>
-                <option value="hombre">Hombre</option>
-                <option value="mujer">Mujer</option>
-              </select>
-
-              <section class="circulo">
-                <img src="" alt="">
-              </section>
-
-              <label for="fecha_nacimiento">FECHA DE NACIMIENTO</label>
-              <input
-                type="date"
-                id="fecha_nacimiento"
-                name="fecha_nacimiento"
-                placeholder="16/09/2000"
-                required
-              />
-
-              <div class="input-right">
-                <label for="idioma">IDIOMA</label>
-                <select id="idioma" name="idioma" required>
-                  <option value="">Selecciona idioma</option>
-                  <option value="es">Español</option>
-                  <option value="en">Inglés</option>
-                  <option value="ca">Catalán</option>
-                </select>
-              </div>
-
-              <label for="telefono">TELÉFONO</label>
-              <input
-                type="tel"
-                id="telefono"
-                name="telefono"
-                placeholder="+34 --"
-                required
-              />
-
-              <div class="input-right">
-                <label for="documento_identidad">DOCUMENTO DE IDENTIDAD</label>
+            <div class="profile-grid">
+              <div class="field">
+                <label for="nombre">NOMBRE</label>
                 <input
+                  id="nombre"
                   type="text"
-                  id="documento_identidad"
-                  name="documento_identidad"
-                  placeholder="Documento de usuario"
-                  required
+                  placeholder="Nombre de usuario"
                 />
               </div>
 
-              <label for="correo">CORREO ELECTRÓNICO</label>
-              <input
-                type="email"
-                id="correo"
-                name="correo"
-                placeholder="mail@gmail.com"
-                required
-              />
+              <div class="avatar" aria-hidden="true"></div>
 
-              <div class="input-right">
-                <label for="ciudad">CIUDAD</label>
-                <select id="ciudad" name="ciudad" required>
-                  <option value="">Selecciona una ciudad</option>
-                  <option value="madrid">Madrid</option>
-                  <option value="barcelona">Barcelona</option>
-                  <option value="valencia">Valencia</option>
-                  <option value="sevilla">Sevilla</option>
+              <div class="field">
+                <label for="apellido1">APELLIDO 1</label>
+                <input
+                  id="apellido1"
+                  type="text"
+                  placeholder="Primer apellido"
+                />
+              </div>
+
+              <div class="field">
+                <label for="apellido2">APELLIDO 2</label>
+                <input
+                  id="apellido2"
+                  type="text"
+                  placeholder="Segundo apellido"
+                />
+              </div>
+
+              <div class="field">
+                <label for="genero">GÉNERO</label>
+                <select id="genero">
+                  <option>Hombre</option>
+                  <option>Mujer</option>
                 </select>
               </div>
+
+              <div class="field">
+                <label for="fecha">FECHA DE NACIMIENTO</label>
+                <input id="fecha" type="date" />
+              </div>
+
+              <div class="field">
+                <label for="idioma">IDIOMA</label>
+                <select id="idioma">
+                  <option>Español</option>
+                  <option>Inglés</option>
+                  <option>Catalán</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="telefono">TELÉFONO</label>
+                <input id="telefono" type="tel" placeholder="+34 --" />
+              </div>
+
+              <div class="field">
+                <label for="documento">DOCUMENTO DE IDENTIDAD</label>
+                <input
+                  id="documento"
+                  type="text"
+                  placeholder="Documento de usuario"
+                />
+              </div>
+
+              <div class="field">
+                <label for="correo">CORREO ELECTRÓNICO</label>
+                <input id="correo" type="email" placeholder="mail@gmail.com" />
+              </div>
+
+              <div class="field">
+                <label for="ciudad">CIUDAD</label>
+                <input id="ciudad" type="text" placeholder="Barcelona" />
+              </div>
+
+              <div class="field full">
+                <label for="cp">CÓDIGO POSTAL</label>
+                <input id="cp" type="text" placeholder="08005" />
+              </div>
+              <div class="field full">
+                <label for="provincia">PROVINCIA</label>
+                <input id="provincia" type="text" placeholder="Barcelona" />
+              </div>
+
+              <div class="field full">
+                <label for="password">CONTRASEÑA</label>
+                <input id="password" type="password" placeholder="********" />
+              </div>
+
+              <div class="actions full">
+                <button type="submit">Guardar Perfil</button>
+              </div>
             </div>
-
-            <div class="long">
-              <label for="codigo_postal">CÓDIGO POSTAL</label>
-              <input
-                type="text"
-                id="codigo_postal"
-                name="codigo_postal"
-                placeholder="08005"
-                maxlength="5"
-                pattern="[0-9]{5}"
-              />
-
-              <label for="provincia">PROVINCIA</label>
-              <select id="provincia" name="provincia" required>
-                <option value="">Selecciona provincia</option>
-                <option value="madrid">Madrid</option>
-                <option value="barcelona">Barcelona</option>
-                <option value="sevilla">Sevilla</option>
-                <option value="valencia">Valencia</option>
-              </select>
-
-              <label for="contrasena">CONTRASEÑA</label>
-              <input
-                type="password"
-                id="contrasena"
-                name="contrasena"
-                placeholder="***********"
-                minlength="8"
-                required
-              />
-            </div>
-
-            <button type="submit">Guardar Perfil</button>
           </fieldset>
         </form>
       </section>
     </main>
-
     <footer class="site-footer">
       <h2 class="footer-title">Forever Events</h2>
 

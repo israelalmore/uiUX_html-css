@@ -3,7 +3,6 @@ body {
   margin: 0;
 }
 
-/* LOGIN */
 .login {
   display: flex;
   flex-direction: column;
@@ -19,7 +18,6 @@ body {
   font-weight: bold;
   margin: 0;
 }
-
 /* FORMULARIO */
 .forms {
   width: 100%;
