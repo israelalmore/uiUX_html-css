@@ -52,56 +52,60 @@
     </header>
 
     <!-- REGISTRO DE PERFIL -->
-    <div class="register">
+<form class="register">
       <h1>Crear Cuenta</h1>
       <div class="text">
         <div class="short">
-          <h4>Idioma</h4>
-          <div class="input">
-            <select name="idioma" id="idioma">
-              <option value="">Selecciona idioma</option>
-              <option value="es">Español</option>
-              <option value="en">Inglés</option>
-              <option value="ca">Catalán</option>
-            </select>
-          </div>
-          <h4>Nombre</h4>
-          <div class="input">
-            <input
-              type="text"
-              name="nombre"
-              id="nombre"
-              placeholder="Introduce tu nombre"
-            />
-          </div>
-          <h4>Primer Apellido</h4>
-          <div class="input">
-            <input
-              type="text"
-              name="apellido1"
-              id="apellido1"
-              placeholder="Introduce tu primer apellido"
-            />
-          </div>
-          <h4>Segundo Apellido</h4>
-          <div class="input">
-            <input
-              type="text"
-              name="apellido2"
-              id="apellido2"
-              placeholder="Introduce tu segundo apellido"
-            />
-          </div>
-          <h4>Fecha de Nacimiento</h4>
-          <div class="input">
-            <input
-              type="date"
-              name="fecha_nacimiento"
-              id="fecha_nacimiento"
-              placeholder="dd/mm/aaaa"
-            />
-          </div>
+          <label for="idioma">Idioma</label>
+          <select name="idioma" id="idioma" required>
+            <option value="">Selecciona idioma</option>
+            <option value="es">Español</option>
+            <option value="en">Inglés</option>
+            <option value="ca">Catalán</option>
+          </select>
+          <br>
+          <label for="nombre">Nombre</label>
+          <input
+            type="text"
+            name="nombre"
+            id="nombre"
+            minlength="1"
+            placeholder="Introduce tu nombre"
+            required
+          />
+          <br>
+          <label for="primer_apellido">Primer Apellido</label>
+          <input
+            type="text"
+            name="primer_apellido"
+            id="primer_apellido"
+            minlength="1"
+            placeholder="Introduce tu primer apellido"
+            required
+          />
+          <br>
+          <label for="apellido2">Segundo Apellido</label>
+          <input
+            type="text"
+            name="apellido2"
+            id="apellido2"
+            placeholder="Introduce tu segundo apellido"
+          />
+          <br>
+          <label for="fecha_nacimiento">Fecha de Nacimiento</label>
+          <input
+            type="date"
+            name="fecha_nacimiento"
+            id="fecha_nacimiento"
+            placeholder="dd/mm/aaaa"
+            required
+          />
+          <br>
         </div>
+        <div class="imagen perfil">
+          <div class="circulo"></div>
+        </div>
+        <br>
         <div class="long">
           <h4>Correo Electrónico</h4>
           <div class="input_long">
