@@ -79,3 +79,11 @@ main {
   font-size: 15px;
   cursor: pointer;
 }
+/* Mobile */
+@media (max-width: 480px) {
+  
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+}
