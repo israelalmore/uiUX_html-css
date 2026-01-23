@@ -66,13 +66,18 @@ body {
   background-color: var(--accent-color);
   color: black;
   border: none;
-  padding: 14px 40px;
   border-radius: 6px;
+  width: 200px;
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
 }
-
+.forgot-password{
+  margin-top: 1rem ;
+}
+.login-user{
+  margin: 1rem 0 1rem;
+}
 /* CREAR CUENTA */
 .crearCuenta {
   display: flex;
