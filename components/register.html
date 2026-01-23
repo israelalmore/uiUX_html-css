@@ -82,12 +82,12 @@
 
             <div class="field">
               <label for="nombre">Nombre</label>
-              <input id="nombre" type="text" />
+              <input id="nombre" type="text" required />
             </div>
 
             <div class="field">
               <label for="apellido1">Primer Apellido</label>
-              <input id="apellido1" type="text" />
+              <input id="apellido1" type="text" required />
             </div>
 
             <div class="field">
@@ -97,31 +97,31 @@
 
             <div class="field">
               <label for="fecha">Fecha de Nacimiento</label>
-              <input id="fecha" type="date" />
+              <input id="fecha" type="date" required />
             </div>
 
             <div class="field full">
               <label for="correo">Correo Electrónico</label>
-              <input id="correo" type="email" />
+              <input id="correo" type="email" required />
             </div>
 
             <div class="field full">
               <label for="telefono">Teléfono</label>
-              <input id="telefono" type="tel" />
+              <input id="telefono" type="tel" required />
             </div>
 
             <div class="field full">
               <label for="tipo_doc">Tipo de Documento</label>
-              <select id="tipo_doc">
-                  <option>DNI</option>
-                  <option>NIE</option>
-                  <option>NIF</option>
-                </select>
+              <select id="tipo_doc" required>
+                <option>DNI</option>
+                <option>NIE</option>
+                <option>NIF</option>
+              </select>
             </div>
 
             <div class="field full">
               <label for="doc">Documento de Identidad</label>
-              <input id="doc" type="text" />
+              <input id="doc" type="text" required />
             </div>
 
             <div class="field full">
@@ -131,7 +131,7 @@
 
             <div class="field full">
               <label for="cp">Código Postal</label>
-              <input id="cp" type="text" />
+              <input id="cp" type="number" />
             </div>
 
             <div class="field full">
@@ -141,12 +141,12 @@
 
             <div class="field full">
               <label for="pass">Clave de Acceso</label>
-              <input id="pass" type="password" />
+              <input id="pass" type="password" required />
             </div>
 
             <div class="field full">
               <label for="pass2">Repetir Clave de Acceso</label>
-              <input id="pass2" type="password" />
+              <input id="pass2" type="password" required />
             </div>
 
             <div class="actions full">
