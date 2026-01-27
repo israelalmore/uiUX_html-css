@@ -34,6 +34,11 @@ main {
 .field.full {
   grid-column: 1 / -1;
 }
+
+.field:has(#ciudad) {
+  grid-column: 1 / -1;
+}
+
 .field label {
   font-size: 13px;
   font-weight: 600;
