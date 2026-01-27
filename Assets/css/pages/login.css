@@ -51,13 +51,11 @@ body {
 /* ENLACE OLVIDAR CONTRASEÑA */
 .forms a {
   align-self: center;
-  background-color: white;
-  color: black;
+  color: white;
   padding: 10px 20px;
   border-radius: 6px;
-  text-decoration: none;
+  text-decoration: underline;
   font-weight: bold;
-  margin: 20px 0;
 }
 
 /* BOTÓN LOGIN */
@@ -72,10 +70,10 @@ body {
   font-weight: bold;
   cursor: pointer;
 }
-.forgot-password{
-  margin-top: 1rem ;
+.forgot-password {
+  margin-top: 1rem;
 }
-.login-user{
+.login-user {
   margin: 1rem 0 1rem;
 }
 /* CREAR CUENTA */
@@ -102,7 +100,6 @@ body {
 
 /* Mobile */
 @media (max-width: 480px) {
-  
 }
 
 /* Tablet */
