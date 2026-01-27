@@ -68,6 +68,15 @@
       </button>
     </header>
 
+    <script>
+      const header = document.querySelector(".nav-bar");
+      const mobileNavIcon = document.querySelector(".mobile-nav-icon");
+
+      mobileNavIcon.addEventListener("click", () => {
+        header.classList.toggle("nav-active");
+      });
+    </script>
+
     <main>
       <section class="register-section">
         <header>
