@@ -1,5 +1,5 @@
 body {
-  background-color: var(---primary-bg-color);
+  background-color: var(--primary-bg-color);
   margin: 0;
 }
 
@@ -99,21 +99,25 @@ body {
 }
 
 /* Mobile */
-@media screen and (min-width: 480px) and (max-width: 767px) {
+@media (max-width: 767px) {
   .field {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 16px;
-    max-width: 80%;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  #user,
+  #password {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    box-sizing: border-box;
   }
 }
 
 /* Tablet */
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 768px) {
   .field {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 16px;
     max-width: 80%;
   }
 }
