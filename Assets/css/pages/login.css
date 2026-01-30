@@ -99,9 +99,21 @@ body {
 }
 
 /* Mobile */
-@media (max-width: 480px) {
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  .field {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    max-width: 80%;
+  }
 }
 
 /* Tablet */
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
+  .field {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    max-width: 80%;
+  }
 }
