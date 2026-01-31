@@ -1,59 +1,68 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 :root {
   --primary-bg-color: #024ddf;
   --primary-color: #ffffff;
   --accent-color: #FFD700;
   --button-color: #000000;
   --font-primary: "Inter", sans-serif;
-  --font-title: "Monsterrat", sans-serif;
+  --font-title: "Montserrat", sans-serif; /* Corrected font name */
 }
-/* Reset para eliminar margenes ocultos (*) seleccionador global */
-* { 
+
+/* Reset */
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 
-body{
+body {
   color: var(--primary-color);
   line-height: 1.6;
   font-family: var(--font-primary);
+  background-color: var(--primary-bg-color);
+  overflow-x: hidden;
 }
-h1{
-  font-family:var(--font-title);
-  font-size: 64px;
-}
-h2{
-  font-size: 40px;
-}
-img{
+
+img {
   max-width: 100%;
   height: auto;
 }
 
-a{
+a {
   text-decoration: none;
   color: inherit;
 }
-/* Utilizará la fuente primaria que en este caso es Inter */
-button, input, select{ 
+
+button,
+input,
+select {
   font-family: inherit;
 }
-/* Mobile */
-@media (max-width: 480px) {
-  
+
+/* Typography */
+h1 {
+  font-family: var(--font-title);
+  font-size: clamp(2.5rem, 8vw, 4rem); /* Responsive font size */
+  font-weight: 700;
 }
 
-/* Tablet */
-@media (max-width: 768px) {
+h2 {
+  font-family: var(--font-title);
+  font-size: clamp(1.5rem, 6vw, 2.5rem); /* Responsive font size */
+  font-weight: 400;
 }
 
-
-
-
-
-
-
-
-
+/* Screen reader only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

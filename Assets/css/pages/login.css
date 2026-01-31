@@ -1,123 +1,112 @@
 body {
   background-color: var(--primary-bg-color);
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-.login {
+main.login-main {
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 0 20px;
+  padding: 1.5rem;
+}
+
+.login {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
 }
 
 .login > h1 {
   color: white;
-  font-size: 32px;
+  font-size: clamp(1.75rem, 6vw, 2.25rem);
   font-weight: bold;
   margin: 0;
+  text-align: center;
 }
-/* FORMULARIO */
+
+/* FORM */
 .forms {
   width: 100%;
-  max-width: 600px;
-  display: flex;
-  justify-content: center;
 }
 
 .forms form {
-  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 1rem;
 }
 
 .forms label {
   color: white;
-  font-size: 14px;
+  font-size: 0.875rem;
+  margin-bottom: -0.5rem;
+}
+
+.field {
+  width: 100%;
 }
 
 #user,
 #password {
   width: 100%;
-  padding: 14px;
+  padding: 0.875rem;
   border-radius: 6px;
   border: none;
-  font-size: 14px;
-  min-width: 400px;
+  font-size: 1rem;
 }
 
-/* ENLACE OLVIDAR CONTRASEÑA */
+/* FORGOT PASSWORD LINK */
 .forms a {
   align-self: center;
   color: white;
-  padding: 10px 20px;
-  border-radius: 6px;
+  padding: 0.5rem;
   text-decoration: underline;
   font-weight: bold;
 }
 
-/* BOTÓN LOGIN */
+/* LOGIN BUTTON */
 .forms input[type="submit"] {
   align-self: center;
   background-color: var(--accent-color);
   color: black;
   border: none;
   border-radius: 6px;
-  width: 200px;
-  font-size: 16px;
+  width: 100%;
+  max-width: 250px;
+  padding: 0.875rem;
+  font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
-}
-.forgot-password {
   margin-top: 1rem;
 }
-.login-user {
-  margin: 1rem 0 1rem;
-}
-/* CREAR CUENTA */
+
+/* CREATE ACCOUNT */
 .crearCuenta {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 1rem;
   color: white;
+  margin-top: 1.5rem;
 }
 
 .crearCuenta span {
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .crearCuenta a {
   background-color: white;
   color: black;
-  padding: 12px 30px;
+  padding: 0.75rem 2rem;
   border-radius: 6px;
   text-decoration: none;
   font-weight: bold;
-}
-
-/* Mobile */
-@media (max-width: 767px) {
-  .field {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-  }
-
-  #user,
-  #password {
-    width: 100%;
-    padding: 14px;
-    font-size: 16px;
-    box-sizing: border-box;
-  }
-}
-
-/* Tablet */
-@media screen and (min-width: 768px) {
-  .field {
-    max-width: 80%;
-  }
 }
