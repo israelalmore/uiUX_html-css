@@ -1,14 +1,7 @@
-body {
-  background-color: var(--primary-bg-color);
-  color: white;
-  min-height: 100vh;
-  margin: 0;
-  overflow-x: hidden;
-}
-
+/* Default mobile styles */
 .background-image {
   background-image: url(/Assets/img/images/landingPage.jpg);
-  min-height: 80vh;
+  min-height: 70vh;
   width: 100%;
   background-position: center;
   background-repeat: no-repeat;
@@ -18,7 +11,7 @@ body {
   justify-content: center;
   align-items: center;
   margin-bottom: 2rem;
-  padding: 0 2rem;
+  padding: 0 1.5rem;
 }
 
 .background-image::before {
@@ -45,28 +38,25 @@ body {
   margin-bottom: 1rem;
   width: 100%;
   max-width: 900px;
-  flex-wrap: wrap;
-  font-weight: 700;
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(2.5rem, 8vw, 4rem);
 }
 
 .title h2 {
   margin-bottom: 2rem;
-  font-weight: 400;
   width: 100%;
   max-width: 800px;
-  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-size: clamp(1.25rem, 4vw, 1.75rem);
 }
 
 .btn {
-  padding: 0.75rem 2.5rem;
+  padding: 0.75rem 2rem;
   background-color: var(--accent-color);
   border-radius: 0.5rem;
   width: fit-content;
   font-weight: bold;
   cursor: pointer;
   color: black;
-  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
   transition:
     transform 0.3s ease,
     background-color 0.3s ease;
@@ -79,48 +69,48 @@ body {
 
 .background-image2 {
   background-image: url(/Assets/img/images/LandingPage2.avif);
-  height: 500px;
+  height: 300px;
   max-width: 100%;
   width: 100%;
-  margin: 0 auto;
-  margin-bottom: 2rem;
+  margin: 0 auto 2rem;
   background-size: cover;
   background-position: center;
 }
 
 .subtitle {
   margin-bottom: 2rem;
-  padding: 0 2rem;
+  padding: 0 1.5rem;
   color: var(--primary-color);
   z-index: 1;
   text-align: center;
 }
 
 .subtitle h3 {
-  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
   font-weight: 500;
 }
 
-/* Tablet */
-@media (max-width: 768px) {
-  .title h1 {
-    font-size: clamp(2rem, 4vw, 3rem);
-  }
-  .title h2 {
-    font-size: clamp(1rem, 3vw, 1.5rem);
-  }
-}
-
-/* Mobile */
-@media (max-width: 480px) {
+/* Tablet and bigger */
+@media (min-width: 768px) {
   .background-image {
-    min-height: 60vh;
-  }
-  .btn {
-    padding: 0.5rem 1.5rem;
+    min-height: 80vh;
+    padding: 0 2rem;
   }
 
+  .background-image2 {
+    height: 500px;
+  }
+
+  .subtitle {
+    padding: 0 2rem;
+  }
+  
   .subtitle h3 {
-    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+  }
+
+  .btn {
+    padding: 0.75rem 2.5rem;
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
   }
 }

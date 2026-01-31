@@ -1,46 +1,45 @@
+/* Default mobile styles */
 main {
   display: flex;
   justify-content: center;
+  padding: 1.5rem;
 }
-.profile-grid {
-  width: 1200px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 80px;
-  row-gap: 18px;
-  align-items: start;
+
+.profile-header {
+  text-align: center;
+  margin-bottom: 2rem;
 }
+
 #profile-title {
   font-family: var(--font-title);
+  font-size: clamp(1.75rem, 6vw, 2.25rem);
 }
-/* El círculo ocupa varias filas */
+
+.profile-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
 .avatar {
-  grid-column: 2;
-  grid-row: 1 / 5; /* CLAVE: invade nombre, apellido1, apellido2, genero */
-  width: 300px;
-  height: 300px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   background-color: #e0e0e0;
   justify-self: center;
+  margin-bottom: 1rem;
+  grid-row: 1; /* Position avatar at the top on mobile */
 }
 
-/* Campos */
 .field {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-}
-
-.field.full {
-  grid-column: 1 / -1;
-}
-
-.field:has(#ciudad) {
-  grid-column: 1 / -1;
+  gap: 0.5rem;
 }
 
 .field label {
-  font-size: 13px;
+  font-size: 0.875rem;
   font-weight: 600;
   letter-spacing: 0.3px;
 }
@@ -51,44 +50,82 @@ main {
   border-radius: 8px;
   border: none;
   padding: 0 14px;
-  font-size: 14px;
+  font-size: 1rem;
   background-color: #ffffff;
   color: #000;
+  width: 100%;
 }
 
 .field input::placeholder {
   color: #777;
 }
+
 .profile-fieldset {
   border: none;
+  padding: 0;
 }
+
 .field input:focus,
 .field select:focus {
-  outline: none;
+  outline: 2px solid var(--accent-color);
 }
+
 .actions {
-  grid-column: 1 / -1;
   display: flex;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 2rem;
 }
 
 .actions button {
   background-color: var(--accent-color);
   color: #000;
   border: none;
-  padding: 20px 70px; 
-  font-size: 18px; 
+  padding: 1rem 2.5rem;
+  font-size: 1rem;
   border-radius: 10px;
   font-weight: 700;
-  font-size: 15px;
   cursor: pointer;
-}
-/* Mobile */
-@media (max-width: 480px) {
-  
+  width: 100%;
+  max-width: 400px;
 }
 
-/* Tablet */
-@media (max-width: 768px) {
+/* Desktop styles */
+@media (min-width: 1024px) {
+  main {
+    padding: 2rem;
+  }
+  
+  .profile-grid {
+    width: 100%;
+    max-width: 1200px;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 80px;
+    row-gap: 18px;
+    align-items: start;
+  }
+
+  .avatar {
+    grid-column: 2;
+    grid-row: 1 / 5;
+    width: 300px;
+    height: 300px;
+  }
+
+  .field.full {
+    grid-column: 1 / -1;
+  }
+  
+  .field:has(#ciudad) {
+    grid-column: 1 / -1;
+  }
+
+  .actions {
+    margin-top: 50px;
+  }
+
+  .actions button {
+    padding: 20px 70px;
+    font-size: 15px;
+    width: auto;
+  }
 }

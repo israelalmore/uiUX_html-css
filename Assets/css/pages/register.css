@@ -1,51 +1,41 @@
+/* Default mobile styles */
 .register-section {
   display: flex;
-  justify-content: center;
-  padding: 60px 0;
   flex-direction: column;
+  align-items: center;
+  padding: 2rem 1.5rem;
   width: 100%;
 }
+
 .register-section h1 {
   text-align: center;
-  font-size: 3rem;
+  font-size: clamp(1.75rem, 6vw, 2.25rem);
+  margin-bottom: 2rem;
 }
 
 .register-form {
   width: 100%;
-  max-width: 1100px;
-  padding: 0 16px;
-  margin: 0 auto;
+  max-width: 500px;
 }
 
 .register-grid {
   display: grid;
-  grid-template-columns: 1fr 280px;
-  column-gap: 50px;
-  row-gap: 16px;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.avatar {
+  display: none; /* Avatar is not essential for registration, hiding on mobile */
 }
 
 .field {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-}
-
-.field.full {
-  grid-column: 1 / -1;
-}
-
-.avatar {
-  grid-column: 2;
-  grid-row: 1 / 6;
-  width: 260px;
-  height: 260px;
-  border-radius: 50%;
-  background-color: #e0e0e0;
-  justify-self: center;
+  gap: 0.5rem;
 }
 
 label {
-  font-size: 13px;
+  font-size: 0.875rem;
   font-weight: 600;
 }
 
@@ -55,69 +45,72 @@ select {
   border-radius: 8px;
   border: none;
   padding: 0 14px;
+  font-size: 1rem;
+  width: 100%;
+  background-color: #fff;
+  color: #000;
+}
+
+input:focus,
+select:focus {
+  outline: 2px solid var(--accent-color);
 }
 
 .actions {
   display: flex;
   justify-content: center;
-  margin-top: 40px;
+  margin-top: 2rem;
+  grid-column: 1 / -1;
 }
 
 .actions button {
-  background-color: #ffd400;
+  background-color: var(--accent-color);
   color: #000;
-  padding: 16px 70px;
-  font-size: 16px;
+  padding: 1rem;
+  width: 100%;
+  max-width: 400px;
+  font-size: 1rem;
   font-weight: 700;
   border-radius: 8px;
   border: none;
   cursor: pointer;
 }
 
-/* Tablet */
-@media (max-width: 768px) {
-  .register-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .avatar {
-    grid-column: 1;
-    grid-row: auto;
-    margin-bottom: 24px;
-  }
-
-  .register-section {
-    font-size: 2.2rem;
+/* Tablet and Desktop styles */
+@media (min-width: 768px) {
+  .register-form {
+    max-width: 800px;
   }
 }
 
-/* Mobile */
-@media (max-width: 480px) {
-  .register-section {
-    padding: 40px 0;
+@media (min-width: 1024px) {
+  .register-form {
+    max-width: 1100px;
   }
 
   .register-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 16px;
+    grid-template-columns: 1fr 280px;
+    column-gap: 50px;
+    row-gap: 16px;
   }
-
+  
   .avatar {
-    width: 180px;
-    height: 180px;
+    display: block; /* Show avatar on desktop */
+    grid-column: 2;
+    grid-row: 1 / 6;
+    width: 260px;
+    height: 260px;
     border-radius: 50%;
+    background-color: #e0e0e0;
     justify-self: center;
-    margin-bottom: 24px;
   }
 
-  input,
-  select {
-    height: 40px;
+  .field.full {
+    grid-column: 1 / -1;
   }
-
+  
   .actions button {
-    width: 100%;
-    padding: 14px;
+    padding: 16px 70px;
+    width: auto;
   }
 }
