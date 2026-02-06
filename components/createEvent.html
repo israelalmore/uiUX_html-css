@@ -81,6 +81,99 @@
     <section class="create-event">
       <div class="container">
         <h3 class="section-title">CREA TU EVENTO</h3>
+        <div class="event-section">
+          <div class="event-form">
+            <div class="field">
+              <label for="title">Título</label>
+              <input
+                id="title"
+                type="text"
+                placeholder="Introduce el título"
+                required
+              />
+            </div>
+            <div class="field">
+              <label for="description">Descripción del evento:</label>
+              <input
+                id="description"
+                type="text"
+                placeholder="Introduce la descripción del evento"
+                required
+              />
+            </div>
+
+            <div class="upload-images">
+              <div class="front-page">
+                <label for="subir-imagen" class="file-upload">
+                  <i class="fa fa-cloud-upload"></i> Coloque una imagen de la
+                  portada del evento
+                </label>
+                <input id="subir-imagen" type="file" accept="image/*" />
+              </div>
+
+              <div class="location-image">
+                <label for="subir-imagen" class="file-upload">
+                  <i class="fa fa-cloud-upload"></i> Coloque una imagen de la
+                  ubicación del evento
+                </label>
+                <input id="subir-imagen" type="file" accept="image/*" />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="category">Indique la categoría </label>
+              <select id="category">
+                <option>Arte y Cultura</option>
+                <option>Deporte</option>
+                <option>Tecnología</option>
+                <option>Político</option>
+                <option>Corporativo</option>
+                <option>Ocio</option>
+                <option>Social</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="location">Ubicación del evento</label>
+              <input
+                id="location"
+                type="text"
+                placeholder="Introduce la ubicación"
+                required
+              />
+            </div>
+
+            <div class="field">
+              <label for="postal-code">Código postal</label>
+              <input
+                id="postal-code"
+                type="text"
+                placeholder="Introduce el código postal"
+                required
+              />
+            </div>
+
+            <div class="field">
+              <label for="city">Ciudad</label>
+              <input
+                id="city"
+                type="text"
+                placeholder="Introduce la ciudad"
+                required
+              />
+            </div>
+
+            <div class="field">
+              <label for="email">Email de contacto</label>
+              <input
+                id="email"
+                type="email"
+                placeholder="Introduce un correo electrónico"
+                required
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
