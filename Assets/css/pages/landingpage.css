@@ -67,7 +67,9 @@ main {
   cursor: pointer;
   color: black;
   font-size: clamp(1rem, 2.5vw, 1.1rem);
-  transition: transform 0.3s ease, background-color 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease;
 }
 
 .btn:hover {
@@ -123,7 +125,9 @@ section {
 .social-icon {
   font-size: 1.5rem;
   color: var(--primary-color);
-  transition: color 0.3s ease, transform 0.3s ease;
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
 }
 
 .social-icon:hover {
@@ -201,7 +205,9 @@ section {
   border-radius: 12px;
   overflow: hidden;
   text-align: left;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   border: 1px solid transparent;
   display: flex;
   flex-direction: column;
@@ -251,7 +257,9 @@ section {
   font-size: 0.9rem;
   font-weight: 500;
 }
-.event-rating .fa-star { color: var(--accent-color); }
+.event-rating .fa-star {
+  color: var(--accent-color);
+}
 .event-title {
   font-family: var(--font-title);
   font-size: 1.25rem;
@@ -280,21 +288,29 @@ section {
   text-align: center;
   padding: 0.6rem 1rem;
 }
+
+.btn-secondary:hover {
+  color: white;
+}
 .btn-secondary.disabled {
   opacity: 0.5;
   cursor: not-allowed;
-  border-color: rgba(255,215,0,0.4);
-  color: rgba(255,215,0,0.4);
+  border-color: rgba(255, 215, 0, 0.4);
+  color: rgba(255, 215, 0, 0.4);
 }
 .event-actions {
   display: flex;
   gap: 1rem;
   margin-top: 1rem;
   font-size: 1.2rem;
-  color: rgba(255,255,255,0.7);
+  color: rgba(255, 255, 255, 0.7);
 }
-.event-actions a { transition: color 0.3s ease; }
-.event-actions a:hover { color: var(--accent-color); }
+.event-actions a {
+  transition: color 0.3s ease;
+}
+.event-actions a:hover {
+  color: var(--accent-color);
+}
 
 /* Features Section */
 .features-section {
@@ -370,7 +386,7 @@ section {
   section {
     padding: 4rem 0; /* Restore padding for larger screens */
   }
-  
+
   .section-title {
     font-size: clamp(2rem, 4vw, 3rem);
     margin-bottom: 3rem;
@@ -379,25 +395,25 @@ section {
   .hero-cta {
     flex-direction: row;
   }
-  
+
   .steps {
     flex-direction: row;
     justify-content: space-around;
     gap: 1.5rem;
   }
-  
+
   .event-filters {
-      flex-wrap: nowrap; /* Prevent wrapping on tablet */
+    flex-wrap: nowrap; /* Prevent wrapping on tablet */
   }
 
   .event-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
   }
-  
+
   .features-grid {
-      grid-template-columns: repeat(2, 1fr); /* 2 columns for tablet */
-      gap: 2.5rem;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns for tablet */
+    gap: 2.5rem;
   }
 
   .testimonial-grid {
