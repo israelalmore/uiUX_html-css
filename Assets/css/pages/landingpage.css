@@ -182,8 +182,8 @@ section {
   border-radius: 6px;
   padding: 0.6rem 1rem;
   font-family: var(--font-primary);
-  flex-grow: 1; /* Allow items to grow */
-  flex-basis: 150px; /* Base width before growing */
+  flex-grow: 1;
+  flex-basis: 150px;
 }
 
 .filter-btn {
@@ -191,7 +191,7 @@ section {
   color: var(--button-color);
   font-weight: bold;
   cursor: pointer;
-  flex-grow: 2; /* Make button slightly wider */
+  flex-grow: 2; 
 }
 
 .event-grid {
@@ -402,9 +402,7 @@ section {
     gap: 1.5rem;
   }
 
-  .event-filters {
-    flex-wrap: nowrap; /* Prevent wrapping on tablet */
-  }
+
 
   .event-grid {
     grid-template-columns: repeat(2, 1fr);
