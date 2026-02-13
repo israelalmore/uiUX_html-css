@@ -69,12 +69,54 @@
         <i class="fa-solid fa-bars"></i>
       </button>
     </header>
+    <script>
+      const header = document.querySelector(".nav-bar");
+      const mobileNavIcon = document.querySelector(".mobile-nav-icon");
 
+      mobileNavIcon.addEventListener("click", () => {
+        header.classList.toggle("nav-active");
+      });
+    </script>
     <section class="featured-events">
       <div class="container">
         <h3 class="section-title">Eventos disponibles</h3>
         <div class="event-grid">
-          <article class="event-card">
+          <article class="event-card" tabindex="0">
+            <img
+              src="/Assets/img/images/eventsV2.jfif"
+              alt="Evento de Comedia"
+              class="event-image"
+            />
+
+            <div class="event-content">
+              <div class="event-header">
+                <span class="event-category">Arte y Cultura</span>
+                <span class="event-badge">Popular</span>
+                <div class="event-rating">
+                  <i class="fa-solid fa-star"></i> 4.8 (27)
+                </div>
+              </div>
+
+              <h4 class="event-title">La capital del pecado</h4>
+              <p class="event-date">Jueves, 30 de Marzo | 18:00h</p>
+              <div class="event-stats">
+                <i class="fa-solid fa-users"></i> 300 personas van
+              </div>
+
+              <a href="login.html" class="btn btn-primary">Ver Detalles</a>
+
+              <div class="event-actions">
+                <a href="#" aria-label="Añadir a Google Calendar">
+                  <i class="fa-brands fa-google"></i>
+                </a>
+                <a href="#" aria-label="Compartir en Twitter">
+                  <i class="fa-brands fa-twitter"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="event-card" tabindex="0">
             <img
               src="/Assets/img/images/events.jpg"
               alt="Evento de Comedia"
@@ -84,53 +126,61 @@
             <div class="event-content">
               <div class="event-header">
                 <span class="event-category">Arte y Cultura</span>
+                <span class="event-badge">Popular</span>
                 <div class="event-rating">
                   <i class="fa-solid fa-star"></i> 4.8 (27)
                 </div>
               </div>
+
               <h4 class="event-title">La capital del pecado</h4>
               <p class="event-date">Jueves, 30 de Marzo | 18:00h</p>
               <div class="event-stats">
                 <i class="fa-solid fa-users"></i> 300 personas van
               </div>
-              <a href="login.html" class="btn btn-secondary">Ver Detalles</a>
+
+              <a href="login.html" class="btn btn-primary">Ver Detalles</a>
+
               <div class="event-actions">
-                <a href="#" aria-label="Añadir a Google Calendar"
-                  ><i class="fa-brands fa-google"></i
-                ></a>
-                <a href="#" aria-label="Compartir en Twitter"
-                  ><i class="fa-brands fa-twitter"></i
-                ></a>
+                <a href="#" aria-label="Añadir a Google Calendar">
+                  <i class="fa-brands fa-google"></i>
+                </a>
+                <a href="#" aria-label="Compartir en Twitter">
+                  <i class="fa-brands fa-twitter"></i>
+                </a>
               </div>
             </div>
           </article>
-
-          <article class="event-card">
+          <article class="event-card" tabindex="0">
             <img
-              src="/Assets/img/images/eventsV2.jfif"
-              alt="Taller de arte"
+              src="/Assets/img/images/events.jpg"
+              alt="Evento de Comedia"
               class="event-image"
             />
+
             <div class="event-content">
               <div class="event-header">
-                <span class="event-category">Deportes</span>
+                <span class="event-category">Arte y Cultura</span>
+                <span class="event-badge">Popular</span>
                 <div class="event-rating">
-                  <i class="fa-solid fa-star"></i> 4.8 (95)
+                  <i class="fa-solid fa-star"></i> 4.8 (27)
                 </div>
               </div>
-              <h4 class="event-title">Meloco vs Los Almendrucos</h4>
-              <p class="event-date">Domingo, 2 de Abril | 11:00h</p>
+
+              <h4 class="event-title">La capital del pecado</h4>
+              <p class="event-date">Jueves, 30 de Marzo | 18:00h</p>
               <div class="event-stats">
-                <i class="fa-solid fa-users"></i> 40 personas van
+                <i class="fa-solid fa-users"></i> 300 personas van
               </div>
-              <a href="register.html" class="btn btn-secondary">Ver detalles</a>
+
+              <a href="login.html" class="btn btn-primary">Ver Detalles</a>
+
               <div class="event-actions">
-                <a href="#" aria-label="Añadir a Google Calendar"
-                  ><i class="fa-brands fa-google"></i
-                ></a>
-                <a href="#" aria-label="Compartir en Twitter"
-                  ><i class="fa-brands fa-twitter"></i
-                ></a>
+                <a href="#" aria-label="Añadir a Google Calendar">
+                  <i class="fa-brands fa-google"></i>
+                </a>
+                <a href="#" aria-label="Compartir en Twitter">
+                  <i class="fa-brands fa-twitter"></i>
+                </a>
               </div>
             </div>
           </article>
