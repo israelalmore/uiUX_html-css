@@ -1,9 +1,8 @@
 /* =========================
    Layout general
 ========================= */
-
 .featured-events {
-  padding: 2rem 1.5rem 3rem;
+  padding: 2rem 1rem 3rem;
 }
 
 .container {
@@ -14,15 +13,15 @@
 
 .section-title {
   font-family: var(--font-title);
-  font-size: 1.75rem;
-  margin-bottom: 2rem;
+  font-size: clamp(1.75rem, 4vw, 2rem);
+  margin-bottom: 2.5rem;
   font-weight: 700;
+  line-height: 1.2;
 }
 
 /* =========================
-   Grid de eventos
+   Grid de eventos optimizado
 ========================= */
-
 .event-grid {
   display: grid;
   gap: 1.5rem;
@@ -32,19 +31,43 @@
 @media (min-width: 640px) {
   .event-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 1.75rem;
   }
 }
 
 @media (min-width: 1024px) {
+  /* Grid flexible con mínimo y máximo para que cards no queden pequeñas */
   .event-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    justify-content: center; /* centra las cards si hay espacio extra */
+  }
+
+  .event-card {
+    max-width: 400px; /* limita el tamaño de cada card para mantener proporción */
+    margin: 0 auto;
+  }
+
+  .event-content {
+    padding: 1.75rem; /* más aire dentro de la card */
+  }
+
+  .event-title {
+    font-size: 1.5rem; /* mayor jerarquía visual en desktop */
+  }
+}
+
+/* Pantallas ultra anchas */
+@media (min-width: 1400px) {
+  .event-grid {
+    grid-template-columns: repeat(2, 1fr); /* evita cards demasiado pequeñas */
+    gap: 2.5rem;
   }
 }
 
 /* =========================
    Card
 ========================= */
-
 .event-card {
   background-color: var(--primary-bg-color);
   border-radius: 12px;
@@ -52,14 +75,17 @@
   display: flex;
   flex-direction: column;
   border: 1px solid transparent;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
   cursor: pointer;
 }
 
 .event-card:hover,
 .event-card:focus-within {
   transform: translateY(-4px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
   border-color: var(--accent-color);
   outline: none;
 }
@@ -78,13 +104,14 @@
 /* =========================
    Badges y meta
 ========================= */
-
 .event-header {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   font-size: 0.85rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+  gap: 0.5rem;
 }
 
 .event-category {
@@ -97,25 +124,29 @@
   color: var(--primary-bg-color);
   font-weight: 700;
   font-size: 0.7rem;
-  padding: 0.25rem 0.5rem;
+  padding: 0.3rem 0.6rem;
   border-radius: 6px;
   text-transform: uppercase;
+  transition: transform 0.2s ease;
+}
+
+.event-badge:hover {
+  transform: scale(1.05);
 }
 
 /* =========================
    Contenido interno
 ========================= */
-
 .event-content {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  padding: 1.25rem;
+  gap: 0.6rem;
+  padding: 1.5rem;
 }
 
 .event-title {
   font-family: var(--font-title);
-  font-size: 1.25rem;
+  font-size: clamp(1.25rem, 2.5vw, 1.4rem);
   font-weight: 700;
   line-height: 1.3;
   color: var(--primary-color);
@@ -131,35 +162,38 @@
   font-size: 0.85rem;
   display: flex;
   align-items: center;
-  gap: 0.3rem;
+  gap: 0.35rem;
 }
 
 /* =========================
    Botones
 ========================= */
-
 .btn {
   margin-top: 0.75rem;
   align-self: flex-start;
-  padding: 0.55rem 1rem;
+  padding: 0.55rem 1.05rem;
   font-weight: 600;
   border-radius: 8px;
   background-color: var(--accent-color);
   color: var(--primary-bg-color);
-  transition: background 0.25s ease, transform 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition:
+    background 0.25s ease,
+    transform 0.2s ease,
+    box-shadow 0.25s ease;
 }
 
 .btn:hover,
 .btn:focus-visible {
   background-color: #e6c200;
   transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   outline: none;
 }
 
 /* =========================
    Acciones sociales
 ========================= */
-
 .event-actions {
   display: flex;
   gap: 1rem;
@@ -171,30 +205,30 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2rem;
-  height: 2rem;
+  width: 2.25rem;
+  height: 2.25rem;
   border-radius: 50%;
-  transition: transform 0.2s ease, background 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
 }
 
 .event-actions a:hover,
 .event-actions a:focus-visible {
   transform: translateY(-2px);
-  background-color: rgba(255,255,255,0.15);
+  background-color: rgba(255, 255, 255, 0.15);
   outline: none;
 }
 
 /* =========================
-   Responsive y microajustes
+   Responsive ajustes
 ========================= */
-
 @media (min-width: 640px) {
   .section-title {
     font-size: 2rem;
   }
-
   .event-title {
-    font-size: 1.3rem;
+    font-size: 1.35rem;
   }
 }
 
