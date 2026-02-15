@@ -64,6 +64,9 @@
   align-items: center;
   gap: 1.5rem;
 }
+.nav-left{
+  align-items: baseline;
+}
 
 .nav-left a {
   color: var(--primary-color);
