@@ -11,6 +11,7 @@
     />
 
     <link rel="stylesheet" href="/Assets/css/main.css" />
+    <link rel="stylesheet" href="/Assets/css/pages/profile.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -80,39 +81,36 @@
     <main>
       <section class="profile" aria-labelledby="profile-title">
         <header class="profile-header">
-          <h1 id="profile-title">Tu perfil:</h1>
+          <h1 id="profile-title">Mi Perfil</h1>
+          <p class="profile-subtitle">
+            Gestiona tu información personal y preferencias de tu cuenta
+          </p>
         </header>
 
-        <form class="profile-form" aria-describedby="profile-desc">
-          <p id="profile-desc" class="sr-only">
-            Formulario de edición del perfil de usuario
-          </p>
-          <fieldset class="profile-fieldset">
-            <legend class="sr-only">Datos personales</legend>
+        <div class="profile-content">
+          <!-- Avatar -->
+          <div class="avatar-section">
+            <div class="avatar"></div>
+            <button type="button" class="avatar-edit">Editar Avatar</button>
+          </div>
 
+          <!-- Formulario de datos -->
+          <form class="profile-form">
             <div class="profile-grid">
               <div class="field">
-                <label for="name">NOMBRE</label>
-                <input
-                  id="name"
-                  type="text"
-                  placeholder="Nombre de usuario"
-                />
+                <label for="name">Nombre</label>
+                <input id="name" type="text" placeholder="Nombre de usuario" />
               </div>
-
-              <div class="avatar" aria-hidden="true"></div>
-
               <div class="field">
-                <label for="surname1">APELLIDO 1</label>
+                <label for="surname1">Apellido 1</label>
                 <input
                   id="surname1"
                   type="text"
                   placeholder="Primer apellido"
                 />
               </div>
-
               <div class="field">
-                <label for="surname2">APELLIDO 2</label>
+                <label for="surname2">Apellido 2</label>
                 <input
                   id="surname2"
                   type="text"
@@ -121,20 +119,19 @@
               </div>
 
               <div class="field">
-                <label for="gender">GÉNERO</label>
+                <label for="gender">Género</label>
                 <select id="gender">
                   <option>Hombre</option>
                   <option>Mujer</option>
+                  <option>Otro</option>
                 </select>
               </div>
-
               <div class="field">
-                <label for="date">FECHA DE NACIMIENTO</label>
+                <label for="date">Fecha de nacimiento</label>
                 <input id="date" type="date" />
               </div>
-
               <div class="field">
-                <label for="language">IDIOMA</label>
+                <label for="language">Idioma</label>
                 <select id="language">
                   <option>Español</option>
                   <option>Inglés</option>
@@ -143,40 +140,37 @@
               </div>
 
               <div class="field">
-                <label for="telephone">TELÉFONO</label>
+                <label for="telephone">Teléfono</label>
                 <input id="telephone" type="tel" placeholder="+34 --" />
               </div>
-
               <div class="field">
-                <label for="document">DOCUMENTO DE IDENTIDAD</label>
+                <label for="document">Documento</label>
                 <input
                   id="document"
                   type="text"
                   placeholder="Documento de usuario"
                 />
               </div>
-
               <div class="field">
-                <label for="email">CORREO ELECTRÓNICO</label>
+                <label for="email">Correo electrónico</label>
                 <input id="email" type="email" placeholder="mail@gmail.com" />
               </div>
 
               <div class="field full">
-                <label for="city">CIUDAD</label>
+                <label for="city">Ciudad</label>
                 <input id="city" type="text" placeholder="Barcelona" />
               </div>
-
               <div class="field full">
-                <label for="postal_code">CÓDIGO POSTAL</label>
+                <label for="postal_code">Código postal</label>
                 <input id="postal_code" type="text" placeholder="08005" />
               </div>
               <div class="field full">
-                <label for="province">PROVINCIA</label>
+                <label for="province">Provincia</label>
                 <input id="province" type="text" placeholder="Barcelona" />
               </div>
 
               <div class="field full">
-                <label for="password">CONTRASEÑA</label>
+                <label for="password">Contraseña</label>
                 <input id="password" type="password" placeholder="********" />
               </div>
 
@@ -184,10 +178,11 @@
                 <button type="submit">Guardar Perfil</button>
               </div>
             </div>
-          </fieldset>
-        </form>
+          </form>
+        </div>
       </section>
     </main>
+
     <footer class="site-footer">
       <h2 class="footer-title">Forever Events</h2>
 
