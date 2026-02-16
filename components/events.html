@@ -22,6 +22,7 @@
     />
 
     <link rel="stylesheet" href="/Assets/css/main.css" />
+    <link rel="stylesheet" href="/Assets/css/pages/events.css" />
   </head>
   <body>
     <header class="nav-bar">
@@ -77,17 +78,43 @@
         header.classList.toggle("nav-active");
       });
     </script>
-    <section class="featured-events">
+    <section class="events-page">
       <div class="container">
-        <h3 class="section-title">Eventos disponibles</h3>
+        <h1 class="page-title">Explora Eventos</h1>
+        <p class="page-subtitle">
+          Descubre experiencias únicas y únete a los mejores eventos cerca de
+          ti.
+        </p>
+
+        <!-- Barra de filtros -->
+        <div class="filters-bar">
+          <input
+            type="search"
+            placeholder="Buscar evento..."
+            class="filter-search"
+          />
+          <select class="filter-category">
+            <option value="">Todas las categorías</option>
+            <option>Arte y Cultura</option>
+            <option>Deporte</option>
+            <option>Tecnología</option>
+            <option>Político</option>
+            <option>Corporativo</option>
+            <option>Ocio</option>
+            <option>Social</option>
+          </select>
+          <input type="date" class="filter-date" />
+        </div>
+
+        <!-- Grid de eventos -->
         <div class="event-grid">
+          <!-- Card de evento -->
           <article class="event-card" tabindex="0">
             <img
               src="/Assets/img/images/eventsV2.jfif"
               alt="Evento de Comedia"
               class="event-image"
             />
-
             <div class="event-content">
               <div class="event-header">
                 <span class="event-category">Arte y Cultura</span>
@@ -96,22 +123,19 @@
                   <i class="fa-solid fa-star"></i> 4.8 (27)
                 </div>
               </div>
-
-              <h4 class="event-title">La capital del pecado</h4>
+              <h2 class="event-title">La capital del pecado</h2>
               <p class="event-date">Jueves, 30 de Marzo | 18:00h</p>
               <div class="event-stats">
                 <i class="fa-solid fa-users"></i> 300 personas van
               </div>
-
               <a href="login.html" class="btn btn-primary">Ver Detalles</a>
-
               <div class="event-actions">
-                <a href="#" aria-label="Añadir a Google Calendar">
-                  <i class="fa-brands fa-google"></i>
-                </a>
-                <a href="#" aria-label="Compartir en Twitter">
-                  <i class="fa-brands fa-twitter"></i>
-                </a>
+                <a href="#" aria-label="Añadir a Google Calendar"
+                  ><i class="fa-brands fa-google"></i
+                ></a>
+                <a href="#" aria-label="Compartir en Twitter"
+                  ><i class="fa-brands fa-twitter"></i
+                ></a>
               </div>
             </div>
           </article>
@@ -119,71 +143,97 @@
           <article class="event-card" tabindex="0">
             <img
               src="/Assets/img/images/events.jpg"
-              alt="Evento de Comedia"
+              alt="Concierto de Rock"
               class="event-image"
             />
-
             <div class="event-content">
               <div class="event-header">
-                <span class="event-category">Arte y Cultura</span>
-                <span class="event-badge">Popular</span>
+                <span class="event-category">Música</span>
+                <span class="event-badge">Nuevo</span>
                 <div class="event-rating">
-                  <i class="fa-solid fa-star"></i> 4.8 (27)
+                  <i class="fa-solid fa-star"></i> 4.5 (12)
                 </div>
               </div>
-
-              <h4 class="event-title">La capital del pecado</h4>
-              <p class="event-date">Jueves, 30 de Marzo | 18:00h</p>
+              <h2 class="event-title">Rock en la Plaza</h2>
+              <p class="event-date">Viernes, 31 de Marzo | 20:00h</p>
               <div class="event-stats">
-                <i class="fa-solid fa-users"></i> 300 personas van
+                <i class="fa-solid fa-users"></i> 450 personas van
               </div>
-
               <a href="login.html" class="btn btn-primary">Ver Detalles</a>
-
               <div class="event-actions">
-                <a href="#" aria-label="Añadir a Google Calendar">
-                  <i class="fa-brands fa-google"></i>
-                </a>
-                <a href="#" aria-label="Compartir en Twitter">
-                  <i class="fa-brands fa-twitter"></i>
-                </a>
+                <a href="#" aria-label="Añadir a Google Calendar"
+                  ><i class="fa-brands fa-google"></i
+                ></a>
+                <a href="#" aria-label="Compartir en Twitter"
+                  ><i class="fa-brands fa-twitter"></i
+                ></a>
               </div>
             </div>
           </article>
+
+          <article class="event-card" tabindex="0">
+            <img
+              src="/Assets/img/images/eventsV2.jfif"
+              alt="Conferencia tecnológica"
+              class="event-image"
+            />
+            <div class="event-content">
+              <div class="event-header">
+                <span class="event-category">Tecnología</span>
+                <span class="event-badge">Popular</span>
+                <div class="event-rating">
+                  <i class="fa-solid fa-star"></i> 4.9 (33)
+                </div>
+              </div>
+              <h2 class="event-title">Tech Future 2026</h2>
+              <p class="event-date">Sábado, 1 de Abril | 09:00h</p>
+              <div class="event-stats">
+                <i class="fa-solid fa-users"></i> 1200 personas van
+              </div>
+              <a href="login.html" class="btn btn-primary">Ver Detalles</a>
+              <div class="event-actions">
+                <a href="#" aria-label="Añadir a Google Calendar"
+                  ><i class="fa-brands fa-google"></i
+                ></a>
+                <a href="#" aria-label="Compartir en Twitter"
+                  ><i class="fa-brands fa-twitter"></i
+                ></a>
+              </div>
+            </div>
+          </article>
+
           <article class="event-card" tabindex="0">
             <img
               src="/Assets/img/images/events.jpg"
-              alt="Evento de Comedia"
+              alt="Torneo deportivo"
               class="event-image"
             />
-
             <div class="event-content">
               <div class="event-header">
-                <span class="event-category">Arte y Cultura</span>
-                <span class="event-badge">Popular</span>
+                <span class="event-category">Deporte</span>
+                <span class="event-badge">Nuevo</span>
                 <div class="event-rating">
-                  <i class="fa-solid fa-star"></i> 4.8 (27)
+                  <i class="fa-solid fa-star"></i> 4.7 (18)
                 </div>
               </div>
-
-              <h4 class="event-title">La capital del pecado</h4>
-              <p class="event-date">Jueves, 30 de Marzo | 18:00h</p>
+              <h2 class="event-title">Maratón de Primavera</h2>
+              <p class="event-date">Domingo, 2 de Abril | 07:00h</p>
               <div class="event-stats">
-                <i class="fa-solid fa-users"></i> 300 personas van
+                <i class="fa-solid fa-users"></i> 800 personas van
               </div>
-
               <a href="login.html" class="btn btn-primary">Ver Detalles</a>
-
               <div class="event-actions">
-                <a href="#" aria-label="Añadir a Google Calendar">
-                  <i class="fa-brands fa-google"></i>
-                </a>
-                <a href="#" aria-label="Compartir en Twitter">
-                  <i class="fa-brands fa-twitter"></i>
-                </a>
+                <a href="#" aria-label="Añadir a Google Calendar"
+                  ><i class="fa-brands fa-google"></i
+                ></a>
+                <a href="#" aria-label="Compartir en Twitter"
+                  ><i class="fa-brands fa-twitter"></i
+                ></a>
               </div>
             </div>
           </article>
+
+          <!-- Puedes seguir duplicando cards -->
         </div>
       </div>
     </section>
