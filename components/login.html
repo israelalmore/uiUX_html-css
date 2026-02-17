@@ -1,75 +1,76 @@
 <!doctype html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Iniciar Sesión | Forever Events</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iniciar Sesión | Forever Events</title>
 
-  <link rel="stylesheet" href="/Assets/css/main.css" />
-  <link rel="stylesheet" href="/Assets/css/pages/login.css" />
-</head>
+    <link rel="stylesheet" href="/Assets/css/main.css" />
+    <link rel="stylesheet" href="/Assets/css/pages/login.css" />
+  </head>
 
-<body>
-
-  <main class="auth">
-
-    <section class="auth-brand">
-      <img src="/Assets/img/logoForever.png" alt="Forever Events" class="brand-logo">
-      <h1>Forever Events</h1>
-      <p>Gestiona tus eventos con control total y precisión profesional.</p>
-    </section>
-
-    <section class="auth-card" role="main" aria-labelledby="login-title">
-
-      <header class="auth-header">
-        <h2 id="login-title">Iniciar sesión</h2>
-        <span>Accede a tu panel seguro</span>
-      </header>
-
-      <form action="login.php" method="post" class="auth-form" novalidate>
-
-        <div class="form-group">
-          <label for="user">Correo electrónico</label>
-          <input
-            type="email"
-            id="user"
-            name="user"
-            placeholder="ejemplo@correo.com"
-            autocomplete="email"
-            required
+  <body>
+    <main class="auth">
+      <!-- Branding compacto -->
+      <section class="auth-brand">
+        <a
+          href="landingPage.html"
+          class="brand-logo"
+          aria-label="Forever Events inicio"
+        >
+          <img
+            src="/Assets/img/logoForever.png"
+            alt="Logotipo de Forever Events"
           />
-        </div>
+        </a>
+        <h1>Forever Events</h1>
+        <p>Gestiona tus eventos con control total y precisión profesional.</p>
+      </section>
 
-        <div class="form-group">
-          <label for="password">Contraseña</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Introduce tu contraseña"
-            autocomplete="current-password"
-            required
-          />
-        </div>
+      <!-- Login -->
+      <section class="auth-card" role="main" aria-labelledby="login-title">
+        <header class="auth-header">
+          <h2 id="login-title">Iniciar sesión</h2>
+          <span>Accede a tu panel seguro</span>
+        </header>
 
-        <div class="auth-options">
-          <a href="forgotPassword.html">¿Olvidaste tu contraseña?</a>
-        </div>
+        <form action="login.php" method="post" class="auth-form" novalidate>
+          <div class="form-group">
+            <label for="user">Correo electrónico</label>
+            <input
+              type="email"
+              id="user"
+              name="user"
+              placeholder="ejemplo@correo.com"
+              autocomplete="email"
+              required
+            />
+          </div>
 
-        <button type="submit" class="primary-btn">
-          Iniciar sesión
-        </button>
+          <div class="form-group">
+            <label for="password">Contraseña</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Introduce tu contraseña"
+              autocomplete="current-password"
+              required
+            />
+          </div>
 
-      </form>
+          <div class="auth-options">
+            <a href="forgotPassword.html">¿Olvidaste tu contraseña?</a>
+          </div>
 
-      <footer class="auth-footer">
-        <span>¿No tienes cuenta?</span>
-        <a href="register.html">Crear cuenta</a>
-      </footer>
+          <button type="submit" class="primary-btn">Iniciar sesión</button>
+        </form>
 
-    </section>
-
-  </main>
-
-</body>
+        <footer class="auth-footer">
+          <span>¿No tienes cuenta?</span>
+          <a href="register.html">Crear cuenta</a>
+        </footer>
+      </section>
+    </main>
+  </body>
 </html>
