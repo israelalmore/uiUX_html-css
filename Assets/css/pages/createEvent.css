@@ -10,7 +10,6 @@
   max-width: 900px;
 }
 
-/* TITULOS */
 .page-title {
   font-family: var(--font-title);
   font-size: clamp(2rem, 6vw, 2.8rem);
@@ -26,7 +25,6 @@
   color: var(--primary-color);
 }
 
-/* FORMULARIO */
 .event-form {
   background-color: var(--primary-color);
   padding: 2.5rem;
@@ -39,7 +37,6 @@
   transition: all 0.3s ease;
 }
 
-/* FORM SECTIONS */
 .form-section {
   border: 1px solid rgba(0,0,0,0.1);
   border-radius: 16px;
@@ -59,7 +56,6 @@
   color: var(--font-title);
 }
 
-/* FORM GROUPS */
 .form-group {
   display: flex;
   flex-direction: column;
@@ -83,14 +79,12 @@
   }
 }
 
-/* LABELS */
 label {
   font-weight: 600;
   font-size: 0.9rem;
   color: var(--button-color);
 }
 
-/* INPUTS */
 input, select, textarea {
   padding: 0.9rem 1rem;
   border-radius: 12px;
@@ -107,7 +101,6 @@ input:focus, select:focus, textarea:focus {
   box-shadow: 0 0 0 4px rgba(255,215,0,0.25);
 }
 
-/* UPLOADS */
 .upload-grid {
   display: flex;
   flex-direction: column;
@@ -152,7 +145,6 @@ input[type="file"] {
   display: none;
 }
 
-/* BOTON CREAR EVENTO */
 .submit-btn {
   width: 100%;
   padding: 1rem;
@@ -171,7 +163,6 @@ input[type="file"] {
   transform: translateY(-2px);
 }
 
-/* MEDIA QUERY DESKTOP */
 @media(min-width: 1024px){
   .page-title, .page-subtitle {
     text-align: center;
