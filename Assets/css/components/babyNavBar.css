@@ -1,0 +1,30 @@
+/* Header solo logo - Auth Pages */
+
+.nav-bar-login {
+  width: 100%;
+  padding: 2rem 0 1.5rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-bar-login a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-bar-login .logo {
+  width: 70px;
+  height: auto;
+  display: block;
+}
+@media (min-width: 768px) {
+  .nav-bar-login {
+    padding: 2.5rem 0 2rem 0;
+  }
+
+  .nav-bar-login .logo {
+    width: 85px;
+  }
+}
