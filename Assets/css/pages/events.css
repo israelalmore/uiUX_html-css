@@ -214,7 +214,7 @@ F
 
 .event-badge {
   background-color: var(--accent-color);
-  color: var(--primary-bg-color);
+  color: var(--button-color);
   font-weight: 700;
   font-size: 0.7rem;
   padding: 0.25rem 0.5rem;
