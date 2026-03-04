@@ -1,0 +1,6 @@
+/* Global CSS */
+@import url("base/style.css");
+
+/* Componentes */
+@import url("components/navbar.css");
+@import url("components/footer.css");
