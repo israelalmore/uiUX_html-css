@@ -5,7 +5,7 @@ main {
 }
 
 .background-image {
-  background-image: url(/Assets/img/images/landingPage.jpg);
+  background-image: url(/View/Assets/img/images/landingPage.jpg);
   min-height: 70vh;
   width: 100%;
   background-position: center;
@@ -41,14 +41,14 @@ main {
 .title h1 {
   margin-bottom: 1rem;
   max-width: 900px;
-  font-size: clamp(2.25rem, 10vw, 4rem); 
+  font-size: clamp(2.25rem, 10vw, 4rem);
   font-weight: 800;
 }
 
 .title h2 {
   margin-bottom: 2rem;
   max-width: 800px;
-  font-size: clamp(1.1rem, 4vw, 1.5rem); 
+  font-size: clamp(1.1rem, 4vw, 1.5rem);
 }
 
 .btn {
@@ -77,7 +77,7 @@ main {
 }
 
 section {
-  padding: 2.5rem 0; 
+  padding: 2.5rem 0;
   text-align: center;
   width: 100%;
 }
@@ -157,7 +157,7 @@ section {
 
 .event-filters {
   display: flex;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
   gap: 0.75rem;
   margin-bottom: 2rem;
   justify-content: center;
@@ -181,7 +181,7 @@ section {
   color: var(--button-color);
   font-weight: bold;
   cursor: pointer;
-  flex-grow: 2; 
+  flex-grow: 2;
 }
 
 .event-grid {
@@ -219,7 +219,7 @@ section {
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  flex-grow: 1; 
+  flex-grow: 1;
 }
 
 .event-header {
@@ -268,7 +268,7 @@ section {
   align-items: center;
   gap: 0.5rem;
   opacity: 0.9;
-  margin-top: auto; 
+  margin-top: auto;
 }
 .btn-secondary {
   background-color: transparent;
@@ -370,7 +370,7 @@ section {
 
 @media (min-width: 768px) {
   section {
-    padding: 4rem 0; 
+    padding: 4rem 0;
   }
 
   .section-title {
@@ -394,7 +394,7 @@ section {
   }
 
   .features-grid {
-    grid-template-columns: repeat(2, 1fr); 
+    grid-template-columns: repeat(2, 1fr);
     gap: 2.5rem;
   }
 
@@ -406,11 +406,11 @@ section {
 
 @media (min-width: 1024px) {
   .features-grid {
-    grid-template-columns: repeat(3, 1fr); 
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
   }
 
   .event-grid {
-    grid-template-columns: repeat(3, 1fr); 
+    grid-template-columns: repeat(3, 1fr);
   }
 }
