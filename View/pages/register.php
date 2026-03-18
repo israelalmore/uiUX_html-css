@@ -14,9 +14,9 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
     rel="stylesheet" />
 
-  <link rel="stylesheet" href="/View/Assets/css/pages/register.css" />
-  <link rel="stylesheet" href="/View/Assets/css/main.css" />
-  <link rel="stylesheet" href="/View/Assets/css/components/babyNavBar.css" />
+  <link rel="stylesheet" href="../Assets/css/pages/register.css" />
+  <link rel="stylesheet" href="../Assets/css/main.css" />
+  <link rel="stylesheet" href="../Assets/css/components/babyNavBar.css" />
 </head>
 
 <body>
@@ -24,7 +24,7 @@
     <a href="landingPage.php" aria-label="Forever Events inicio">
       <img
         class="logo"
-        src="/View/Assets/img/logoForever.png"
+        src="../Assets/img/logoForever.png"
         alt="Logotipo de Forever Events" />
     </a>
   </header>
