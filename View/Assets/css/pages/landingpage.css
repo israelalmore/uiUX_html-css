@@ -5,7 +5,7 @@ main {
 }
 
 .background-image {
-  background-image: url(/View/Assets/img/images/landingPage.jpg);
+  background-image: url(../../img/images/landingPage.jpg);
   min-height: 70vh;
   width: 100%;
   background-position: center;

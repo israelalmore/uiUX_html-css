@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contraseña Olvidada | Forever Events</title>
+  <meta
+    name="description"
+    content="¿Te has olvidado de tu contraseña? Rellena tus datos para cambiarla." />
+
+  <link rel="stylesheet" href="../Assets/css/pages/forgotpassword.css" />
+  <link rel="stylesheet" href="../Assets/css/main.css" />
+  <link rel="stylesheet" href="../Assets/css/components/babyNavBar.css" />
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+
+<body>
+  <header class="nav-bar-login">
+    <a href="landingPage.php" aria-label="Forever Events inicio">
+      <img
+        class="logo"
+        src="../Assets/img/logoForever.png"
+        alt="Logotipo de Forever Events" />
+    </a>
+  </header>
+
+  <main class="forgot-main">
+    <div class="forgot-card">
+      <div class="forgot-header">
+        <h1>Recuperar contraseña</h1>
+        <p>Introduce tu e-mail para recibir instrucciones de cambio</p>
+      </div>
+
+      <form action="login.php" method="post" class="forgot-form">
+        <div class="field">
+          <label for="user">Correo electrónico</label>
+          <input
+            type="email"
+            name="user"
+            id="user"
+            minlength="5"
+            placeholder="Introduce tu correo electrónico"
+            required />
+        </div>
+
+        <button type="submit">Recuperar contraseña</button>
+      </form>
+
+      <div class="links">
+        <a href="login.php">Volver a iniciar sesión</a>
+        <span>¿Usuario nuevo?</span>
+        <a href="register.php">Crear cuenta</a>
+      </div>
+    </div>
+  </main>
+</body>
+
+</html>
