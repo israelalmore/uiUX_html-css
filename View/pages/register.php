@@ -47,23 +47,23 @@
           <div class="form-row">
             <div class="field">
               <label for="name">Nombre</label>
-              <input id="name" type="text" required />
+              <input id="name" name="name" type="text" required />
             </div>
 
             <div class="field">
               <label for="surname1">Primer apellido</label>
-              <input id="surname1" type="text" required />
+              <input id="surname1" name="surname1" type="text" required />
             </div>
           </div>
 
           <div class="field">
             <label for="surname2">Segundo apellido</label>
-            <input id="surname2" type="text" />
+            <input id="surname2" name="surname2" type="text" />
           </div>
 
           <div class="field">
             <label for="date">Fecha de nacimiento</label>
-            <input id="date" type="date" required />
+            <input id="date" name="date" type="date" required />
           </div>
         </div>
 
@@ -71,8 +71,8 @@
           <h2>Tipo de Usuario</h2>
 
           <div class="field">
-            <label for="text"> Tipo de Usuario</label>
-            <select id="">
+            <label for="user_type"> Tipo de Usuario</label>
+            <select id="user_type" name="user_type">
               <option>Gestor</option>
               <option>Usuario</option>
             </select>
@@ -84,7 +84,7 @@
 
           <div class="field">
             <label for="email">Correo electrónico</label>
-            <input id="email" type="email" required />
+            <input id="email" name="email" type="email" required />
           </div>
 
           <div class="field">
@@ -94,7 +94,7 @@
 
           <div class="field">
             <label for="language">Idioma</label>
-            <select id="language">
+            <select id="language" name="language">
               <option>Español</option>
               <option>Inglés</option>
               <option>Catalán</option>
@@ -107,7 +107,7 @@
 
           <div class="field">
             <label for="type_doc">Tipo de documento</label>
-            <select id="type_doc" required>
+            <select id="type_doc" name="type_doc" required>
               <option>DNI</option>
               <option>NIE</option>
               <option>NIF</option>
@@ -116,7 +116,7 @@
 
           <div class="field">
             <label for="document">Documento</label>
-            <input id="document" type="text" required />
+            <input id="document" name="document" type="text" required />
           </div>
         </div>
 
@@ -126,18 +126,18 @@
           <div class="form-row">
             <div class="field">
               <label for="city">Ciudad</label>
-              <input id="city" type="text" />
+              <input id="city" name="city" type="text" />
             </div>
 
             <div class="field">
               <label for="postal_code">Código postal</label>
-              <input id="postal_code" type="number" />
+              <input id="postal_code" name="postal_code" type="number" />
             </div>
           </div>
 
           <div class="field">
             <label for="province">Provincia</label>
-            <input id="province" type="text" />
+            <input id="province" name="province" type="text" />
           </div>
         </div>
 
@@ -147,7 +147,7 @@
           <div class="field">
             <label for="pass">Clave de acceso</label>
             <div class="input-wrapper">
-              <input id="pass" type="password" required />
+              <input id="pass" name="password" type="password" required />
               <button
                 type="button"
                 class="toggle-password"
@@ -170,7 +170,7 @@
           <div class="field">
             <label for="pass2">Repetir clave</label>
             <div class="input-wrapper">
-              <input id="pass2" type="password" required />
+              <input id="pass2" name="password2" type="password" required />
               <button
                 type="button"
                 class="toggle-password"
