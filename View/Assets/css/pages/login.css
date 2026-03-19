@@ -133,6 +133,55 @@
   outline-offset: 3px;
 }
 
+.toggle-password {
+  position: absolute;
+  right: 0.6rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: color 0.2s ease;
+}
+
+.toggle-password:hover {
+  color: #111827;
+}
+
+.toggle-password:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.toggle-password svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
+.toggle-password .icon-eye {
+  display: block;
+}
+.toggle-password .icon-eye-off {
+  display: none;
+}
+
+.toggle-password[aria-pressed="true"] .icon-eye {
+  display: none;
+}
+.toggle-password[aria-pressed="true"] .icon-eye-off {
+  display: block;
+}
+
 .input-wrapper {
   position: relative;
   display: flex;
