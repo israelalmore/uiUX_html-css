@@ -195,7 +195,7 @@
       </form>
     </section>
   </main>
-  <script src="../Assets/js/register.js"></script>
+  <script src="../Assets/js/hidePassword.js"></script>
 </body>
 
 </html>
