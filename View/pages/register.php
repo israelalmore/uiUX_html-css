@@ -190,7 +190,7 @@
         </div>
 
         <div class="form-actions">
-          <button type="submit" class="primary-btn">Crear cuenta</button>
+          <button type="submit" name="button" class="primary-btn">Crear cuenta</button>
         </div>
       </form>
     </section>
