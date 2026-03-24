@@ -3,6 +3,9 @@ session_start();
 require_once '../config/Database.php';
 require_once '../model/User.php';
 
+// if(issetPOST == create)
+//     user->create();
+
 class userController
 {
 
