@@ -14,7 +14,6 @@ class userController
         $this->conn = $database->getConexion();
     }
 
-    // 🔹 CREATE (registro)
     public function create()
     {
         if (
