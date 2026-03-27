@@ -60,7 +60,7 @@
           <a href="login.php" class="btn-login"> Iniciar Sesión </a>
 
           <a href="profile.php" class="btn-profile">
-            <img src="../Assets/img/icons/account.png" alt="" />
+            <img src="../Assets/img/icons/account.png" alt="Perfil de Usuario" />
             <span>Mi Perfil</span>
           </a>
         </div>
