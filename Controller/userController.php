@@ -13,7 +13,7 @@ class userController
 
     public function __construct()
     {
-        $database = new Database();
+        $database = new Database('localhost', 'forever_events', 'root', '');
         $this->conn = $database->getConexion();
     }
 
