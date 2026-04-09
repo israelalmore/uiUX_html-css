@@ -2,13 +2,17 @@
 session_start();
 require_once '../config/Database.php';
 require_once '../model/User.php';
-
-// if(issetPOST == create)
-//     user->create();
-
+require_once 'userController.php'; // si se separa la clase en otro archivo
+// MENÚ 
+echo __LINE__;
+if (isset($_POST['create'])) {
+    echo __LINE__;
+    $controller = new userController();
+    $controller->create();
+    echo __LINE__;
+}
 class userController
 {
-
     private $conn;
 
     public function __construct()
@@ -19,52 +23,60 @@ class userController
 
     public function create()
     {
+        echo __LINE__;
         if (
             !empty($_POST['name']) &&
             !empty($_POST['surname1']) &&
             !empty($_POST['email']) &&
-            !empty($_POST['pass']) &&
-            !empty($_POST['pass2'])
+            !empty($_POST['password']) &&
+            !empty($_POST['password2'])
         ) {
 
-            if ($_POST['pass'] !== $_POST['pass2']) {
+            if ($_POST['password'] !== $_POST['password2']) {
                 die("Las contraseñas no coinciden");
             }
 
             // comprobar email duplicado
-            $check = $this->conn->prepare("SELECT id FROM users WHERE email = :email");
-            $check->execute([':email' => $_POST['email']]);
+            $stmt = $this->conn->prepare("SELECT id FROM users WHERE email = ?");
+            $stmt->bind_param("s", $_POST['email']);
+            $stmt->execute();
+            $result = $stmt->get_result();
 
-            if ($check->fetch()) {
+            if ($result->fetch_assoc()) {
                 die("El email ya está registrado");
             }
 
-            $sql = "INSERT INTO users 
+            // INSERT con mysqli
+            $stmt = $this->conn->prepare("INSERT INTO users 
             (name, surname1, surname2, birthdate, userType, email, password, telephone, language, documentType, document, city, postalCode, province) 
-            VALUES 
-            (:name, :surname1, :surname2, :birthdate, :userType, :email, :password, :telephone, :language, :documentType, :document, :city, :postalCode, :province)";
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-            $stmt = $this->conn->prepare($sql);
+            $passwordHash = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-            $stmt->execute([
-                ':name' => $_POST['name'],
-                ':surname1' => $_POST['surname1'],
-                ':surname2' => $_POST['surname2'] ?? "",
-                ':birthdate' => $_POST['date'],
-                ':userType' => $_POST['userType'],
-                ':email' => $_POST['email'],
-                ':password' => password_hash($_POST['pass'], PASSWORD_DEFAULT),
-                ':telephone' => $_POST['telephone'],
-                ':language' => $_POST['language'],
-                ':documentType' => $_POST['type_doc'],
-                ':document' => $_POST['document'],
-                ':city' => $_POST['city'],
-                ':postalCode' => $_POST['postal_code'],
-                ':province' => $_POST['province']
-            ]);
+            $stmt->bind_param(
+                "ssssssssssssss",
+                $_POST['name'],
+                $_POST['surname1'],
+                $_POST['surname2'],
+                $_POST['date'],
+                $_POST['user_type'],
+                $_POST['email'],
+                $passwordHash,
+                $_POST['telephone'],
+                $_POST['language'],
+                $_POST['type_doc'],
+                $_POST['document'],
+                $_POST['city'],
+                $_POST['postal_code'],
+                $_POST['province']
+            );
+
+            $stmt->execute();
 
             header('Location: login.php');
             exit();
+        } else {
+            die("Faltan datos");
         }
     }
 
