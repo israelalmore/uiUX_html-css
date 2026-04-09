@@ -40,7 +40,7 @@
       class="register-card"
       role="main"
       aria-labelledby="register-title">
-      <form class="register-form" action="../../Controller/userController->create()">
+      <form action="../../Controller/userController.php" method="POST">
         <div class="form-block">
           <h2 id="register-title">Información personal</h2>
 
