@@ -11,6 +11,12 @@ if (isset($_POST['create'])) {
     $controller->create();
     echo __LINE__;
 }
+if (isset($_POST['login'])) {
+    echo __LINE__;
+    $controller = new userController();
+    $controller->read();
+    echo __LINE__;
+}
 class userController
 {
     private $conn;
@@ -82,7 +88,33 @@ class userController
 
     public function read()
     {
-        return $_SESSION['users'] ?? [];
+        $email = $_POST['user'];
+        $password = $_POST['password'];
+        // return $_SESSION['users'] ?? [];
+        echo "en read";
+        $sql = "SELECT * FROM usuarios WHERE email = ? AND password = ?";
+        $stmt = $this->conn->prepare($sql);
+
+        $stmt->bind_param("ss", $email, $password);  // i=integer, s=string
+
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+
+        if ($resultado->num_rows > 0) {
+            // Recorrer resultados
+            while ($fila = $resultado->fetch_assoc()) {
+                echo "Nombre: " . $fila['nombre'] . " - ";
+                echo "Email: " . $fila['email'] . "<br>";
+            }
+            header('Location: ../View/pages/profile.php');
+
+        } else {
+            header('Location: login.php');
+            echo "No se encontraron resultados";
+        }
+
+        $stmt->close();
+        $this->conn->close();
     }
 
     public function update()

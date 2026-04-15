@@ -33,7 +33,7 @@
         <span>Accede a tu panel seguro</span>
       </header>
 
-      <form action="login.php" method="post" class="auth-form" novalidate>
+      <form action="../../Controller/userController.php" method="post" class="auth-form" novalidate>
         <div class="form-group">
           <label for="user">Correo electrónico</label>
           <input
@@ -76,7 +76,7 @@
           <a href="forgotPassword.php">¿Olvidaste tu contraseña?</a>
         </div>
 
-        <button type="submit" class="primary-btn">Iniciar sesión</button>
+        <button type="submit" name= "login" class="primary-btn">Iniciar sesión</button>
       </form>
 
       <footer class="auth-footer">
