@@ -1,32 +1,31 @@
 <?php
 session_start();
-require_once '../config/Database.php';
-require_once '../model/User.php';
-require_once 'userController.php'; // si se separa la clase en otro archivo
-// MENÚ 
-if (!isset($_SESSION['user_id'])) {
+
+require_once __DIR__ . '/../config/Database.php';
+require_once __DIR__ . '/../model/User.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $controller = new userController();
+
+    if (isset($_POST['create'])) {
+        $controller->create();
+    }
+
+    if (isset($_POST['login'])) {
+        $controller->read();
+    }
+
+    if (isset($_POST['delete'])) {
+        $controller->delete();
+    }
+
     header('Location: ../View/pages/login.php');
     exit();
 }
 
-if (isset($_POST['create'])) {
-    echo __LINE__;
-    $controller = new userController();
-    $controller->create();
-    echo __LINE__;
-}
-if (isset($_POST['login'])) {
-    echo __LINE__;
-    $controller = new userController();
-    $controller->read();
-    echo __LINE__;
-}
-if (isset($_POST['delete'])) {
-    echo __LINE__;
-    $controller = new userController();
-    $controller->delete();
-    echo __LINE__;
-}
+header('Location: ../View/pages/login.php');
+exit();
+
 class userController
 {
     private $conn;
@@ -39,7 +38,6 @@ class userController
 
     public function create()
     {
-        echo __LINE__;
         if (
             !empty($_POST['name']) &&
             !empty($_POST['surname1']) &&
@@ -47,28 +45,28 @@ class userController
             !empty($_POST['password']) &&
             !empty($_POST['password2'])
         ) {
-
             if ($_POST['password'] !== $_POST['password2']) {
-                die("Las contraseñas no coinciden");
+                header('Location: ../View/pages/register.php?error=passwords');
+                exit();
             }
 
-            // comprobar email duplicado
             $stmt = $this->conn->prepare("SELECT id FROM users WHERE email = ?");
             $stmt->bind_param("s", $_POST['email']);
             $stmt->execute();
             $result = $stmt->get_result();
 
             if ($result->fetch_assoc()) {
-                die("El email ya está registrado");
+                header('Location: ../View/pages/register.php?error=email_exists');
+                exit();
             }
 
-            // INSERT con mysqli
-            $stmt = $this->conn->prepare("INSERT INTO users 
-            (name, surname1, surname2, birthdate, userType, email, password, telephone, language, documentType, document, city, postalCode, province) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt = $this->conn->prepare(
+                "INSERT INTO users 
+                (name, surname1, surname2, birthdate, userType, email, password, telephone, language, documentType, document, city, postalCode, province) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+            );
 
             $passwordHash = password_hash($_POST['password'], PASSWORD_DEFAULT);
-
             $stmt->bind_param(
                 "ssssssssssssss",
                 $_POST['name'],
@@ -86,32 +84,35 @@ class userController
                 $_POST['postal_code'],
                 $_POST['province']
             );
-
             $stmt->execute();
 
-            header('Location: login.php');
+            header('Location: ../View/pages/login.php');
             exit();
-        } else {
-            die("Faltan datos");
         }
+
+        header('Location: ../View/pages/register.php?error=missing_data');
+        exit();
     }
 
     public function read()
     {
-        $email    = $_POST['user'];
-        $password = $_POST['password'];
+        $email = trim($_POST['user'] ?? '');
+        $password = $_POST['password'] ?? '';
 
-        $sql = "SELECT * FROM usuarios WHERE email = ? AND password = ?";
+        if ($email === '' || $password === '') {
+            header('Location: ../View/pages/login.php?error=missing_data');
+            exit();
+        }
+
+        $sql = "SELECT id, nombre, apellido1, email, password FROM usuarios WHERE email = ? AND password = ?";
         $stmt = $this->conn->prepare($sql);
-
         $stmt->bind_param("ss", $email, $password);
-
         $stmt->execute();
         $fila = $stmt->get_result()->fetch_assoc();
 
         if ($fila) {
-            $_SESSION['user_id']    = $fila['id'];
-            $_SESSION['user_name']  = $fila['nombre'];
+            $_SESSION['user_id'] = $fila['id'];
+            $_SESSION['user_name'] = $fila['nombre'];
             $_SESSION['user_email'] = $fila['email'];
 
             $stmt->close();
@@ -119,13 +120,13 @@ class userController
 
             header('Location: ../View/pages/profile.php');
             exit();
-        } else {
-            $stmt->close();
-            $this->conn->close();
-
-            header('Location: ../View/pages/login.php?error=credenciales');
-            exit();
         }
+
+        $stmt->close();
+        $this->conn->close();
+
+        header('Location: ../View/pages/login.php?error=credenciales');
+        exit();
     }
 
     public function update()
