@@ -124,7 +124,8 @@ class userController
             header('Location: ../View/pages/profile.php');
             exit();
         } else {
-            header('Location: login.php');
+            //falta handler error al fallar login
+            header('Location: ../View/pages/login.php');
             echo "No se encontraron resultados";
         }
 
