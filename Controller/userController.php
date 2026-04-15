@@ -4,7 +4,11 @@ require_once '../config/Database.php';
 require_once '../model/User.php';
 require_once 'userController.php'; // si se separa la clase en otro archivo
 // MENÚ 
-echo __LINE__;
+if (!isset($_SESSION['user_id'])) {
+    header('Location: ../View/pages/login.php');
+    exit();
+}
+
 if (isset($_POST['create'])) {
     echo __LINE__;
     $controller = new userController();
@@ -15,6 +19,12 @@ if (isset($_POST['login'])) {
     echo __LINE__;
     $controller = new userController();
     $controller->read();
+    echo __LINE__;
+}
+if (isset($_POST['delete'])) {
+    echo __LINE__;
+    $controller = new userController();
+    $controller->delete();
     echo __LINE__;
 }
 class userController
@@ -106,8 +116,13 @@ class userController
                 echo "Nombre: " . $fila['nombre'] . " - ";
                 echo "Email: " . $fila['email'] . "<br>";
             }
-            header('Location: ../View/pages/profile.php');
 
+            $_SESSION['user_id'] = $fila['id'];
+            $_SESSION['user_name'] = $fila['nombre'];
+            $_SESSION['user_email'] = $fila['email'];
+
+            header('Location: ../View/pages/profile.php');
+            exit();
         } else {
             header('Location: login.php');
             echo "No se encontraron resultados";
