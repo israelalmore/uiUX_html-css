@@ -34,6 +34,11 @@
       </header>
 
       <form action="../../Controller/userController.php" method="post" class="auth-form" novalidate>
+
+        <?php if (isset($_GET['error']) && $_GET['error'] === 'credenciales'): ?>
+          <p style="color: red;">Email o contraseña incorrectos</p>
+        <?php endif; ?>
+
         <div class="form-group">
           <label for="user">Correo electrónico</label>
           <input
@@ -76,7 +81,7 @@
           <a href="forgotPassword.php">¿Olvidaste tu contraseña?</a>
         </div>
 
-        <button type="submit" name= "login" class="primary-btn">Iniciar sesión</button>
+        <button type="submit" name="login" class="primary-btn">Iniciar sesión</button>
       </form>
 
       <footer class="auth-footer">

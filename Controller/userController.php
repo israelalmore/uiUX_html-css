@@ -98,39 +98,34 @@ class userController
 
     public function read()
     {
-        $email = $_POST['user'];
+        $email    = $_POST['user'];
         $password = $_POST['password'];
-        // return $_SESSION['users'] ?? [];
-        echo "en read";
+
         $sql = "SELECT * FROM usuarios WHERE email = ? AND password = ?";
         $stmt = $this->conn->prepare($sql);
 
-        $stmt->bind_param("ss", $email, $password);  // i=integer, s=string
+        $stmt->bind_param("ss", $email, $password);
 
         $stmt->execute();
-        $resultado = $stmt->get_result();
+        $fila = $stmt->get_result()->fetch_assoc();
 
-        if ($resultado->num_rows > 0) {
-            // Recorrer resultados
-            while ($fila = $resultado->fetch_assoc()) {
-                echo "Nombre: " . $fila['nombre'] . " - ";
-                echo "Email: " . $fila['email'] . "<br>";
-            }
-
-            $_SESSION['user_id'] = $fila['id'];
-            $_SESSION['user_name'] = $fila['nombre'];
+        if ($fila) {
+            $_SESSION['user_id']    = $fila['id'];
+            $_SESSION['user_name']  = $fila['nombre'];
             $_SESSION['user_email'] = $fila['email'];
+
+            $stmt->close();
+            $this->conn->close();
 
             header('Location: ../View/pages/profile.php');
             exit();
         } else {
-            //falta handler error al fallar login
-            header('Location: ../View/pages/login.php');
-            echo "No se encontraron resultados";
-        }
+            $stmt->close();
+            $this->conn->close();
 
-        $stmt->close();
-        $this->conn->close();
+            header('Location: ../View/pages/login.php?error=credenciales');
+            exit();
+        }
     }
 
     public function update()
