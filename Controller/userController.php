@@ -109,7 +109,7 @@ class userController
             header('Location: ../View/pages/profile.php');
 
         } else {
-            header('Location: login.php');
+            header('Location: ../View/pages/login.php');
             echo "No se encontraron resultados";
         }
 
