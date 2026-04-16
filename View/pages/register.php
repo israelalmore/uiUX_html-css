@@ -41,6 +41,15 @@
       role="main"
       aria-labelledby="register-title">
       <form action="../../Controller/userController.php" method="POST">
+        <?php if (isset($_GET['error']) && $_GET['error'] === 'passwords'): ?>
+          <p style="color: red;">Las contraseñas no coinciden</p>
+        <?php endif; ?>
+        <?php if (isset($_GET['error']) && $_GET['error'] === 'email-exists'): ?>
+          <p style="color: red;">El email ya está registrado</p>
+        <?php endif; ?>
+        <?php if (isset($_GET['error']) && $_GET['error'] === 'missing-data'): ?>
+          <p style="color: red;">Por favor, completa todos los campos requeridos</p>
+        <?php endif; ?>
         <div class="form-block">
           <h2 id="register-title">Información personal</h2>
 
@@ -92,14 +101,6 @@
             <input id="telephone" name="telephone" type="tel" required />
           </div>
 
-          <div class="field">
-            <label for="language">Idioma</label>
-            <select id="language" name="language">
-              <option>Español</option>
-              <option>Inglés</option>
-              <option>Catalán</option>
-            </select>
-          </div>
         </div>
 
         <div class="form-block">
@@ -117,27 +118,6 @@
           <div class="field">
             <label for="document">Documento</label>
             <input id="document" name="document" type="text" required />
-          </div>
-        </div>
-
-        <div class="form-block">
-          <h2>Dirección</h2>
-
-          <div class="form-row">
-            <div class="field">
-              <label for="city">Ciudad</label>
-              <input id="city" name="city" type="text" />
-            </div>
-
-            <div class="field">
-              <label for="postal_code">Código postal</label>
-              <input id="postal_code" name="postal_code" type="number" />
-            </div>
-          </div>
-
-          <div class="field">
-            <label for="province">Provincia</label>
-            <input id="province" name="province" type="text" />
           </div>
         </div>
 

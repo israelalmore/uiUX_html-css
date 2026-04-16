@@ -13,16 +13,10 @@ class User
     // Contacto
     public $email;
     public $telephone;
-    public $language;
 
     // Identificación
     public $documentType;
     public $document;
-
-    // Dirección
-    public $city;
-    public $postalCode;
-    public $province;
 
     // Seguridad
     public $password;
@@ -35,12 +29,8 @@ class User
         $userType = "",
         $email = "",
         $telephone = "",
-        $language = "",
         $documentType = "",
         $document = "",
-        $city = "",
-        $postalCode = "",
-        $province = "",
         $password = ""
     ) {
         $this->name = $name;
@@ -50,12 +40,8 @@ class User
         $this->userType = $userType;
         $this->email = $email;
         $this->telephone = $telephone;
-        $this->language = $language;
         $this->documentType = $documentType;
         $this->document = $document;
-        $this->city = $city;
-        $this->postalCode = $postalCode;
-        $this->province = $province;
         $this->password = $password;
     }
 }

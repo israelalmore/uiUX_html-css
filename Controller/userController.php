@@ -41,7 +41,13 @@ class userController
         if (
             !empty($_POST['name']) &&
             !empty($_POST['surname1']) &&
+            !empty($_POST['surname2']) &&
+            !empty($_POST['date']) &&
+            !empty($_POST['user_type']) &&
             !empty($_POST['email']) &&
+            !empty($_POST['telephone']) &&
+            !empty($_POST['type_doc']) &&
+            !empty($_POST['document']) &&
             !empty($_POST['password']) &&
             !empty($_POST['password2'])
         ) {
@@ -50,25 +56,25 @@ class userController
                 exit();
             }
 
-            $stmt = $this->conn->prepare("SELECT id FROM users WHERE email = ?");
+            $stmt = $this->conn->prepare("SELECT id FROM usuarios WHERE email = ?");
             $stmt->bind_param("s", $_POST['email']);
             $stmt->execute();
             $result = $stmt->get_result();
 
             if ($result->fetch_assoc()) {
-                header('Location: ../View/pages/register.php?error=email_exists');
+                header('Location: ../View/pages/register.php?error=email-exists');
                 exit();
             }
 
             $stmt = $this->conn->prepare(
-                "INSERT INTO users 
-                (name, surname1, surname2, birthdate, userType, email, password, telephone, language, documentType, document, city, postalCode, province) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+                "INSERT INTO usuarios 
+                (nombre, apellido1, apellido2, fecha_nacimiento, tipo_usuario_id, email, password, telefono, tipo_documento_id, documento) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
             );
 
             $passwordHash = password_hash($_POST['password'], PASSWORD_DEFAULT);
             $stmt->bind_param(
-                "ssssssssssssss",
+                "ssssssssss",
                 $_POST['name'],
                 $_POST['surname1'],
                 $_POST['surname2'],
@@ -77,12 +83,8 @@ class userController
                 $_POST['email'],
                 $passwordHash,
                 $_POST['telephone'],
-                $_POST['language'],
                 $_POST['type_doc'],
-                $_POST['document'],
-                $_POST['city'],
-                $_POST['postal_code'],
-                $_POST['province']
+                $_POST['document']
             );
             $stmt->execute();
 
