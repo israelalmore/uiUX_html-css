@@ -1,11 +1,6 @@
 CREATE DATABASE forever_events;
 USE forever_events;
  
-CREATE USER 'userzehao'@'%' IDENTIFIED BY '123456789';
-CREATE USER 'userisrael'@'%' IDENTIFIED BY '123456789';
-GRANT ALL PRIVILEGES ON forever_events TO 'userzehao';
-GRANT ALL PRIVILEGES ON forever_events TO 'userisrael';
-FLUSH PRIVILEGES;
 CREATE TABLE tipos_usuario (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL
