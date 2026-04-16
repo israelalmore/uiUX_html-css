@@ -41,7 +41,6 @@ class userController
         if (
             !empty($_POST['name']) &&
             !empty($_POST['surname1']) &&
-            !empty($_POST['surname2']) &&
             !empty($_POST['date']) &&
             !empty($_POST['user_type']) &&
             !empty($_POST['email']) &&
@@ -73,17 +72,20 @@ class userController
             );
 
             $passwordHash = password_hash($_POST['password'], PASSWORD_DEFAULT);
+            $userType = (int)$_POST['user_type'];
+            $typeDoc = (int)$_POST['type_doc'];
+
             $stmt->bind_param(
-                "ssssssssss",
+                "ssssisssis",
                 $_POST['name'],
                 $_POST['surname1'],
                 $_POST['surname2'],
                 $_POST['date'],
-                $_POST['user_type'],
+                $userType,
                 $_POST['email'],
                 $passwordHash,
                 $_POST['telephone'],
-                $_POST['type_doc'],
+                $typeDoc,
                 $_POST['document']
             );
             $stmt->execute();
