@@ -82,8 +82,8 @@
           <div class="field">
             <label for="user_type"> Tipo de Usuario</label>
             <select id="user_type" name="user_type">
-              <option>Gestor</option>
-              <option>Usuario</option>
+              <option value="1">Gestor</option>
+              <option value="2">Usuario</option>
             </select>
           </div>
         </div>
@@ -109,9 +109,9 @@
           <div class="field">
             <label for="type_doc">Tipo de documento</label>
             <select id="type_doc" name="type_doc" required>
-              <option>DNI</option>
-              <option>NIE</option>
-              <option>NIF</option>
+              <option value="1">DNI</option>
+              <option value="2">NIE</option>
+              <option value="3">NIF</option>
             </select>
           </div>
 

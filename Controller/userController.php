@@ -74,12 +74,13 @@ class userController
             $passwordHash = password_hash($_POST['password'], PASSWORD_DEFAULT);
             $userType = (int)$_POST['user_type'];
             $typeDoc = (int)$_POST['type_doc'];
+            $surname = !empty($_POST['surname2']) ? $_POST['surname2'] : null;
 
             $stmt->bind_param(
                 "ssssisssis",
                 $_POST['name'],
                 $_POST['surname1'],
-                $_POST['surname2'],
+                $surname,
                 $_POST['date'],
                 $userType,
                 $_POST['email'],
@@ -114,7 +115,7 @@ class userController
         $stmt->execute();
         $fila = $stmt->get_result()->fetch_assoc();
 
-        if ($fila) {
+        if ($fila && password_verify($password, $fila['password'])) {
             $_SESSION['user_id'] = $fila['id'];
             $_SESSION['user_name'] = $fila['nombre'];
             $_SESSION['user_email'] = $fila['email'];
