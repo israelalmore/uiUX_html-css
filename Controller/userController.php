@@ -109,9 +109,9 @@ class userController
             exit();
         }
 
-        $sql = "SELECT id, nombre, apellido1, email, password FROM usuarios WHERE email = ? AND password = ?";
+        $sql = "SELECT id, nombre, apellido1, email, password FROM usuarios WHERE email = ? ";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("ss", $email, $password);
+        $stmt->bind_param("s", $email);
         $stmt->execute();
         $fila = $stmt->get_result()->fetch_assoc();
 
