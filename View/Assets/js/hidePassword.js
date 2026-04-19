@@ -12,3 +12,10 @@ function togglePassword(button) {
     isVisible ? "Mostrar contraseña" : "Ocultar contraseña",
   );
 }
+function selectUserType(card) {
+  document
+    .querySelectorAll(".user-type-card")
+    .forEach((c) => c.classList.remove("active"));
+  card.classList.add("active");
+  document.getElementById("user_type").value = card.dataset.value;
+}

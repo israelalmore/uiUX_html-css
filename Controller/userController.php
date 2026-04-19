@@ -115,17 +115,18 @@ class userController
             exit();
         }
 
-        $sql = "SELECT id, nombre, apellido1, email, password, tipo_usuario_id FROM usuarios WHERE email = ? ";
+        $sql = "SELECT id, nombre, apellido1, email, password, tipo_usuario_id, avatar FROM usuarios WHERE email = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $fila = $stmt->get_result()->fetch_assoc();
 
         if ($fila && password_verify($password, $fila['password'])) {
-            $_SESSION['user_id'] = $fila['id'];
-            $_SESSION['user_name'] = $fila['nombre'];
-            $_SESSION['user_email'] = $fila['email'];
-            $_SESSION['user_type'] = $fila['tipo_usuario_id'];
+            $_SESSION['user_id']     = $fila['id'];
+            $_SESSION['user_name']   = $fila['nombre'];
+            $_SESSION['user_email']  = $fila['email'];
+            $_SESSION['user_type']   = $fila['tipo_usuario_id'];
+            $_SESSION['user_avatar'] = $fila['avatar'];
 
             $stmt->close();
             $this->conn->close();
@@ -148,28 +149,61 @@ class userController
             exit();
         }
 
-        $id = $_SESSION['user_id'];
-        $nombre = trim($_POST['name'] ?? '');
+        $id        = $_SESSION['user_id'];
+        $nombre    = trim($_POST['name'] ?? '');
         $apellido1 = trim($_POST['surname1'] ?? '');
         $apellido2 = !empty($_POST['surname2']) ? trim($_POST['surname2']) : null;
-        $telefono = trim($_POST['telephone'] ?? '');
-        $email = trim($_POST['email'] ?? '');
-        $fecha = trim($_POST['date'] ?? '');
+        $telefono  = trim($_POST['telephone'] ?? '');
+        $email     = trim($_POST['email'] ?? '');
+        $fecha     = trim($_POST['date'] ?? '');
 
         if (empty($nombre) || empty($apellido1) || empty($email) || empty($telefono) || empty($fecha)) {
             header('Location: ../View/pages/profile.php?error=missing_data');
             exit();
         }
 
-        if (!empty($_POST['password'])) {
+        // Subir foto de perfil (solo gestores, tipo 1)
+        $avatarPath = null;
+        if ($_SESSION['user_type'] == 1 && !empty($_FILES['avatar']['name'])) {
+            $allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
+            $fileType = $_FILES['avatar']['type'];
+
+            if (in_array($fileType, $allowedTypes)) {
+                $uploadDir = __DIR__ . '/../View/Assets/img/avatars/';
+                if (!is_dir($uploadDir)) {
+                    mkdir($uploadDir, 0755, true);
+                }
+
+                $ext      = pathinfo($_FILES['avatar']['name'], PATHINFO_EXTENSION);
+                $filename = 'avatar_' . $id . '.' . $ext;
+                move_uploaded_file($_FILES['avatar']['tmp_name'], $uploadDir . $filename);
+
+                $avatarPath = '../Assets/img/avatars/' . $filename;
+                $_SESSION['user_avatar'] = $avatarPath;
+            }
+        }
+
+        // Construir query según si hay password y/o avatar
+        if (!empty($_POST['password']) && $avatarPath) {
+            $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+            $stmt = $this->conn->prepare(
+                "UPDATE usuarios SET nombre=?, apellido1=?, apellido2=?, telefono=?, email=?, fecha_nacimiento=?, password=?, avatar=? WHERE id=?"
+            );
+            $stmt->bind_param("ssssssssi", $nombre, $apellido1, $apellido2, $telefono, $email, $fecha, $password, $avatarPath, $id);
+        } elseif (!empty($_POST['password'])) {
             $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
             $stmt = $this->conn->prepare(
                 "UPDATE usuarios SET nombre=?, apellido1=?, apellido2=?, telefono=?, email=?, fecha_nacimiento=?, password=? WHERE id=?"
             );
             $stmt->bind_param("sssssssi", $nombre, $apellido1, $apellido2, $telefono, $email, $fecha, $password, $id);
+        } elseif ($avatarPath) {
+            $stmt = $this->conn->prepare(
+                "UPDATE usuarios SET nombre=?, apellido1=?, apellido2=?, telefono=?, email=?, fecha_nacimiento=?, avatar=? WHERE id=?"
+            );
+            $stmt->bind_param("sssssssi", $nombre, $apellido1, $apellido2, $telefono, $email, $fecha, $avatarPath, $id);
         } else {
             $stmt = $this->conn->prepare(
-                "UPDATE usuarios SET nombre=?, apellido1=?, apellido2=?, telefono=?, email=?, fecha_nacimiento=?  WHERE id=?"
+                "UPDATE usuarios SET nombre=?, apellido1=?, apellido2=?, telefono=?, email=?, fecha_nacimiento=? WHERE id=?"
             );
             $stmt->bind_param("ssssssi", $nombre, $apellido1, $apellido2, $telefono, $email, $fecha, $id);
         }
@@ -178,7 +212,7 @@ class userController
         $stmt->close();
         $this->conn->close();
 
-        $_SESSION['user_name'] = $nombre;
+        $_SESSION['user_name']  = $nombre;
         $_SESSION['user_email'] = $email;
 
         header('Location: ../View/pages/profile.php?success=updated');

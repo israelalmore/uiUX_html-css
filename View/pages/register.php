@@ -79,12 +79,19 @@
         <div class="form-block">
           <h2>Tipo de Usuario</h2>
 
-          <div class="field">
-            <label for="user_type"> Tipo de Usuario</label>
-            <select id="user_type" name="user_type">
-              <option value="1">Gestor</option>
-              <option value="2">Usuario</option>
-            </select>
+          <input type="hidden" id="user_type" name="user_type" value="2" required />
+
+          <div class="user-type-selector">
+            <div class="user-type-card active" data-value="2" onclick="selectUserType(this)">
+              <i class="fa-solid fa-user"></i>
+              <span>Cliente</span>
+              <p>Reserva y asiste a eventos</p>
+            </div>
+            <div class="user-type-card" data-value="1" onclick="selectUserType(this)">
+              <i class="fa-solid fa-calendar-check"></i>
+              <span>Gestor</span>
+              <p>Crea y gestiona eventos</p>
+            </div>
           </div>
         </div>
 
