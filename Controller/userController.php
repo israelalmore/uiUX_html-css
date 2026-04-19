@@ -112,7 +112,7 @@ class userController
             exit();
         }
 
-        $sql = "SELECT id, nombre, apellido1, email, password FROM usuarios WHERE email = ? ";
+        $sql = "SELECT id, nombre, apellido1, email, password, tipo_usuario_id FROM usuarios WHERE email = ? ";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("s", $email);
         $stmt->execute();
@@ -122,6 +122,7 @@ class userController
             $_SESSION['user_id'] = $fila['id'];
             $_SESSION['user_name'] = $fila['nombre'];
             $_SESSION['user_email'] = $fila['email'];
+            $_SESSION['user_type'] = $fila['tipo_usuario_id'];
 
             $stmt->close();
             $this->conn->close();
