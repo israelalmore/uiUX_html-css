@@ -5,6 +5,21 @@ if (!isset($_SESSION['user_id'])) {
   header('Location: login.php');
   exit();
 }
+
+require_once '../../config/Database.php';
+
+$database = new Database('localhost', 'forever_events', 'root', '');
+$conn = $database->getConexion();
+
+$stmt = $conn->prepare(
+  "SELECT nombre, apellido1, apellido2, fecha_nacimiento, email, telefono, documento
+   FROM usuarios WHERE id = ?"
+);
+$stmt->bind_param("i", $_SESSION['user_id']);
+$stmt->execute();
+$user = $stmt->get_result()->fetch_assoc();
+$stmt->close();
+$conn->close();
 ?>
 
 <!doctype html>
@@ -29,8 +44,8 @@ if (!isset($_SESSION['user_id'])) {
 <body>
   <header class="nav-bar">
     <div class="nav-inner">
-      <a
-        href="landingPage.php"
+
+      <a href="landingPage.php"
         class="nav-logo"
         aria-label="Forever Events inicio">
         <img
@@ -61,11 +76,9 @@ if (!isset($_SESSION['user_id'])) {
               placeholder="Buscar eventos" />
           </form>
 
-
           <form action="../../Controller/userController.php" method="POST">
             <button type="submit" name="delete" class="btn-login">Cerrar Sesión</button>
           </form>
-
         </div>
       </nav>
     </div>
@@ -82,40 +95,57 @@ if (!isset($_SESSION['user_id'])) {
 
   <main class="profile-wrapper">
     <section class="profile-card" aria-labelledby="profile-title">
-      <div class="profile-layout">
-        <div class="profile-avatar">
-          <div class="avatar-container">
-            <img
-              src="../Assets/img/icons/account.png"
-              alt="Avatar de usuario"
-              class="avatar-image" />
 
-            <label for="avatar-upload" class="avatar-upload-btn">
-              <i class="fa-solid fa-camera"></i>
-            </label>
+      <form
+        class="profile-form"
+        action="../../Controller/userController.php"
+        method="POST"
+        enctype="multipart/form-data">
 
-            <input
-              type="file"
-              id="avatar-upload"
-              class="avatar-input"
-              accept="image/*" />
+        <?php if (isset($_GET['success'])): ?>
+          <p style="color: green;">Datos actualizados correctamente</p>
+        <?php endif; ?>
+        <?php if (isset($_GET['error'])): ?>
+          <p style="color: red;">Por favor, completa todos los campos requeridos</p>
+        <?php endif; ?>
+
+        <div class="profile-layout">
+          <div class="profile-avatar">
+            <div class="avatar-container">
+              <img
+                src="<?= !empty($_SESSION['user_avatar']) ? htmlspecialchars($_SESSION['user_avatar']) : '../Assets/img/icons/account.png' ?>"
+                alt="Avatar de usuario"
+                class="avatar-image" />
+
+              <?php if ($_SESSION['user_type'] == 1): ?>
+                <label for="avatar-upload" class="avatar-upload-btn">
+                  <i class="fa-solid fa-camera"></i>
+                </label>
+                <input
+                  type="file"
+                  id="avatar-upload"
+                  name="avatar"
+                  class="avatar-input"
+                  accept="image/*" />
+              <?php endif; ?>
+            </div>
+
+            <h2 class="profile-title">Mi perfil</h2>
+
+            <?php if ($_SESSION['user_type'] == 1): ?>
+              <p class="avatar-text">Añadir o cambiar foto</p>
+            <?php endif; ?>
           </div>
-          <h2 class="profile-title">Mi perfil</h2>
-          <p class="avatar-text">Añadir o cambiar foto</p>
-        </div>
-
-        <form class="profile-form" action="../../Controller/userController.php" method="POST">
-          <?php if (isset($_GET['success'])): ?>
-            <p style="color: green;">Datos actualizados correctamente</p>
-          <?php endif; ?>
-          <?php if (isset($_GET['error'])): ?>
-            <p style="color: red;">Por favor, completa todos los campos requeridos</p>
-          <?php endif; ?>
 
           <div class="form-grid">
             <div class="form-field">
               <label for="name">Nombre</label>
-              <input id="name" name="name" type="text" placeholder="Nombre de usuario" />
+              <input
+                id="name"
+                name="name"
+                type="text"
+                placeholder="Nombre de usuario"
+                value="<?= htmlspecialchars($user['nombre']) ?>" />
             </div>
 
             <div class="form-field">
@@ -124,7 +154,8 @@ if (!isset($_SESSION['user_id'])) {
                 id="surname1"
                 type="text"
                 name="surname1"
-                placeholder="Primer apellido" />
+                placeholder="Primer apellido"
+                value="<?= htmlspecialchars($user['apellido1']) ?>" />
             </div>
 
             <div class="form-field">
@@ -133,7 +164,8 @@ if (!isset($_SESSION['user_id'])) {
                 id="surname2"
                 type="text"
                 name="surname2"
-                placeholder="Segundo apellido" />
+                placeholder="Segundo apellido"
+                value="<?= htmlspecialchars($user['apellido2'] ?? '') ?>" />
             </div>
 
             <div class="form-field">
@@ -147,28 +179,50 @@ if (!isset($_SESSION['user_id'])) {
 
             <div class="form-field">
               <label for="date">Fecha de nacimiento</label>
-              <input id="date" name="date" type="date" />
+              <input
+                id="date"
+                name="date"
+                type="date"
+                value="<?= htmlspecialchars($user['fecha_nacimiento']) ?>" />
             </div>
-
 
             <div class="form-field">
               <label for="telephone">Teléfono</label>
-              <input id="telephone" name="telephone" type="tel" placeholder="+34 --" />
+              <input
+                id="telephone"
+                name="telephone"
+                type="tel"
+                placeholder="+34 --"
+                value="<?= htmlspecialchars($user['telefono']) ?>" />
             </div>
 
             <div class="form-field">
               <label for="document">Documento</label>
-              <input id="document" type="text" placeholder="Documento" />
+              <input
+                id="document"
+                type="text"
+                placeholder="Documento"
+                value="<?= htmlspecialchars($user['documento']) ?>"
+                readonly />
             </div>
 
             <div class="form-field full">
               <label for="email">Correo electrónico</label>
-              <input id="email" name="email" type="email" placeholder="mail@gmail.com" />
+              <input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="mail@gmail.com"
+                value="<?= htmlspecialchars($user['email']) ?>" />
             </div>
 
             <div class="form-field full">
               <label for="password">Contraseña</label>
-              <input id="password" name="password" type="password" placeholder="********" />
+              <input
+                id="password"
+                name="password"
+                type="password"
+                placeholder="********" />
             </div>
 
             <div class="form-actions full">
@@ -177,8 +231,9 @@ if (!isset($_SESSION['user_id'])) {
               </button>
             </div>
           </div>
-        </form>
-      </div>
+        </div>
+
+      </form>
     </section>
   </main>
 

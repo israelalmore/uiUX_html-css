@@ -50,3 +50,6 @@ INSERT INTO usuarios (nombre, apellido1, apellido2, fecha_nacimiento, email, tel
 ('María', 'Hernández', 'Soler', '1992-11-03', 'maria.hernandez@example.com', '632345680', 'Y2345678C', 'password3', 2, 3),
 ('David', 'Ruiz', 'Fernández', '1988-02-10', 'david.ruiz@example.com', '642345681', 'Z3456789D', 'password4', 1,  4),
 ('Lucía', 'Santos', 'Gómez', '1995-09-29', 'lucia.santos@example.com', '652345682', 'A4567890E', 'password5', 2, 3);
+
+-- AGREGAR COLUMNA DE IMAGEN DE PERFIL
+ALTER TABLE usuarios ADD COLUMN avatar VARCHAR(255) DEFAULT NULL;

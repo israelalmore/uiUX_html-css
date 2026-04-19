@@ -203,3 +203,48 @@
     max-width: 700px;
   }
 }
+/* REGISTER FEATURE  */
+.user-type-selector {
+  display: flex;
+  gap: 1rem;
+}
+
+.user-type-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 1.2rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
+}
+
+.user-type-card i {
+  font-size: 1.8rem;
+  color: #aaa;
+}
+
+.user-type-card span {
+  font-weight: 600;
+}
+
+.user-type-card p {
+  font-size: 0.8rem;
+  color: #888;
+  margin: 0;
+}
+
+.user-type-card.active {
+  border-color: var(--color-primary, #6c63ff);
+  background: #f0eeff;
+}
+
+.user-type-card.active i {
+  color: var(--color-primary, #6c63ff);
+}
