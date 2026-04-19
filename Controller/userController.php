@@ -144,6 +144,7 @@ class userController
 
     public function delete()
     {
+        session_unset();
         session_destroy();
         header('Location: ../View/pages/login.php');
         exit();
