@@ -119,6 +119,13 @@
   opacity: 0.85;
 }
 
+button.btn-login {
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+}
+
 .btn-profile {
   display: flex;
   align-items: center;
