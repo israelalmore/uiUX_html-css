@@ -65,12 +65,17 @@ if (!isset($_SESSION['user_id'])) {
               placeholder="Buscar eventos" />
           </form>
 
-          <a href="login.php" class="btn-login"> Iniciar Sesión </a>
-
-          <a href="profile.php" class="btn-profile">
-            <img src="../Assets/img/icons/account.png" alt="" />
-            <span>Mi Perfil</span>
-          </a>
+          <?php if (!isset($_SESSION['user_id'])): ?>
+            <a href="login.php" class="btn-login">Iniciar Sesión</a>
+          <?php else: ?>
+            <form action="../../Controller/userController.php" method="POST">
+              <button type="submit" name="delete" class="btn-login">Cerrar Sesión</button>
+            </form>
+            <a href="profile.php" class="btn-profile">
+              <img src="../Assets/img/icons/account.png" alt="Perfil de Usuario" />
+              <span>Mi Perfil</span>
+            </a>
+          <?php endif; ?>
         </div>
       </nav>
     </div>
