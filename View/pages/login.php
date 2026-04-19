@@ -15,7 +15,6 @@
     <!-- Branding compacto -->
     <section class="auth-brand">
       <a
-        href="landingPage.php"
         class="brand-logo"
         aria-label="Forever Events inicio">
         <img
