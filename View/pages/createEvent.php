@@ -66,7 +66,7 @@ if (!isset($_SESSION['user_id'])) {
           <?php if (!isset($_SESSION['user_id'])): ?>
             <a href="login.php" class="btn-login">Iniciar Sesión</a>
           <?php else: ?>
-            <form action="../../Controller/userController.php" method="POST">
+            <form action="../../Controller/userController.php" method="POST" class="btn-login">
               <button type="submit" name="delete" class="btn-login">Cerrar Sesión</button>
             </form>
             <a href="profile.php" class="btn-profile">
