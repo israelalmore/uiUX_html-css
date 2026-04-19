@@ -18,6 +18,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['delete'])) {
         $controller->delete();
     }
+    if (isset($_POST['update'])) {
+        $controller->update();
+    }
 
     header('Location: ../View/pages/login.php');
     exit();
@@ -140,7 +143,46 @@ class userController
 
     public function update()
     {
-        // pendiente    
+        if (!isset($_SESSION['user_id'])) {
+            header('Location: ../View/pages/login.php');
+            exit();
+        }
+
+        $id = $_SESSION['user_id'];
+        $nombre = trim($_POST['name'] ?? '');
+        $apellido1 = trim($_POST['surname1'] ?? '');
+        $apellido2 = !empty($_POST['surname2']) ? trim($_POST['surname2']) : null;
+        $telefono = trim($_POST['telephone'] ?? '');
+        $email = trim($_POST['email'] ?? '');
+        $fecha = trim($_POST['date'] ?? '');
+
+        if (empty($nombre) || empty($apellido1) || empty($email) || empty($telefono) || empty($fecha)) {
+            header('Location: ../View/pages/profile.php?error=missing_data');
+            exit();
+        }
+
+        if (!empty($_POST['password'])) {
+            $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+            $stmt = $this->conn->prepare(
+                "UPDATE usuarios SET nombre=?, apellido1=?, apellido2=?, telefono=?, email=?, fecha_nacimiento=?, password=? WHERE id=?"
+            );
+            $stmt->bind_param("ssssssi", $nombre, $apellido1, $apellido2, $telefono, $email, $fecha, $password, $id);
+        } else {
+            $stmt = $this->conn->prepare(
+                "UPDATE usuarios SET nombre=?, apellido1=?, apellido2=?, telefono=?, email=?, fecha_nacimiento=?  WHERE id=?"
+            );
+            $stmt->bind_param("ssssssi", $nombre, $apellido1, $apellido2, $telefono, $email, $fecha, $id);
+        }
+
+        $stmt->execute();
+        $stmt->close();
+        $this->conn->close();
+
+        $_SESSION['user_name'] = $nombre;
+        $_SESSION['user_email'] = $email;
+
+        header('Location: ../View/pages/profile.php?success=updated');
+        exit();
     }
 
     public function delete()

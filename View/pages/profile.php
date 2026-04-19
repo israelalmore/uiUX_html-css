@@ -104,11 +104,18 @@ if (!isset($_SESSION['user_id'])) {
           <p class="avatar-text">Añadir o cambiar foto</p>
         </div>
 
-        <form class="profile-form">
+        <form class="profile-form" action="../../Controller/userController.php" method="POST">
+          <?php if (isset($_GET['success'])): ?>
+            <p style="color: green;">Datos actualizados correctamente</p>
+          <?php endif; ?>
+          <?php if (isset($_GET['error'])): ?>
+            <p style="color: red;">Por favor, completa todos los campos requeridos</p>
+          <?php endif; ?>
+
           <div class="form-grid">
             <div class="form-field">
               <label for="name">Nombre</label>
-              <input id="name" type="text" placeholder="Nombre de usuario" />
+              <input id="name" name="name" type="text" placeholder="Nombre de usuario" />
             </div>
 
             <div class="form-field">
@@ -116,6 +123,7 @@ if (!isset($_SESSION['user_id'])) {
               <input
                 id="surname1"
                 type="text"
+                name="surname1"
                 placeholder="Primer apellido" />
             </div>
 
@@ -124,6 +132,7 @@ if (!isset($_SESSION['user_id'])) {
               <input
                 id="surname2"
                 type="text"
+                name="surname2"
                 placeholder="Segundo apellido" />
             </div>
 
@@ -138,21 +147,13 @@ if (!isset($_SESSION['user_id'])) {
 
             <div class="form-field">
               <label for="date">Fecha de nacimiento</label>
-              <input id="date" type="date" />
+              <input id="date" name="date" type="date" />
             </div>
 
-            <div class="form-field">
-              <label for="language">Idioma</label>
-              <select id="language">
-                <option>Español</option>
-                <option>Inglés</option>
-                <option>Catalán</option>
-              </select>
-            </div>
 
             <div class="form-field">
               <label for="telephone">Teléfono</label>
-              <input id="telephone" type="tel" placeholder="+34 --" />
+              <input id="telephone" name="telephone" type="tel" placeholder="+34 --" />
             </div>
 
             <div class="form-field">
@@ -162,31 +163,16 @@ if (!isset($_SESSION['user_id'])) {
 
             <div class="form-field full">
               <label for="email">Correo electrónico</label>
-              <input id="email" type="email" placeholder="mail@gmail.com" />
-            </div>
-
-            <div class="form-field full">
-              <label for="city">Ciudad</label>
-              <input id="city" type="text" placeholder="Barcelona" />
-            </div>
-
-            <div class="form-field full">
-              <label for="postal_code">Código postal</label>
-              <input id="postal_code" type="text" placeholder="08005" />
-            </div>
-
-            <div class="form-field full">
-              <label for="province">Provincia</label>
-              <input id="province" type="text" placeholder="Barcelona" />
+              <input id="email" name="email" type="email" placeholder="mail@gmail.com" />
             </div>
 
             <div class="form-field full">
               <label for="password">Contraseña</label>
-              <input id="password" type="password" placeholder="********" />
+              <input id="password" name="password" type="password" placeholder="********" />
             </div>
 
             <div class="form-actions full">
-              <button type="submit" class="primary-btn">
+              <button type="submit" name="update" class="primary-btn">
                 Guardar Cambios
               </button>
             </div>
