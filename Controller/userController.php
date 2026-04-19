@@ -91,6 +91,9 @@ class userController
             );
             $stmt->execute();
 
+            $stmt->close();
+            $this->conn->close();
+
             header('Location: ../View/pages/login.php');
             exit();
         }
@@ -136,11 +139,13 @@ class userController
 
     public function update()
     {
-        // pendiente
+        // pendiente    
     }
 
     public function delete()
     {
-        // pendiente
+        session_destroy();
+        header('Location: ../View/pages/login.php');
+        exit();
     }
 }
