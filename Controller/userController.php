@@ -166,7 +166,7 @@ class userController
             $stmt = $this->conn->prepare(
                 "UPDATE usuarios SET nombre=?, apellido1=?, apellido2=?, telefono=?, email=?, fecha_nacimiento=?, password=? WHERE id=?"
             );
-            $stmt->bind_param("ssssssi", $nombre, $apellido1, $apellido2, $telefono, $email, $fecha, $password, $id);
+            $stmt->bind_param("sssssssi", $nombre, $apellido1, $apellido2, $telefono, $email, $fecha, $password, $id);
         } else {
             $stmt = $this->conn->prepare(
                 "UPDATE usuarios SET nombre=?, apellido1=?, apellido2=?, telefono=?, email=?, fecha_nacimiento=?  WHERE id=?"
