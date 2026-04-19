@@ -8,6 +8,11 @@ if (!isset($_SESSION['user_id'])) {
   header('Location: login.php');
   exit();
 }
+
+if ($_SESSION['user_type'] === 2) {
+  header('Location: landingPage.php');
+  exit();
+}
 ?>
 
 <head>

@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+  header('Location: login.php');
+  exit();
+}
+?>
+
 <!doctype html>
 <html lang="es">
 
@@ -37,7 +46,9 @@
         <div class="nav-left">
           <a href="landingPage.php">Inicio</a>
           <a href="events.php">Eventos</a>
-          <a href="createEvent.php">Crear Eventos</a>
+          <?php if ($_SESSION['user_type'] == 1): ?>
+            <a href="createEvent.php">Crear Eventos</a>
+          <?php endif; ?>
         </div>
 
         <div class="nav-right">
@@ -50,14 +61,11 @@
               placeholder="Buscar eventos" />
           </form>
 
-          <?php session_start(); ?>
-          <?php if (!isset($_SESSION['user_id'])): ?>
-          <?php else: ?>
-            <form action="../../Controller/userController.php" method="POST">
-              <button type="submit" name="delete" class="btn-login">Cerrar Sesión</button>
-            </form>
 
-          <?php endif; ?>
+          <form action="../../Controller/userController.php" method="POST">
+            <button type="submit" name="delete" class="btn-login">Cerrar Sesión</button>
+          </form>
+
         </div>
       </nav>
     </div>
