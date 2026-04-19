@@ -39,6 +39,10 @@
           <p style="color: red;">Email o contraseña incorrectos</p>
         <?php endif; ?>
 
+        <?php if (isset($_GET['error']) && $_GET['error'] === 'missing-data'): ?>
+          <p style="color: red;">Por favor, completa todos los campos</p>
+        <?php endif; ?>
+
         <div class="form-group">
           <label for="user">Correo electrónico</label>
           <input

@@ -98,7 +98,7 @@ class userController
             exit();
         }
 
-        header('Location: ../View/pages/register.php?error=missing_data');
+        header('Location: ../View/pages/register.php?error=missing-data');
         exit();
     }
 
@@ -108,7 +108,7 @@ class userController
         $password = $_POST['password'] ?? '';
 
         if ($email === '' || $password === '') {
-            header('Location: ../View/pages/login.php?error=missing_data');
+            header('Location: ../View/pages/login.php?error=missing-data');
             exit();
         }
 
