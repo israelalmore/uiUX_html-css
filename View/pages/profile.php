@@ -21,6 +21,7 @@ $user = $stmt->get_result()->fetch_assoc();
 $stmt->close();
 $conn->close();
 
+
 if (!empty($user['avatar'])) {
   $_SESSION['user_avatar'] = $user['avatar'];
 }
@@ -229,31 +230,84 @@ if (!empty($user['avatar'])) {
             </div>
 
             <div class="form-field full">
-              <label for="current_password">Antigua Contraseña </label>
-              <input
-                id="current_password"
-                name="current_password"
-                type="password"
-                placeholder="********" />
+              <label for="current_password">Contraseña Actual</label>
+              <div class="input-wrapper">
+                <input
+                  type="password"
+                  id="current_password"
+                  name="current_password"
+                  placeholder="Introduce tu contraseña"
+                  autocomplete="current-password"
+                  required />
+                <button
+                  type="button"
+                  class="toggle-password"
+                  aria-label="Mostrar contraseña"
+                  aria-controls="current_password"
+                  aria-pressed="false"
+                  onclick="togglePassword(this)">
+                  <svg class="icon-eye" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 12.5a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-8a3 3 0 1 0 0 6 3 3 0 0 0 0-6z" />
+                  </svg>
+                  <svg class="icon-eye-off" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-5 0-9.27-3.11-11-7.5a10.05 10.05 0 0 1 2.38-3.88M6.53 6.53A9.96 9.96 0 0 1 12 4.5c5 0 9.27 3.11 11 7.5a10.06 10.06 0 0 1-4.07 5.06M9.9 9.9A3 3 0 0 0 12 15a3 3 0 0 0 2.1-5.1M3 3l18 18" />
+                  </svg>
+                </button>
+              </div>
             </div>
 
             <div class="form-field full">
               <label for="new_password">Nueva Contraseña</label>
-              <input
-                id="new_password"
-                name="new_password"
-                type="password"
-                placeholder="********" />
+              <div class="input-wrapper">
+                <input
+                  type="password"
+                  id="new_password"
+                  name="new_password"
+                  placeholder="Introduce tu contraseña"
+                  autocomplete="current-password"
+                  required />
+                <button
+                  type="button"
+                  class="toggle-password"
+                  aria-label="Mostrar contraseña"
+                  aria-controls="new_password"
+                  aria-pressed="false"
+                  onclick="togglePassword(this)">
+                  <svg class="icon-eye" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 12.5a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-8a3 3 0 1 0 0 6 3 3 0 0 0 0-6z" />
+                  </svg>
+                  <svg class="icon-eye-off" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-5 0-9.27-3.11-11-7.5a10.05 10.05 0 0 1 2.38-3.88M6.53 6.53A9.96 9.96 0 0 1 12 4.5c5 0 9.27 3.11 11 7.5a10.06 10.06 0 0 1-4.07 5.06M9.9 9.9A3 3 0 0 0 12 15a3 3 0 0 0 2.1-5.1M3 3l18 18" />
+                  </svg>
+                </button>
+              </div>
             </div>
 
             <div class="form-field full">
               <label for="confirm_password">Confirmar Nueva Contraseña</label>
-              <input
-                id="confirm_password"
-                name="confirm_password"
-                type="password"
-                placeholder="********" />
-
+              <div class="input-wrapper">
+                <input
+                  type="password"
+                  id="confirm_password"
+                  name="confirm_password"
+                  placeholder="Introduce tu contraseña"
+                  autocomplete="current-password"
+                  required />
+                <button
+                  type="button"
+                  class="toggle-password"
+                  aria-label="Mostrar contraseña"
+                  aria-controls="confirm_password"
+                  aria-pressed="false"
+                  onclick="togglePassword(this)">
+                  <svg class="icon-eye" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 12.5a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-8a3 3 0 1 0 0 6 3 3 0 0 0 0-6z" />
+                  </svg>
+                  <svg class="icon-eye-off" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-5 0-9.27-3.11-11-7.5a10.05 10.05 0 0 1 2.38-3.88M6.53 6.53A9.96 9.96 0 0 1 12 4.5c5 0 9.27 3.11 11 7.5a10.06 10.06 0 0 1-4.07 5.06M9.9 9.9A3 3 0 0 0 12 15a3 3 0 0 0 2.1-5.1M3 3l18 18" />
+                  </svg>
+                </button>
+              </div>
             </div>
 
             <div class="form-actions full">
@@ -342,6 +396,7 @@ if (!empty($user['avatar'])) {
       <p>© 2025 Forever Events. Todos los derechos reservados.</p>
     </div>
   </footer>
+  <script src="../Assets/js/hidePassword.js"></script>
 </body>
 
 </html>
