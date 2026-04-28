@@ -6,7 +6,7 @@ class Database
     private string $db_name;
     private string $usuario;
     private string $password;
-    private ?mysqli $conn = null;
+    private ?PDO $conn = null;
 
     public function __construct(string $host, string $db_name, string $usuario, string $password)
     {
@@ -16,23 +16,28 @@ class Database
         $this->password = $password;
     }
 
-    public function getConexion(): mysqli
+    public function getConexion(): PDO
     {
         if ($this->conn === null) {
-            $this->conn = new mysqli($this->host, $this->usuario, $this->password, $this->db_name);
+            $dsn = "mysql:host={$this->host};dbname={$this->db_name};charset=utf8mb4";
 
-            if ($this->conn->connect_error) {
-                throw new RuntimeException("Error de conexión" . $this->conn->connect_error);
+            $options = [
+                PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                PDO::ATTR_EMULATE_PREPARES   => false,
+            ];
+
+            try {
+                $this->conn = new PDO($dsn, $this->usuario, $this->password, $options);
+            } catch (PDOException $e) {
+                throw new RuntimeException('Error de conexión: ' . $e->getMessage());
             }
-
-            $this->conn->set_charset('utf8');
         }
         return $this->conn;
     }
 
     public function desconectar(): void
     {
-        $this->conn?->close();
         $this->conn = null;
     }
 }

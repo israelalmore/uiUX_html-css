@@ -6,11 +6,13 @@ if (!isset($_SESSION['user_id'])) {
   exit();
 }
 
-require_once '../../config/Database.php';
+require_once '../../Config/Database.php';
 
-$database = new Database('localhost', 'forever_events', 'root', '');
-$conn = $database->getConexion();
+try {
+  $database = new Database('localhost', 'forever_events', 'root', '');
+  $conn = $database->getConexion();
 
+<<<<<<< HEAD
 $stmt = $conn->prepare(
   "SELECT nombre, apellido1, apellido2, fecha_nacimiento, email, telefono, documento, avatar
    FROM usuarios WHERE id = ?"
@@ -26,6 +28,20 @@ if (!empty($user['avatar'])) {
   $_SESSION['user_avatar'] = $user['avatar'];
 }
 
+=======
+  $stmt = $conn->prepare(
+    "SELECT nombre, apellido1, apellido2, fecha_nacimiento, email, telefono, documento
+     FROM usuarios WHERE id = :id"
+  );
+  $stmt->bindValue(':id', (int) $_SESSION['user_id'], PDO::PARAM_INT);
+  $stmt->execute();
+  $user = $stmt->fetch();
+} catch (PDOException | RuntimeException $e) {
+  error_log('Error cargando perfil: ' . $e->getMessage());
+  header('Location: login.php?error=db');
+  exit();
+}
+>>>>>>> main
 ?>
 
 <!doctype html>
