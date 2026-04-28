@@ -177,7 +177,14 @@ class userController
 
                 $ext      = pathinfo($_FILES['avatar']['name'], PATHINFO_EXTENSION);
                 $filename = 'avatar_' . $id . '.' . $ext;
-                move_uploaded_file($_FILES['avatar']['tmp_name'], $uploadDir . $filename);
+
+
+                $result = move_uploaded_file($_FILES['avatar']['tmp_name'], $uploadDir . $filename);
+
+
+                var_dump($result);         // true = se movió, false = falló
+                var_dump($uploadDir);      // ruta absoluta donde se guarda
+                var_dump(file_exists($uploadDir . $filename)); // existe el archivo?
 
                 $avatarPath = '../Assets/img/avatars/' . $filename;
                 $_SESSION['user_avatar'] = $avatarPath;
