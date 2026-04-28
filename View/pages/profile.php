@@ -12,7 +12,7 @@ $database = new Database('localhost', 'forever_events', 'root', '');
 $conn = $database->getConexion();
 
 $stmt = $conn->prepare(
-  "SELECT nombre, apellido1, apellido2, fecha_nacimiento, email, telefono, documento
+  "SELECT nombre, apellido1, apellido2, fecha_nacimiento, email, telefono, documento, avatar
    FROM usuarios WHERE id = ?"
 );
 $stmt->bind_param("i", $_SESSION['user_id']);
@@ -20,6 +20,11 @@ $stmt->execute();
 $user = $stmt->get_result()->fetch_assoc();
 $stmt->close();
 $conn->close();
+
+if (!empty($user['avatar'])) {
+  $_SESSION['user_avatar'] = $user['avatar'];
+}
+
 ?>
 
 <!doctype html>
@@ -105,8 +110,15 @@ $conn->close();
         <?php if (isset($_GET['success'])): ?>
           <p style="color: green;">Datos actualizados correctamente</p>
         <?php endif; ?>
+
         <?php if (isset($_GET['error'])): ?>
-          <p style="color: red;">Por favor, completa todos los campos requeridos</p>
+          <?php if ($_GET['error'] === 'missing_data'): ?>
+            <p style="color: red;">Por favor, completa todos los campos requeridos</p>
+          <?php elseif ($_GET['error'] === 'wrong_password'): ?>
+            <p style="color: red;">La contraseña actual es incorrecta</p>
+          <?php elseif ($_GET['error'] === 'password_mismatch'): ?>
+            <p style="color: red;">Las contraseñas nuevas no coinciden</p>
+          <?php endif; ?>
         <?php endif; ?>
 
         <div class="profile-layout">
@@ -217,12 +229,31 @@ $conn->close();
             </div>
 
             <div class="form-field full">
-              <label for="password">Contraseña</label>
+              <label for="current_password">Antigua Contraseña </label>
               <input
-                id="password"
-                name="password"
+                id="current_password"
+                name="current_password"
                 type="password"
                 placeholder="********" />
+            </div>
+
+            <div class="form-field full">
+              <label for="new_password">Nueva Contraseña</label>
+              <input
+                id="new_password"
+                name="new_password"
+                type="password"
+                placeholder="********" />
+            </div>
+
+            <div class="form-field full">
+              <label for="confirm_password">Confirmar Nueva Contraseña</label>
+              <input
+                id="confirm_password"
+                name="confirm_password"
+                type="password"
+                placeholder="********" />
+
             </div>
 
             <div class="form-actions full">

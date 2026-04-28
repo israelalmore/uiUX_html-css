@@ -162,6 +162,7 @@ class userController
             exit();
         }
 
+
         // Subir foto de perfil (solo gestores, tipo 1)
         $avatarPath = null;
         if ($_SESSION['user_type'] == 1 && !empty($_FILES['avatar']['name'])) {
@@ -184,14 +185,40 @@ class userController
         }
 
         // Construir query según si hay password y/o avatar
-        if (!empty($_POST['password']) && $avatarPath) {
-            $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+        $password = null;
+        if (!empty($_POST['new_password'])) {
+
+            // ✅ Verificar que nueva contraseña y confirmación coinciden
+            if ($_POST['new_password'] !== $_POST['confirm_password']) {
+                header('Location: ../View/pages/profile.php?error=password_mismatch'); // ✅
+                exit();
+            }
+
+            // ✅ Obtener contraseña actual de la BD
+            $stmtCheck = $this->conn->prepare("SELECT password FROM usuarios WHERE id = ?"); // ✅
+            $stmtCheck->bind_param("i", $id); // ✅
+            $stmtCheck->execute(); // ✅
+            $row = $stmtCheck->get_result()->fetch_assoc(); // ✅
+            $stmtCheck->close(); // ✅
+
+            // ✅ Verificar que la antigua contraseña es correcta
+            if (!$row || !password_verify($_POST['current_password'], $row['password'])) { // ✅
+                header('Location: ../View/pages/profile.php?error=wrong_password'); // ✅
+                exit();
+            }
+
+            // ✅ Hashear la nueva contraseña
+            $password = password_hash($_POST['new_password'], PASSWORD_DEFAULT); // ✅
+        }
+
+        // Construir query según si hay password y/o avatar
+        if ($password && $avatarPath) { // ✅
             $stmt = $this->conn->prepare(
                 "UPDATE usuarios SET nombre=?, apellido1=?, apellido2=?, telefono=?, email=?, fecha_nacimiento=?, password=?, avatar=? WHERE id=?"
             );
             $stmt->bind_param("ssssssssi", $nombre, $apellido1, $apellido2, $telefono, $email, $fecha, $password, $avatarPath, $id);
-        } elseif (!empty($_POST['password'])) {
-            $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        } elseif ($password) { // ✅
             $stmt = $this->conn->prepare(
                 "UPDATE usuarios SET nombre=?, apellido1=?, apellido2=?, telefono=?, email=?, fecha_nacimiento=?, password=? WHERE id=?"
             );
