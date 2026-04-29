@@ -47,5 +47,30 @@ CREATE TABLE usuarios (
     FOREIGN KEY (tipo_documento_id) REFERENCES tipos_documento(id)
 );
 
+CREATE TABLE eventos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(150) NOT NULL,
+    descripcion TEXT NOT NULL,
+    categoria VARCHAR(50) NOT NULL,
 
+    fecha DATE NOT NULL,
+    hora TIME NOT NULL,
+
+    direccion VARCHAR(255) NOT NULL,
+    codigo_postal VARCHAR(10) NOT NULL,
+    ciudad VARCHAR(100) NOT NULL,
+
+    email VARCHAR(150) NOT NULL,
+
+    imagen_portada VARCHAR(255) DEFAULT NULL,
+    imagen_ubicacion VARCHAR(255) DEFAULT NULL,
+
+    organizador_id INT NOT NULL,
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (organizador_id) REFERENCES usuarios(id),
+    UNIQUE KEY unq_titulo_fecha (titulo, fecha)
+);
 
