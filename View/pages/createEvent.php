@@ -56,6 +56,7 @@ if ($_SESSION['user_type'] === 2) {
           <a href="landingPage.php">Inicio</a>
           <a href="events.php">Eventos</a>
           <a href="createEvent.php">Crear Eventos</a>
+          <a href="myEvents.php">Mis Eventos</a>
         </div>
 
         <div class="nav-right">
@@ -98,7 +99,7 @@ if ($_SESSION['user_type'] === 2) {
         Organiza experiencias inolvidables, paso a paso.
       </p>
 
-      <form class="event-form" id="createEventForm">
+      <form class="event-form" id="createEventForm" action="../../Controller/eventController.php" method="POST" enctype="multipart/form-data">
         <fieldset class="form-section">
           <legend>Información Básica</legend>
           <div class="form-group">
@@ -215,7 +216,7 @@ if ($_SESSION['user_type'] === 2) {
           </div>
         </fieldset>
 
-        <button type="submit" class="submit-btn">Crear Evento</button>
+        <button type="submit" name="create" value="1" class="submit-btn">Crear Evento</button>
       </form>
     </div>
   </main>
