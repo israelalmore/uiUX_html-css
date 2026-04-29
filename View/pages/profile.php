@@ -12,23 +12,6 @@ try {
   $database = new Database('localhost', 'forever_events', 'root', '');
   $conn = $database->getConexion();
 
-<<<<<<< HEAD
-$stmt = $conn->prepare(
-  "SELECT nombre, apellido1, apellido2, fecha_nacimiento, email, telefono, documento, avatar
-   FROM usuarios WHERE id = ?"
-);
-$stmt->bind_param("i", $_SESSION['user_id']);
-$stmt->execute();
-$user = $stmt->get_result()->fetch_assoc();
-$stmt->close();
-$conn->close();
-
-
-if (!empty($user['avatar'])) {
-  $_SESSION['user_avatar'] = $user['avatar'];
-}
-
-=======
   $stmt = $conn->prepare(
     "SELECT nombre, apellido1, apellido2, fecha_nacimiento, email, telefono, documento
      FROM usuarios WHERE id = :id"
@@ -41,7 +24,6 @@ if (!empty($user['avatar'])) {
   header('Location: login.php?error=db');
   exit();
 }
->>>>>>> main
 ?>
 
 <!doctype html>
