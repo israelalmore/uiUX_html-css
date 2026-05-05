@@ -55,7 +55,8 @@ if ($_SESSION['user_type'] === 2) {
         <div class="nav-left">
           <a href="landingPage.php">Inicio</a>
           <a href="events.php">Eventos</a>
-          <a href="createEvent.php">Crear Eventos</a>
+          <a href="aboutUs.php">Sobre Nosotros</a>
+          <a href="createEvent.php" aria-current="page">Crear Eventos</a>
           <a href="myEvents.php">Mis Eventos</a>
         </div>
 
