@@ -65,6 +65,7 @@ try {
         <div class="nav-left">
           <a href="landingPage.php">Inicio</a>
           <a href="events.php">Eventos</a>
+          <a href="aboutUs.php">Sobre Nosotros</a>
           <?php if ($_SESSION['user_type'] == 1): ?>
             <a href="createEvent.php">Crear Eventos</a>
           <?php endif; ?>

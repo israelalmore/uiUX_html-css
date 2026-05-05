@@ -51,8 +51,9 @@ if (!isset($_SESSION['user_id'])) {
 
       <nav class="nav-container" aria-label="Navegación principal">
         <div class="nav-left">
-          <a href="landingPage.php">Inicio</a>
+          <a href="landingPage.php" aria-current="page">Inicio</a>
           <a href="events.php">Eventos</a>
+          <a href="aboutUs.php">Sobre Nosotros</a>
           <?php if ($_SESSION['user_type'] == 1): ?>
             <a href="createEvent.php">Crear Eventos</a>
           <?php endif; ?>
