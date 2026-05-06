@@ -59,35 +59,7 @@ $createdId = isset($_GET['id']) ? (int) $_GET['id'] : 0;
     rel="stylesheet" />
   <link rel="stylesheet" href="../Assets/css/main.css" />
   <link rel="stylesheet" href="../Assets/css/pages/events.css" />
-
-  <style>
-    .flash {
-      max-width: 900px;
-      margin: 1.5rem auto 0;
-      padding: 1rem 1.25rem;
-      border-radius: 8px;
-      font-family: 'Inter', sans-serif;
-      font-weight: 500;
-      display: flex;
-      align-items: center;
-      gap: .75rem;
-    }
-    .flash-success {
-      background: #e6f7ec;
-      color: #1f7a3e;
-      border: 1px solid #b7e1c4;
-    }
-    .flash-error {
-      background: #fdecea;
-      color: #a02723;
-      border: 1px solid #f5c2c0;
-    }
-    .empty-state {
-      text-align: center;
-      padding: 3rem 1rem;
-      color: #555;
-    }
-  </style>
+  <link rel="stylesheet" href="../Assets/css/components/myEvents.css" />
 </head>
 
 <body>
@@ -111,8 +83,7 @@ $createdId = isset($_GET['id']) ? (int) $_GET['id'] : 0;
           <a href="landingPage.php">Inicio</a>
           <a href="events.php">Eventos</a>
           <a href="aboutUs.php">Sobre Nosotros</a>
-          <a href="createEvent.php">Crear Eventos</a>
-          <a href="myEvents.php" aria-current="page">Mis Eventos</a>
+          <a href="createEvent.php">Crear Evento</a>
         </div>
 
         <div class="nav-right">
@@ -187,16 +158,16 @@ $createdId = isset($_GET['id']) ? (int) $_GET['id'] : 0;
                 <h2 class="event-title"><?php echo htmlspecialchars($evento['titulo']); ?></h2>
                 <p class="event-date">
                   <?php
-                    $fechaFmt = date('d/m/Y', strtotime($evento['fecha']));
-                    $horaFmt  = date('H:i', strtotime($evento['hora']));
-                    echo htmlspecialchars($fechaFmt . ' | ' . $horaFmt . 'h');
+                  $fechaFmt = date('d/m/Y', strtotime($evento['fecha']));
+                  $horaFmt  = date('H:i', strtotime($evento['hora']));
+                  echo htmlspecialchars($fechaFmt . ' | ' . $horaFmt . 'h');
                   ?>
                 </p>
                 <div class="event-stats">
                   <i class="fa-solid fa-location-dot"></i>
                   <?php echo htmlspecialchars($evento['ciudad']); ?>
                 </div>
-                <a href="#" class="btn btn-primary">Ver Detalles</a>
+                <a href="eventDetails.php?id=<?php echo (int) $evento['id']; ?>" class="btn btn-primary">Ver Detalles</a>
               </div>
             </article>
           <?php endforeach; ?>

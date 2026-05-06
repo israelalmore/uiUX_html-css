@@ -260,4 +260,9 @@ class eventController
 
         return '../Assets/img/events/' . $filename;
     }
+
+    private function delete()
+    {
+        // Implementar lógica de eliminación de evento
+    }
 }

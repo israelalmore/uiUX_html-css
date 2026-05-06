@@ -54,7 +54,8 @@ if (!isset($_SESSION['user_id'])) {
           <a href="events.php" aria-current="page">Eventos</a>
           <a href="aboutUs.php">Sobre Nosotros</a>
           <?php if ($_SESSION['user_type'] == 1): ?>
-            <a href="createEvent.php">Crear Eventos</a>
+            <a href="createEvent.php">Crear Evento</a>
+            <a href="myEvents.php"> Mis Eventos</a>
           <?php endif; ?>
         </div>
 
