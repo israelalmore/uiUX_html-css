@@ -56,6 +56,8 @@ if (!isset($_SESSION['user_id'])) {
           <a href="aboutUs.php">Sobre Nosotros</a>
           <?php if ($_SESSION['user_type'] == 1): ?>
             <a href="createEvent.php">Crear Eventos</a>
+            <a href="myEvents.php">Mis Eventos</a>
+
           <?php endif; ?>
         </div>
 
@@ -280,15 +282,18 @@ if (!isset($_SESSION['user_id'])) {
       </div>
     </section>
 
-    <section class="final-cta">
-      <div class="container">
-        <h2>¿Listo para Crear Algo Increíble?</h2>
-        <p>
-          Únete a miles de creadores y asistentes que ya confían en nosotros.
-        </p>
-        <a href="register.php" class="btn">Empieza Gratis Ahora</a>
-      </div>
-    </section>
+    <?php if (!isset($_SESSION['user_id'])): ?>
+      <section class="final-cta">
+        <div class="container">
+          <h2>¿Listo para Crear Algo Increíble?</h2>
+          <p>
+            Únete a miles de creadores y asistentes que ya confían en nosotros.
+          </p>
+          <a href="register.php" class="btn">Empieza Gratis Ahora</a>
+        </div>
+      </section>
+    <?php endif; ?>
+
   </main>
 
   <footer class="site-footer">
