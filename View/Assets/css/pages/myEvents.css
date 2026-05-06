@@ -1,0 +1,26 @@
+.flash {
+  max-width: 900px;
+  margin: 1.5rem auto 0;
+  padding: 1rem 1.25rem;
+  border-radius: 8px;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.flash-success {
+  background: #e6f7ec;
+  color: #1f7a3e;
+  border: 1px solid #b7e1c4;
+}
+.flash-error {
+  background: #fdecea;
+  color: #a02723;
+  border: 1px solid #f5c2c0;
+}
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #555;
+}
