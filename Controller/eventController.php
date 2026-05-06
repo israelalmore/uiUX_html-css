@@ -15,12 +15,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit();
 }
 
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    if (array_key_exists('id', $_GET)) {
+        $controller = new eventController();
+        $controller->read($_GET['id']);
+        exit();
+    }
+
+    header('Location: ../View/pages/events.php');
+    exit();
+}
+
 header('Location: ../View/pages/createEvent.php');
 exit();
 
 class eventController
 {
     private PDO $conn;
+    private bool $jsonMode = false;
 
     public function __construct()
     {
@@ -29,6 +41,15 @@ class eventController
             $this->conn = $database->getConexion();
         } catch (RuntimeException $e) {
             error_log($e->getMessage());
+
+            if ($_SERVER['REQUEST_METHOD'] === 'GET' && array_key_exists('id', $_GET)) {
+                $this->jsonResponse(500, [
+                    'error'   => 'database_error',
+                    'message' => 'No se pudo conectar con la base de datos.',
+                ]);
+                exit();
+            }
+
             header('Location: ../View/pages/createEvent.php?error=db');
             exit();
         }
@@ -125,6 +146,93 @@ class eventController
 
         header('Location: ../View/pages/createEvent.php?error=missing-data');
         exit();
+    }
+
+    public function read($rawId): void
+    {
+        if (!$this->isValidId($rawId)) {
+            $this->jsonResponse(400, [
+                'error'   => 'invalid_id_format',
+                'message' => 'El identificador del evento no es válido. Debe ser un número entero positivo.',
+            ]);
+            return;
+        }
+
+        $id = (int) $rawId;
+
+        try {
+            $stmt = $this->conn->prepare(
+                "SELECT e.id, e.titulo, e.descripcion, e.categoria, e.fecha, e.hora,
+                        e.direccion, e.codigo_postal, e.ciudad, e.email,
+                        e.imagen_portada, e.imagen_ubicacion,
+                        e.organizador_id, e.created_at, e.updated_at,
+                        u.nombre AS organizador_nombre,
+                        u.apellido1 AS organizador_apellido1,
+                        u.apellido2 AS organizador_apellido2,
+                        u.email AS organizador_email
+                 FROM eventos e
+                 LEFT JOIN usuarios u ON u.id = e.organizador_id
+                 WHERE e.id = :id"
+            );
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+
+            $row = $stmt->fetch();
+        } catch (PDOException $e) {
+            error_log('Error al leer evento ' . $id . ': ' . $e->getMessage());
+            $this->jsonResponse(500, [
+                'error'   => 'database_error',
+                'message' => 'Error interno al consultar el evento.',
+            ]);
+            return;
+        }
+
+        if (!$row) {
+            $this->jsonResponse(404, [
+                'error'   => 'event_not_found',
+                'message' => "El evento con ID {$id} no fue encontrado.",
+            ]);
+            return;
+        }
+
+        $event = Event::fromDbRow($row);
+        $payload = $event->toArray();
+        $payload['organizador'] = [
+            'id'        => isset($row['organizador_id']) ? (int) $row['organizador_id'] : null,
+            'nombre'    => $row['organizador_nombre'] ?? null,
+            'apellido1' => $row['organizador_apellido1'] ?? null,
+            'apellido2' => $row['organizador_apellido2'] ?? null,
+            'email'     => $row['organizador_email'] ?? null,
+        ];
+
+        $this->jsonResponse(200, ['data' => $payload]);
+    }
+
+    private function isValidId($rawId): bool
+    {
+        if ($rawId === null || $rawId === '' || is_array($rawId)) {
+            return false;
+        }
+
+        if (!is_numeric($rawId)) {
+            return false;
+        }
+
+        $stringValue = (string) $rawId;
+        if (!preg_match('/^\d+$/', $stringValue)) {
+            return false;
+        }
+
+        return ((int) $stringValue) > 0;
+    }
+
+    private function jsonResponse(int $statusCode, array $payload): void
+    {
+        if (!headers_sent()) {
+            http_response_code($statusCode);
+            header('Content-Type: application/json; charset=utf-8');
+        }
+        echo json_encode($payload, JSON_UNESCAPED_UNICODE);
     }
 
     private function uploadImage(string $field, string $prefix): ?string
