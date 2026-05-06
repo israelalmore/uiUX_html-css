@@ -8,6 +8,26 @@ if (!isset($_SESSION['user_id'])) {
   header('Location: login.php');
   exit();
 }
+
+require_once __DIR__ . '/../../Config/Database.php';
+
+$eventos = [];
+$dbError = false;
+
+try {
+  $database = new Database('localhost', 'forever_events', 'root', '');
+  $conn = $database->getConexion();
+
+  $stmt = $conn->query(
+    "SELECT id, titulo, categoria, fecha, hora, ciudad, imagen_portada
+     FROM eventos
+     ORDER BY fecha DESC, hora DESC"
+  );
+  $eventos = $stmt->fetchAll();
+} catch (Exception $e) {
+  error_log('Error cargando eventos: ' . $e->getMessage());
+  $dbError = true;
+}
 ?>
 
 <head>
@@ -118,111 +138,45 @@ if (!isset($_SESSION['user_id'])) {
         <input type="date" class="filter-date" />
       </div>
 
-      <div class="event-grid">
-        <article class="event-card" tabindex="0">
-          <img
-            src="../Assets/img/images/eventsV2.jfif"
-            alt="Evento de Comedia"
-            class="event-image" />
-          <div class="event-content">
-            <div class="event-header">
-              <span class="event-category">Arte y Cultura</span>
-              <span class="event-badge">Popular</span>
-              <div class="event-rating">
-                <i class="fa-solid fa-star"></i> 4.8 (27)
+      <?php if ($dbError): ?>
+        <div class="flash flash-error" role="alert">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <span>No se pudieron cargar los eventos. Inténtalo más tarde.</span>
+        </div>
+      <?php elseif (empty($eventos)): ?>
+        <div class="empty-state">
+          <p>Todavía no hay eventos disponibles.</p>
+        </div>
+      <?php else: ?>
+        <div class="event-grid">
+          <?php foreach ($eventos as $evento): ?>
+            <article class="event-card" tabindex="0">
+              <img
+                src="<?php echo !empty($evento['imagen_portada']) ? htmlspecialchars($evento['imagen_portada']) : '../Assets/img/images/events.jpg'; ?>"
+                alt="Imagen del evento <?php echo htmlspecialchars($evento['titulo']); ?>"
+                class="event-image" />
+              <div class="event-content">
+                <div class="event-header">
+                  <span class="event-category"><?php echo htmlspecialchars($evento['categoria']); ?></span>
+                </div>
+                <h2 class="event-title"><?php echo htmlspecialchars($evento['titulo']); ?></h2>
+                <p class="event-date">
+                  <?php
+                  $fechaFmt = date('d/m/Y', strtotime($evento['fecha']));
+                  $horaFmt  = date('H:i', strtotime($evento['hora']));
+                  echo htmlspecialchars($fechaFmt . ' | ' . $horaFmt . 'h');
+                  ?>
+                </p>
+                <div class="event-stats">
+                  <i class="fa-solid fa-location-dot"></i>
+                  <?php echo htmlspecialchars($evento['ciudad']); ?>
+                </div>
+                <a href="eventDetails.php?id=<?php echo (int) $evento['id']; ?>" class="btn btn-primary">Ver Detalles</a>
               </div>
-            </div>
-            <h2 class="event-title">La capital del pecado</h2>
-            <p class="event-date">Jueves, 30 de Marzo | 18:00h</p>
-            <div class="event-stats">
-              <i class="fa-solid fa-users"></i> 300 personas van
-            </div>
-            <a href="login.php" class="btn btn-primary">Ver Detalles</a>
-            <div class="event-actions">
-              <a href="#" aria-label="Añadir a Google Calendar"><i class="fa-brands fa-google"></i></a>
-              <a href="#" aria-label="Compartir en Twitter"><i class="fa-brands fa-twitter"></i></a>
-            </div>
-          </div>
-        </article>
-
-        <article class="event-card" tabindex="0">
-          <img
-            src="../Assets/img/images/events.jpg"
-            alt="Concierto de Rock"
-            class="event-image" />
-          <div class="event-content">
-            <div class="event-header">
-              <span class="event-category">Música</span>
-              <span class="event-badge">Nuevo</span>
-              <div class="event-rating">
-                <i class="fa-solid fa-star"></i> 4.5 (12)
-              </div>
-            </div>
-            <h2 class="event-title">Rock en la Plaza</h2>
-            <p class="event-date">Viernes, 31 de Marzo | 20:00h</p>
-            <div class="event-stats">
-              <i class="fa-solid fa-users"></i> 450 personas van
-            </div>
-            <a href="login.php" class="btn btn-primary">Ver Detalles</a>
-            <div class="event-actions">
-              <a href="#" aria-label="Añadir a Google Calendar"><i class="fa-brands fa-google"></i></a>
-              <a href="#" aria-label="Compartir en Twitter"><i class="fa-brands fa-twitter"></i></a>
-            </div>
-          </div>
-        </article>
-
-        <article class="event-card" tabindex="0">
-          <img
-            src="../Assets/img/images/eventsV2.jfif"
-            alt="Conferencia tecnológica"
-            class="event-image" />
-          <div class="event-content">
-            <div class="event-header">
-              <span class="event-category">Tecnología</span>
-              <span class="event-badge">Popular</span>
-              <div class="event-rating">
-                <i class="fa-solid fa-star"></i> 4.9 (33)
-              </div>
-            </div>
-            <h2 class="event-title">Tech Future 2026</h2>
-            <p class="event-date">Sábado, 1 de Abril | 09:00h</p>
-            <div class="event-stats">
-              <i class="fa-solid fa-users"></i> 1200 personas van
-            </div>
-            <a href="login.php" class="btn btn-primary">Ver Detalles</a>
-            <div class="event-actions">
-              <a href="#" aria-label="Añadir a Google Calendar"><i class="fa-brands fa-google"></i></a>
-              <a href="#" aria-label="Compartir en Twitter"><i class="fa-brands fa-twitter"></i></a>
-            </div>
-          </div>
-        </article>
-
-        <article class="event-card" tabindex="0">
-          <img
-            src="../Assets/img/images/events.jpg"
-            alt="Torneo deportivo"
-            class="event-image" />
-          <div class="event-content">
-            <div class="event-header">
-              <span class="event-category">Deporte</span>
-              <span class="event-badge">Nuevo</span>
-              <div class="event-rating">
-                <i class="fa-solid fa-star"></i> 4.7 (18)
-              </div>
-            </div>
-            <h2 class="event-title">Maratón de Primavera</h2>
-            <p class="event-date">Domingo, 2 de Abril | 07:00h</p>
-            <div class="event-stats">
-              <i class="fa-solid fa-users"></i> 800 personas van
-            </div>
-            <a href="login.php" class="btn btn-primary">Ver Detalles</a>
-            <div class="event-actions">
-              <a href="#" aria-label="Añadir a Google Calendar"><i class="fa-brands fa-google"></i></a>
-              <a href="#" aria-label="Compartir en Twitter"><i class="fa-brands fa-twitter"></i></a>
-            </div>
-          </div>
-        </article>
-      </div>
+            </article>
+          <?php endforeach; ?>
+        </div>
+      <?php endif; ?>
     </div>
   </section>
 
