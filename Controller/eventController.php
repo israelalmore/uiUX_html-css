@@ -26,6 +26,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     exit();
 }
 
+if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
+    if (array_key_exists('id', $_GET)) {
+        $controller = new eventController();
+        $controller->delete($_GET['id']);
+        exit();
+    }
+
+    header('Location: ../View/pages/events.php');
+    exit();
+}
+
 header('Location: ../View/pages/createEvent.php');
 exit();
 
@@ -42,7 +53,8 @@ class eventController
         } catch (RuntimeException $e) {
             error_log($e->getMessage());
 
-            if ($_SERVER['REQUEST_METHOD'] === 'GET' && array_key_exists('id', $_GET)) {
+            if (($_SERVER['REQUEST_METHOD'] === 'GET' && array_key_exists('id', $_GET)) ||
+                ($_SERVER['REQUEST_METHOD'] === 'DELETE' && array_key_exists('id', $_GET))) {
                 $this->jsonResponse(500, [
                     'error'   => 'database_error',
                     'message' => 'No se pudo conectar con la base de datos.',
@@ -261,8 +273,87 @@ class eventController
         return '../Assets/img/events/' . $filename;
     }
 
-    private function delete()
+    public function delete($rawId): void
     {
-        // Implementar lógica de eliminación de evento
+        if (!$this->isValidId($rawId)) {
+            $this->jsonResponse(400, [
+                'error'   => 'invalid_id_format',
+                'message' => 'El identificador del evento no es válido. Debe ser un número entero positivo.',
+            ]);
+            return;
+        }
+
+        $id = (int) $rawId;
+
+        if (!isset($_SESSION['user_id'])) {
+            $this->jsonResponse(401, [
+                'error'   => 'unauthorized',
+                'message' => 'Debe iniciar sesión para eliminar un evento.',
+            ]);
+            return;
+        }
+
+        try {
+            $stmt = $this->conn->prepare(
+                "SELECT organizador_id, imagen_portada, imagen_ubicacion FROM eventos WHERE id = :id"
+            );
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+
+            $row = $stmt->fetch();
+        } catch (PDOException $e) {
+            error_log('Error al consultar evento para eliminación ' . $id . ': ' . $e->getMessage());
+            $this->jsonResponse(500, [
+                'error'   => 'database_error',
+                'message' => 'Error interno al consultar el evento.',
+            ]);
+            return;
+        }
+
+        if (!$row) {
+            $this->jsonResponse(404, [
+                'error'   => 'event_not_found',
+                'message' => "El evento con ID {$id} no fue encontrado.",
+            ]);
+            return;
+        }
+
+        if ((int) $row['organizador_id'] !== (int) $_SESSION['user_id']) {
+            $this->jsonResponse(403, [
+                'error'   => 'forbidden',
+                'message' => 'No tiene permisos para eliminar este evento.',
+            ]);
+            return;
+        }
+
+        // Delete images if exist
+        if ($row['imagen_portada']) {
+            $coverPath = __DIR__ . '/../View/' . $row['imagen_portada'];
+            if (file_exists($coverPath)) {
+                unlink($coverPath);
+            }
+        }
+
+        if ($row['imagen_ubicacion']) {
+            $locationPath = __DIR__ . '/../View/' . $row['imagen_ubicacion'];
+            if (file_exists($locationPath)) {
+                unlink($locationPath);
+            }
+        }
+
+        try {
+            $stmt = $this->conn->prepare("DELETE FROM eventos WHERE id = :id");
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+        } catch (PDOException $e) {
+            error_log('Error al eliminar evento ' . $id . ': ' . $e->getMessage());
+            $this->jsonResponse(500, [
+                'error'   => 'database_error',
+                'message' => 'Error interno al eliminar el evento.',
+            ]);
+            return;
+        }
+
+        $this->jsonResponse(204, []);
     }
 }
