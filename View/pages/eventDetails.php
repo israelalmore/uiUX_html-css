@@ -25,7 +25,7 @@ try {
   $stmt = $conn->prepare(
     "SELECT e.id, e.titulo, e.descripcion, e.categoria, e.fecha, e.hora,
             e.direccion, e.codigo_postal, e.ciudad, e.email,
-            e.imagen_portada, e.imagen_ubicacion,
+            e.imagen_portada, e.imagen_ubicacion, e.organizador_id,
             u.nombre AS organizador_nombre,
             u.apellido1 AS organizador_apellido1
      FROM eventos e
@@ -39,6 +39,8 @@ try {
   error_log('Error cargando evento ' . $id . ': ' . $e->getMessage());
   $dbError = true;
 }
+
+$isOrganizer = !$dbError && isset($evento['organizador_id']) && $evento['organizador_id'] == $_SESSION['user_id'];
 
 if (!$evento && !$dbError) {
   header('Location: events.php');
@@ -102,6 +104,29 @@ if (!$evento && !$dbError) {
     mobileNavIcon.addEventListener("click", () => {
       header.classList.toggle("nav-active");
     });
+
+    function deleteEvent(id) {
+      if (confirm('¿Estás seguro de que quieres eliminar este evento? Esta acción no se puede deshacer.')) {
+        fetch(`../../Controller/eventController.php?id=${id}`, {
+            method: 'DELETE'
+          })
+          .then(response => {
+            if (response.status === 204) {
+              window.location.href = 'myEvents.php?deleted=1';
+            } else if (response.status === 404) {
+              alert('El evento no fue encontrado.');
+            } else if (response.status === 403) {
+              alert('No tienes permisos para eliminar este evento.');
+            } else {
+              alert('Error al eliminar el evento.');
+            }
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            alert('Error de conexión al eliminar el evento.');
+          });
+      }
+    }
   </script>
 
   <section class="events-page">
@@ -147,6 +172,9 @@ if (!$evento && !$dbError) {
               </div>
             <?php endif; ?>
             <a href="events.php" class="btn btn-primary">Volver</a>
+            <?php if ($isOrganizer): ?>
+              <button class="btn btn-secondary" onclick="deleteEvent(<?php echo $evento['id']; ?>)">Eliminar Evento</button>
+            <?php endif; ?>
           </div>
         </article>
       <?php endif; ?>

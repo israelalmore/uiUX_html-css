@@ -39,6 +39,7 @@ try {
 
 $success = $_GET['success'] ?? '';
 $createdId = isset($_GET['id']) ? (int) $_GET['id'] : 0;
+$deleted = $_GET['deleted'] ?? '';
 ?>
 
 <head>
@@ -113,6 +114,40 @@ $createdId = isset($_GET['id']) ? (int) $_GET['id'] : 0;
     mobileNavIcon.addEventListener("click", () => {
       header.classList.toggle("nav-active");
     });
+
+    function deleteEvent(id) {
+      if (confirm('¿Estás seguro de que quieres eliminar este evento? Esta acción no se puede deshacer.')) {
+        fetch(`../../Controller/eventController.php?id=${id}`, {
+            method: 'DELETE'
+          })
+          .then(response => {
+            if (response.status === 204) {
+              const card = document.querySelector(`[data-event-id="${id}"]`);
+              if (card) card.remove();
+              showFlash('Evento eliminado correctamente.', 'success');
+            } else if (response.status === 404) {
+              alert('El evento no fue encontrado.');
+            } else if (response.status === 403) {
+              alert('No tienes permisos para eliminar este evento.');
+            } else {
+              alert('Error al eliminar el evento.');
+            }
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            alert('Error de conexión al eliminar el evento.');
+          });
+      }
+    }
+
+    function showFlash(message, type) {
+      const flash = document.createElement('div');
+      flash.className = `flash flash-${type}`;
+      flash.setAttribute('role', type === 'error' ? 'alert' : 'status');
+      flash.innerHTML = `<i class="fa-solid fa-circle-check"></i><span>${message}</span>`;
+      document.body.insertBefore(flash, document.body.firstChild);
+      setTimeout(() => flash.remove(), 5000);
+    }
   </script>
 
   <?php if ($success === 'created'): ?>
@@ -121,6 +156,13 @@ $createdId = isset($_GET['id']) ? (int) $_GET['id'] : 0;
       <span>
         ¡Evento creado correctamente<?php echo $createdId > 0 ? ' (ID #' . $createdId . ')' : ''; ?>!
       </span>
+    </div>
+  <?php endif; ?>
+
+  <?php if ($deleted === '1'): ?>
+    <div class="flash flash-success" role="status">
+      <i class="fa-solid fa-circle-check"></i>
+      <span>Evento eliminado correctamente.</span>
     </div>
   <?php endif; ?>
 
@@ -146,7 +188,7 @@ $createdId = isset($_GET['id']) ? (int) $_GET['id'] : 0;
       <?php else: ?>
         <div class="event-grid">
           <?php foreach ($eventos as $evento): ?>
-            <article class="event-card" tabindex="0">
+            <article class="event-card" tabindex="0" data-event-id="<?php echo $evento['id']; ?>">
               <img
                 src="<?php echo !empty($evento['imagen_portada']) ? htmlspecialchars($evento['imagen_portada']) : '../Assets/img/images/events.jpg'; ?>"
                 alt="Imagen del evento <?php echo htmlspecialchars($evento['titulo']); ?>"
@@ -167,7 +209,8 @@ $createdId = isset($_GET['id']) ? (int) $_GET['id'] : 0;
                   <i class="fa-solid fa-location-dot"></i>
                   <?php echo htmlspecialchars($evento['ciudad']); ?>
                 </div>
-                <a href="eventDetails.php?id=<?php echo (int) $evento['id']; ?>" class="btn btn-primary">Ver Detalles</a>
+                <a href="eventDetails.php?id=<?php echo $evento['id']; ?>" class="btn btn-primary">Ver Detalles</a>
+                <button class="btn btn-secondary" onclick="deleteEvent(<?php echo $evento['id']; ?>)">Eliminar</button>
               </div>
             </article>
           <?php endforeach; ?>
