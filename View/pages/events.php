@@ -14,15 +14,51 @@ require_once __DIR__ . '/../../Config/Database.php';
 $eventos = [];
 $dbError = false;
 
+$q        = isset($_GET['q'])        ? trim((string) $_GET['q'])        : '';
+$category = isset($_GET['category']) ? trim((string) $_GET['category']) : '';
+$date     = isset($_GET['date'])     ? trim((string) $_GET['date'])     : '';
+
+$categorias = [
+  'Arte y Cultura',
+  'Deporte',
+  'Tecnología',
+  'Político',
+  'Corporativo',
+  'Ocio',
+  'Social',
+];
+
+$hasFilters = ($q !== '' || $category !== '' || $date !== '');
+
 try {
   $database = new Database('localhost', 'forever_events', 'root', '');
   $conn = $database->getConexion();
 
-  $stmt = $conn->query(
-    "SELECT id, titulo, categoria, fecha, hora, ciudad, imagen_portada
-     FROM eventos
-     ORDER BY fecha DESC, hora DESC"
-  );
+  $sql = "SELECT id, titulo, categoria, fecha, hora, ciudad, imagen_portada
+          FROM eventos
+          WHERE 1=1";
+  $params = [];
+
+  if ($q !== '') {
+    $sql .= " AND (titulo LIKE :q_titulo OR ciudad LIKE :q_ciudad OR categoria LIKE :q_categoria)";
+    $like = '%' . $q . '%';
+    $params[':q_titulo']    = $like;
+    $params[':q_ciudad']    = $like;
+    $params[':q_categoria'] = $like;
+  }
+  if ($category !== '' && in_array($category, $categorias, true)) {
+    $sql .= " AND categoria = :category";
+    $params[':category'] = $category;
+  }
+  if ($date !== '' && preg_match('/^\d{4}-\d{2}-\d{2}$/', $date)) {
+    $sql .= " AND fecha = :date";
+    $params[':date'] = $date;
+  }
+
+  $sql .= " ORDER BY fecha DESC, hora DESC";
+
+  $stmt = $conn->prepare($sql);
+  $stmt->execute($params);
   $eventos = $stmt->fetchAll();
 } catch (Exception $e) {
   error_log('Error cargando eventos: ' . $e->getMessage());
@@ -80,13 +116,15 @@ try {
         </div>
 
         <div class="nav-right">
-          <form class="search-wrapper" role="search">
+          <form class="search-wrapper" role="search" action="events.php" method="GET">
             <label for="event-search" class="sr-only">Buscar eventos</label>
             <i class="fa-solid fa-magnifying-glass"></i>
             <input
               id="event-search"
               type="search"
-              placeholder="Buscar eventos" />
+              name="q"
+              placeholder="Buscar eventos"
+              value="<?= htmlspecialchars($_GET['q'] ?? '') ?>" />
           </form>
 
           <?php if (!isset($_SESSION['user_id'])): ?>
@@ -120,23 +158,55 @@ try {
         ti.
       </p>
 
-      <div class="filters-bar">
+      <form class="filters-bar" method="GET" action="events.php" role="search">
         <input
           type="search"
-          placeholder="Buscar evento..."
-          class="filter-search" />
-        <select class="filter-category">
+          name="q"
+          placeholder="Buscar por título, ciudad o categoría..."
+          class="filter-search"
+          value="<?= htmlspecialchars($q) ?>" />
+
+        <select class="filter-category" name="category" aria-label="Filtrar por categoría">
           <option value="">Todas las categorías</option>
-          <option>Arte y Cultura</option>
-          <option>Deporte</option>
-          <option>Tecnología</option>
-          <option>Político</option>
-          <option>Corporativo</option>
-          <option>Ocio</option>
-          <option>Social</option>
+          <?php foreach ($categorias as $cat): ?>
+            <option value="<?= htmlspecialchars($cat) ?>" <?= $category === $cat ? 'selected' : '' ?>>
+              <?= htmlspecialchars($cat) ?>
+            </option>
+          <?php endforeach; ?>
         </select>
-        <input type="date" class="filter-date" />
-      </div>
+
+        <input
+          type="date"
+          class="filter-date"
+          name="date"
+          aria-label="Filtrar por fecha"
+          value="<?= htmlspecialchars($date) ?>" />
+
+        <div class="filter-actions">
+          <button type="submit" class="filter-apply">
+            <i class="fa-solid fa-sliders"></i>
+            Aplicar
+          </button>
+          <?php if ($hasFilters): ?>
+            <a href="events.php" class="filter-clear">
+              <i class="fa-solid fa-xmark"></i>
+              Limpiar
+            </a>
+          <?php endif; ?>
+        </div>
+      </form>
+
+      <?php if (!$dbError): ?>
+        <p class="results-count">
+          <?php if ($hasFilters): ?>
+            <strong><?= count($eventos) ?></strong>
+            <?= count($eventos) === 1 ? 'evento encontrado' : 'eventos encontrados' ?>
+          <?php else: ?>
+            <strong><?= count($eventos) ?></strong>
+            <?= count($eventos) === 1 ? 'evento disponible' : 'eventos disponibles' ?>
+          <?php endif; ?>
+        </p>
+      <?php endif; ?>
 
       <?php if ($dbError): ?>
         <div class="flash flash-error" role="alert">
@@ -145,7 +215,13 @@ try {
         </div>
       <?php elseif (empty($eventos)): ?>
         <div class="empty-state">
-          <p>Todavía no hay eventos disponibles.</p>
+          <i class="fa-regular fa-calendar-xmark"></i>
+          <?php if ($hasFilters): ?>
+            <p>No hay eventos que coincidan con tu búsqueda.</p>
+            <a href="events.php" class="filter-clear">Quitar filtros</a>
+          <?php else: ?>
+            <p>Todavía no hay eventos disponibles.</p>
+          <?php endif; ?>
         </div>
       <?php else: ?>
         <div class="event-grid">

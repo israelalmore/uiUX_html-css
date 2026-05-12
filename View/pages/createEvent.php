@@ -60,12 +60,13 @@ if ($_SESSION['user_type'] === 2) {
         </div>
 
         <div class="nav-right">
-          <form class="search-wrapper" role="search">
+          <form class="search-wrapper" role="search" action="events.php" method="GET">
             <label for="event-search" class="sr-only">Buscar eventos</label>
             <i class="fa-solid fa-magnifying-glass"></i>
             <input
               id="event-search"
               type="search"
+              name="q"
               placeholder="Buscar eventos" />
           </form>
 
