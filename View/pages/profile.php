@@ -317,7 +317,7 @@ try {
     </section>
 
     <section class="danger-zone" aria-labelledby="danger-title">
-      <h3 id="danger-title">Zona de peligro</h3>
+      <h3 id="danger-title">Botón del pánico</h3>
 
       <form action="../../Controller/userController.php"
         method="POST"
