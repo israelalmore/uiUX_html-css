@@ -276,10 +276,31 @@ class userController
             exit();
         }
 
-        $id = (int) $_SESSION['user_id'];
+        $id       = (int) $_SESSION['user_id'];
+        $password = $_POST['delete_password'] ?? '';
+
+        if (empty($password)) {
+            header('Location: ../View/pages/profile.php?error=missing_data');
+            exit();
+        }
 
         try {
-            // Borrar imágenes de eventos del usuario
+            $stmt = $this->conn->prepare("SELECT password FROM usuarios WHERE id = :id");
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            $row = $stmt->fetch();
+        } catch (PDOException $e) {
+            error_log('Error verificando contraseña: ' . $e->getMessage());
+            header('Location: ../View/pages/profile.php?error=db');
+            exit();
+        }
+
+        if (!password_verify($password, $row['password'])) {
+            header('Location: ../View/pages/profile.php?error=delete_wrong_password');
+            exit();
+        }
+
+        try {
             $stmt = $this->conn->prepare("SELECT imagen_portada, imagen_ubicacion FROM eventos WHERE organizador_id = :id");
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
@@ -296,7 +317,6 @@ class userController
                 }
             }
 
-            // Borrar eventos y luego el usuario
             $stmt = $this->conn->prepare("DELETE FROM eventos WHERE organizador_id = :id");
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
