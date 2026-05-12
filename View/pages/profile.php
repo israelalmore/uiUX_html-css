@@ -68,6 +68,7 @@ try {
           <a href="aboutUs.php">Sobre Nosotros</a>
           <?php if ($_SESSION['user_type'] == 1): ?>
             <a href="createEvent.php">Crear Eventos</a>
+            <a href="myEvents.php"> Mis Eventos</a>
           <?php endif; ?>
         </div>
 
@@ -236,8 +237,7 @@ try {
                   id="current_password"
                   name="current_password"
                   placeholder="Introduce tu contraseña"
-                  autocomplete="current-password"
-                  required />
+                  autocomplete="current-password" />
                 <button
                   type="button"
                   class="toggle-password"
@@ -263,8 +263,7 @@ try {
                   id="new_password"
                   name="new_password"
                   placeholder="Introduce tu contraseña"
-                  autocomplete="current-password"
-                  required />
+                  autocomplete="current-password" />
                 <button
                   type="button"
                   class="toggle-password"
@@ -290,8 +289,7 @@ try {
                   id="confirm_password"
                   name="confirm_password"
                   placeholder="Introduce tu contraseña"
-                  autocomplete="current-password"
-                  required />
+                  autocomplete="current-password" />
                 <button
                   type="button"
                   class="toggle-password"

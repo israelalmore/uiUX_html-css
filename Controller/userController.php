@@ -165,6 +165,36 @@ class userController
             exit();
         }
 
+        // -- Contraseña nueva 
+        $currentPassword = $_POST['current_password'] ?? '';
+        $newPassword     = $_POST['password'] ?? '';
+        $confirmPassword = $_POST['password2'] ?? '';
+        $passwordHash = null;
+
+        if (!empty($newPassword)) {
+            if (empty($currentPassword)) {
+                header('Location: ../View/pages/profile.php?error=missing_data');
+                exit();
+            }
+
+
+            $stmt = $this->conn->prepare("SELECT password FROM usuarios WHERE id = :id");
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            $row = $stmt->fetch();
+
+            if (!password_verify($currentPassword, $row['password'])) {
+                header('Location: ../View/pages/profile.php?error=wrong_password');
+                exit();
+            }
+            if ($newPassword !== $confirmPassword) {
+                header('Location: ../View/pages/profile.php?error=password_mismatch');
+                exit();
+            }
+
+            $passwordHash = password_hash($newPassword, PASSWORD_DEFAULT);
+        }
+
 
         // Subir foto de perfil (solo gestores, tipo 1)
         $avatarPath = null;
@@ -181,58 +211,46 @@ class userController
                 $ext      = pathinfo($_FILES['avatar']['name'], PATHINFO_EXTENSION);
                 $filename = 'avatar_' . $id . '.' . $ext;
 
-
-                $result = move_uploaded_file($_FILES['avatar']['tmp_name'], $uploadDir . $filename);
-
-
-                var_dump($result);         // true = se movió, false = falló
-                var_dump($uploadDir);      // ruta absoluta donde se guarda
-                var_dump(file_exists($uploadDir . $filename)); // existe el archivo?
-
-                $avatarPath = '../Assets/img/avatars/' . $filename;
-                $_SESSION['user_avatar'] = $avatarPath;
+                if (move_uploaded_file($_FILES['avatar']['tmp_name'], $uploadDir . $filename)) {
+                    $avatarPath = '../Assets/img/avatars/' . $filename;
+                    $_SESSION['user_avatar'] = $avatarPath;
+                }
             }
         }
 
+        // Update con o sin nueva contraseña y/o avatar 
+
         try {
-            if (!empty($_POST['password']) && $avatarPath) {
-                $passwordHash = password_hash($_POST['password'], PASSWORD_DEFAULT);
-                $stmt = $this->conn->prepare(
-                    "UPDATE usuarios SET nombre=:nombre, apellido1=:apellido1, apellido2=:apellido2,
-                     telefono=:telefono, email=:email, fecha_nacimiento=:fecha,
-                     password=:password, avatar=:avatar WHERE id=:id"
-                );
-                $stmt->bindValue(':password', $passwordHash, PDO::PARAM_STR);
-                $stmt->bindValue(':avatar', $avatarPath, PDO::PARAM_STR);
-            } elseif (!empty($_POST['password'])) {
-                $passwordHash = password_hash($_POST['password'], PASSWORD_DEFAULT);
-                $stmt = $this->conn->prepare(
-                    "UPDATE usuarios SET nombre=:nombre, apellido1=:apellido1, apellido2=:apellido2,
-                     telefono=:telefono, email=:email, fecha_nacimiento=:fecha,
-                     password=:password WHERE id=:id"
-                );
-                $stmt->bindValue(':password', $passwordHash, PDO::PARAM_STR);
-            } elseif ($avatarPath) {
-                $stmt = $this->conn->prepare(
-                    "UPDATE usuarios SET nombre=:nombre, apellido1=:apellido1, apellido2=:apellido2,
-                     telefono=:telefono, email=:email, fecha_nacimiento=:fecha,
-                     avatar=:avatar WHERE id=:id"
-                );
-                $stmt->bindValue(':avatar', $avatarPath, PDO::PARAM_STR);
-            } else {
-                $stmt = $this->conn->prepare(
-                    "UPDATE usuarios SET nombre=:nombre, apellido1=:apellido1, apellido2=:apellido2,
-                     telefono=:telefono, email=:email, fecha_nacimiento=:fecha WHERE id=:id"
-                );
+            // Campos base siempre presentes
+            $sets   = "nombre=:nombre, apellido1=:apellido1, apellido2=:apellido2,
+                   telefono=:telefono, email=:email, fecha_nacimiento=:fecha";
+            $params = [
+                ':nombre'    => [$nombre,    PDO::PARAM_STR],
+                ':apellido1' => [$apellido1, PDO::PARAM_STR],
+                ':apellido2' => [$apellido2, $apellido2 === null ? PDO::PARAM_NULL : PDO::PARAM_STR],
+                ':telefono'  => [$telefono,  PDO::PARAM_STR],
+                ':email'     => [$email,     PDO::PARAM_STR],
+                ':fecha'     => [$fecha,     PDO::PARAM_STR],
+                ':id'        => [$id,        PDO::PARAM_INT],
+            ];
+
+            // Añadir contraseña solo si se validó
+            if ($passwordHash !== null) {
+                $sets .= ", password=:password";
+                $params[':password'] = [$passwordHash, PDO::PARAM_STR];
             }
 
-            $stmt->bindValue(':nombre', $nombre, PDO::PARAM_STR);
-            $stmt->bindValue(':apellido1', $apellido1, PDO::PARAM_STR);
-            $stmt->bindValue(':apellido2', $apellido2, $apellido2 === null ? PDO::PARAM_NULL : PDO::PARAM_STR);
-            $stmt->bindValue(':telefono', $telefono, PDO::PARAM_STR);
-            $stmt->bindValue(':email', $email, PDO::PARAM_STR);
-            $stmt->bindValue(':fecha', $fecha, PDO::PARAM_STR);
-            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            // Añadir avatar solo si se subió
+            if ($avatarPath !== null) {
+                $sets .= ", avatar=:avatar";
+                $params[':avatar'] = [$avatarPath, PDO::PARAM_STR];
+            }
+
+            $stmt = $this->conn->prepare("UPDATE usuarios SET $sets WHERE id=:id");
+
+            foreach ($params as $key => [$value, $type]) {
+                $stmt->bindValue($key, $value, $type);
+            }
 
             $stmt->execute();
         } catch (PDOException $e) {
