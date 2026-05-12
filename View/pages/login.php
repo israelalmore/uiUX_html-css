@@ -6,6 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Iniciar Sesión | Forever Events</title>
 
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Montserrat:wght@400;700;800&display=swap"
+    rel="stylesheet" />
+
   <link rel="stylesheet" href="../Assets/css/main.css" />
   <link rel="stylesheet" href="../Assets/css/pages/login.css" />
 </head>
@@ -21,7 +30,8 @@
           src="../Assets/img/logoForever.png"
           alt="Logotipo de Forever Events" />
       </a>
-      <h1>Forever Events</h1>
+      <span class="hero-tag">Forever Events</span>
+      <h1>Bienvenido de vuelta.</h1>
       <p>Gestiona tus eventos con control total y precisión profesional.</p>
     </section>
 
