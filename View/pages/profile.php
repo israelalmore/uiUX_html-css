@@ -313,8 +313,29 @@ try {
               </button>
             </div>
           </div>
+      </form>
+    </section>
+
+    <section class="danger-zone" aria-labelledby="danger-title">
+      <h3 id="danger-title">Zona de peligro</h3>
+
+      <form action="../../Controller/userController.php"
+        method="POST"
+        onsubmit="return confirm('¿Seguro que quieres eliminar tu cuenta? Esta acción no se puede deshacer.')">
+
+        <?php if (isset($_GET['error']) && $_GET['error'] === 'delete_wrong_password'): ?>
+          <p style="color: red;">La contraseña es incorrecta</p>
+        <?php endif; ?>
+
+
+        <div class="form-field">
+          <label for="delete_password">Confirma tu contraseña</label>
+          <input type="password" id="delete_password" name="delete_password" required />
         </div>
 
+        <button type="submit" name="deleteUser" class="danger-btn">
+          Eliminar Cuenta
+        </button>
       </form>
     </section>
   </main>
