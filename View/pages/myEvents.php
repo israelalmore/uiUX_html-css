@@ -60,7 +60,7 @@ $deleted = $_GET['deleted'] ?? '';
     rel="stylesheet" />
   <link rel="stylesheet" href="../Assets/css/main.css" />
   <link rel="stylesheet" href="../Assets/css/pages/events.css" />
-  <link rel="stylesheet" href="../Assets/css/components/myEvents.css" />
+  <link rel="stylesheet" href="../Assets/css/pages/myEvents.css" />
 </head>
 
 <body>
@@ -176,13 +176,17 @@ $deleted = $_GET['deleted'] ?? '';
 
   <section class="events-page">
     <div class="container">
-      <h1 class="page-title">Mis Eventos</h1>
-      <p class="page-subtitle">
-        Aquí están todos los eventos que has creado.
-      </p>
+      <div class="page-hero">
+        <span class="hero-tag">Tu gestión</span>
+        <h1 class="page-title">Mis Eventos</h1>
+        <p class="page-subtitle">
+          Aquí están todos los eventos que has creado.
+        </p>
+      </div>
 
       <?php if (empty($eventos) && !$dbError): ?>
         <div class="empty-state">
+          <i class="fa-regular fa-calendar-plus"></i>
           <p>Todavía no has creado ningún evento.</p>
           <a href="createEvent.php" class="btn btn-primary">Crear mi primer evento</a>
         </div>

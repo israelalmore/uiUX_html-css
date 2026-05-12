@@ -21,11 +21,12 @@ main {
 .background-image::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.55);
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(2, 77, 223, 0.85) 0%,
+    rgba(0, 0, 0, 0.65) 100%
+  );
 }
 
 .title {
@@ -36,6 +37,7 @@ main {
   align-items: center;
   text-align: center;
   padding: 1rem;
+  gap: 1rem;
 }
 
 .title h1 {
@@ -43,23 +45,28 @@ main {
   max-width: 900px;
   font-size: clamp(2.25rem, 10vw, 4rem);
   font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
 }
 
 .title h2 {
   margin-bottom: 2rem;
   max-width: 800px;
   font-size: clamp(1.1rem, 4vw, 1.5rem);
+  font-weight: 400;
+  opacity: 0.9;
 }
 
 .btn {
-  padding: 0.75rem 1.75rem;
+  padding: 0.85rem 2rem;
   background-color: var(--accent-color);
   border-radius: 0.5rem;
   width: fit-content;
-  font-weight: bold;
+  font-weight: 700;
   cursor: pointer;
-  color: black;
+  color: var(--button-color);
   font-size: clamp(1rem, 2.5vw, 1.1rem);
+  display: inline-block;
   transition:
     transform 0.3s ease,
     background-color 0.3s ease;
@@ -84,10 +91,18 @@ section {
 
 .section-title {
   font-family: var(--font-title);
-  font-size: clamp(1.75rem, 7vw, 2.5rem);
+  font-size: clamp(1.75rem, 6vw, 2.5rem);
   font-weight: 700;
-  margin-bottom: 2rem;
+  margin-bottom: 0.75rem;
   color: var(--primary-color);
+  letter-spacing: -0.01em;
+}
+
+.section-lead {
+  opacity: 0.85;
+  font-size: 1rem;
+  margin: 0 auto 2.5rem;
+  max-width: 600px;
 }
 
 .hero-cta {
@@ -137,16 +152,38 @@ section {
   gap: 2rem;
 }
 
+.step {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 2rem 1.25rem;
+  transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.step:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent-color);
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
 .step-icon {
-  font-size: 2.5rem;
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 1rem;
+  border-radius: 14px;
+  background-color: rgba(255, 215, 0, 0.15);
   color: var(--accent-color);
-  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
 }
 
 .step h4 {
   font-family: var(--font-title);
   font-size: 1.25rem;
   margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
 }
 
 .step p {
@@ -191,22 +228,25 @@ section {
 }
 
 .event-card {
-  background-color: #0a58e6;
-  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
   overflow: hidden;
   text-align: left;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
-  border: 1px solid transparent;
   display: flex;
   flex-direction: column;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease,
+    background-color 0.3s ease;
 }
 
 .event-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-6px);
   border-color: var(--accent-color);
+  background-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
 }
 
 .event-image {
@@ -312,16 +352,40 @@ section {
   gap: 2rem;
 }
 
-.feature-icon {
-  font-size: 2.5rem;
-  color: var(--accent-color);
-  margin-bottom: 1rem;
+.feature-item {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 2rem 1.25rem;
+  transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
 }
+
+.feature-item:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent-color);
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.feature-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 1rem;
+  border-radius: 14px;
+  background-color: rgba(255, 215, 0, 0.15);
+  color: var(--accent-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+}
+
 .feature-item h4 {
   font-family: var(--font-title);
   font-size: 1.25rem;
   margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
 }
+
 .feature-item p {
   max-width: 350px;
   margin: 0 auto;
@@ -333,23 +397,34 @@ section {
   grid-template-columns: 1fr;
   gap: 1.5rem;
 }
+
 .testimonial-card {
-  background-color: #0a58e6;
-  padding: 2rem;
-  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-left: 4px solid var(--accent-color);
+  padding: 2rem;
+  border-radius: 16px;
+  transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
 }
+
+.testimonial-card:hover {
+  transform: translateY(-4px);
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
 .testimonial-card p {
   font-style: italic;
   font-size: 1.1rem;
   margin-bottom: 1rem;
   text-align: left;
+  line-height: 1.55;
 }
+
 .testimonial-card footer {
   text-align: right;
   font-style: normal;
   font-weight: 500;
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
 .final-cta {

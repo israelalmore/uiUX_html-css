@@ -152,11 +152,13 @@ try {
   </script>
   <section class="events-page">
     <div class="container">
-      <h1 class="page-title">Explora Eventos</h1>
-      <p class="page-subtitle">
-        Descubre experiencias únicas y únete a los mejores eventos cerca de
-        ti.
-      </p>
+      <div class="page-hero">
+        <span class="hero-tag">Eventos en directo</span>
+        <h1 class="page-title">Explora Eventos</h1>
+        <p class="page-subtitle">
+          Descubre experiencias únicas y únete a los mejores eventos cerca de ti.
+        </p>
+      </div>
 
       <form class="filters-bar" method="GET" action="events.php" role="search">
         <input
