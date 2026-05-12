@@ -95,10 +95,13 @@ if ($_SESSION['user_type'] === 2) {
 
   <main class="create-event">
     <div class="container">
-      <h1 class="page-title">Crea tu Evento</h1>
-      <p class="page-subtitle">
-        Organiza experiencias inolvidables, paso a paso.
-      </p>
+      <div class="page-hero">
+        <span class="hero-tag">Nuevo evento</span>
+        <h1 class="page-title">Crea tu Evento</h1>
+        <p class="page-subtitle">
+          Organiza experiencias inolvidables, paso a paso.
+        </p>
+      </div>
 
       <form class="event-form" id="createEventForm" action="../../Controller/eventController.php" method="POST" enctype="multipart/form-data">
         <fieldset class="form-section">

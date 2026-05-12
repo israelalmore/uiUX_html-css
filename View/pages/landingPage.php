@@ -99,8 +99,9 @@ if (!isset($_SESSION['user_id'])) {
   <main>
     <section class="hero-section background-image">
       <div class="hero-content title">
-        <h1>Forever Events</h1>
-        <h2>Descubre, crea y gestiona eventos memorables.</h2>
+        <span class="hero-tag">Forever Events</span>
+        <h1>Descubre, crea<br />y vive cada evento.</h1>
+        <h2>Tu plataforma todo-en-uno para conectar con experiencias memorables.</h2>
         <div class="hero-cta">
           <a href="login.php" class="btn">Crea tu Primer Evento Gratis</a>
         </div>

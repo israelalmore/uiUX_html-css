@@ -13,11 +13,26 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.25rem;
+  gap: 1rem;
 }
+
 .register-hero h1 {
+  font-family: var(--font-title);
   font-size: clamp(1.8rem, 6vw, 2.5rem);
-  line-height: 1.2;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.register-hero p {
+  opacity: 0.9;
+  line-height: 1.5;
+  max-width: 460px;
+}
+
+.register-card {
+  border-radius: 20px;
 }
 
 .register-card {
@@ -203,10 +218,18 @@
     max-width: 700px;
   }
 }
-/* REGISTER FEATURE  */
+/* ─── Selector de tipo de usuario ─── */
 .user-type-selector {
   display: flex;
-  gap: 1rem;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+@media (min-width: 480px) {
+  .user-type-selector {
+    flex-direction: row;
+    gap: 1rem;
+  }
 }
 
 .user-type-card {
@@ -215,36 +238,43 @@
   flex-direction: column;
   align-items: center;
   gap: 0.4rem;
-  padding: 1.2rem;
-  border: 2px solid #ddd;
-  border-radius: 8px;
+  padding: 1.25rem 1rem;
+  border: 2px solid rgba(0, 0, 0, 0.12);
+  border-radius: 14px;
   cursor: pointer;
   text-align: center;
-  transition:
-    border-color 0.2s,
-    background 0.2s;
+  background-color: #fff;
+  transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+}
+
+.user-type-card:hover {
+  border-color: var(--accent-color);
+  transform: translateY(-2px);
 }
 
 .user-type-card i {
   font-size: 1.8rem;
-  color: #aaa;
+  color: rgba(0, 0, 0, 0.4);
+  transition: color 0.2s ease;
 }
 
 .user-type-card span {
-  font-weight: 600;
+  font-weight: 700;
+  color: var(--button-color);
 }
 
 .user-type-card p {
   font-size: 0.8rem;
-  color: #888;
+  color: rgba(0, 0, 0, 0.6);
   margin: 0;
 }
 
 .user-type-card.active {
-  border-color: var(--color-primary, #6c63ff);
-  background: #f0eeff;
+  border-color: var(--accent-color);
+  background: rgba(255, 215, 0, 0.12);
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2);
 }
 
 .user-type-card.active i {
-  color: var(--color-primary, #6c63ff);
+  color: var(--accent-color);
 }
