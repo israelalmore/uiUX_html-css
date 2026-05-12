@@ -42,6 +42,10 @@
           <p style="color: red;">Por favor, completa todos los campos</p>
         <?php endif; ?>
 
+        <?php if (isset($_GET['success']) && $_GET['success'] === 'deleted'): ?>
+          <p style="color: green;">Cuenta eliminada correctamente</p>
+        <?php endif; ?>
+
         <div class="form-group">
           <label for="user">Correo electrónico</label>
           <input

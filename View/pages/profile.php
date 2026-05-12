@@ -323,9 +323,10 @@ try {
         method="POST"
         onsubmit="return confirm('¿Seguro que quieres eliminar tu cuenta? Esta acción no se puede deshacer.')">
 
-        <?php if (isset($_GET['error']) && $_GET['error'] === 'wrong_password'): ?>
+        <?php if (isset($_GET['error']) && $_GET['error'] === 'delete_wrong_password'): ?>
           <p style="color: red;">La contraseña es incorrecta</p>
         <?php endif; ?>
+
 
         <div class="form-field">
           <label for="delete_password">Confirma tu contraseña</label>
