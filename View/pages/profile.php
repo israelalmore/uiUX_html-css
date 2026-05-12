@@ -313,30 +313,34 @@ try {
               </button>
             </div>
           </div>
-      </form>
-    </section>
-
-    <section class="danger-zone" aria-labelledby="danger-title">
-      <h3 id="danger-title">Botón del pánico</h3>
-
-      <form action="../../Controller/userController.php"
-        method="POST"
-        onsubmit="return confirm('¿Seguro que quieres eliminar tu cuenta? Esta acción no se puede deshacer.')">
-
-        <?php if (isset($_GET['error']) && $_GET['error'] === 'delete_wrong_password'): ?>
-          <p style="color: red;">La contraseña es incorrecta</p>
-        <?php endif; ?>
-
-
-        <div class="form-field">
-          <label for="delete_password">Confirma tu contraseña</label>
-          <input type="password" id="delete_password" name="delete_password" required />
         </div>
-
-        <button type="submit" name="deleteUser" class="danger-btn">
-          Eliminar Cuenta
-        </button>
       </form>
+
+      <div class="danger-zone">
+        <h3 id="danger-title" class="danger-title">Botón del pánico</h3>
+        <p class="danger-description">
+          Al eliminar tu cuenta se borrarán todos tus datos. Esta acción no se puede deshacer.
+        </p>
+
+        <form class="danger-form"
+          action="../../Controller/userController.php"
+          method="POST"
+          onsubmit="return confirm('¿Seguro que quieres eliminar tu cuenta? Esta acción no se puede deshacer.')">
+
+          <?php if (isset($_GET['error']) && $_GET['error'] === 'delete_wrong_password'): ?>
+            <p class="danger-error">La contraseña es incorrecta</p>
+          <?php endif; ?>
+
+          <div class="form-field">
+            <label for="delete_password">Confirma tu contraseña</label>
+            <input type="password" id="delete_password" name="delete_password" required />
+          </div>
+
+          <button type="submit" name="deleteUser" class="danger-btn">
+            Eliminar Cuenta
+          </button>
+        </form>
+      </div>
     </section>
   </main>
 

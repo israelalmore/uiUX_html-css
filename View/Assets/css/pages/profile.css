@@ -141,17 +141,91 @@
   margin-top: 1.5rem;
 }
 
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-wrapper input {
+  flex: 1;
+  min-width: 0;
+  padding-right: 2.8rem;
+}
+
 .danger-zone {
-  border: 1px solid red;
-  border-radius: 8px;
-  max-width: 1100px;
-  padding: 1.5rem;
-  margin-top: 2rem;
+  margin-top: 3rem;
+  padding: 2rem 1.5rem;
+  border: 2px solid rgba(255, 80, 80, 0.55);
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.18);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+  max-width: 560px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.danger-title {
+  font-family: var(--font-title);
+  font-size: clamp(1.25rem, 3.5vw, 1.6rem);
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  margin-bottom: 0.5rem;
+  color: #ffe5e5;
+}
+
+.danger-description {
+  font-size: 0.95rem;
+  opacity: 0.9;
+  line-height: 1.5;
+  margin: 0 auto 1.5rem;
+  max-width: 420px;
+}
+
+.danger-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  align-items: center;
+}
+
+.danger-form .form-field {
+  margin: 0;
+  width: 100%;
+  max-width: 360px;
+  text-align: left;
+}
+
+.danger-error {
+  color: #ffe5e5;
+  background: rgba(255, 0, 0, 0.22);
+  border: 1px solid rgba(255, 80, 80, 0.4);
+  padding: 0.7rem 1rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  width: 100%;
+  max-width: 360px;
+  text-align: center;
 }
 
 .danger-btn {
-  background-color: red;
-  color: white;
+  background: #d92020;
+  color: #ffffff;
+  border: none;
+  border-radius: 14px;
+  height: 52px;
+  padding: 0 3rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.25s ease;
+  width: 100%;
+  max-width: 360px;
+}
+
+.danger-btn:hover {
+  background: #b71818;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(217, 32, 32, 0.4);
 }
 
 .primary-btn {
@@ -259,6 +333,10 @@
   }
 
   .primary-btn {
+    width: auto;
+  }
+
+  .danger-btn {
     width: auto;
   }
 }
