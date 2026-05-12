@@ -2,6 +2,8 @@
   padding: 2rem 1rem 4rem;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .profile-card {
@@ -137,6 +139,19 @@
   display: flex;
   justify-content: center;
   margin-top: 1.5rem;
+}
+
+.danger-zone {
+  border: 1px solid red;
+  border-radius: 8px;
+  max-width: 1100px;
+  padding: 1.5rem;
+  margin-top: 2rem;
+}
+
+.danger-btn {
+  background-color: red;
+  color: white;
 }
 
 .primary-btn {

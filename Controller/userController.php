@@ -21,6 +21,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['update'])) {
         $controller->update();
     }
+    if (isset($_POST['deleteUser'])) {
+        $controller->deleteUser();
+    }
 
     header('Location: ../View/pages/login.php');
     exit();
@@ -263,6 +266,53 @@ class userController
         $_SESSION['user_email'] = $email;
 
         header('Location: ../View/pages/profile.php?success=updated');
+        exit();
+    }
+
+    public function deleteUser()
+    {
+        if (!isset($_SESSION['user_id'])) {
+            header('Location: ../View/pages/login.php');
+            exit();
+        }
+
+        $id = (int) $_SESSION['user_id'];
+
+        try {
+            // Borrar imágenes de eventos del usuario
+            $stmt = $this->conn->prepare("SELECT imagen_portada, imagen_ubicacion FROM eventos WHERE organizador_id = :id");
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            $eventos = $stmt->fetchAll();
+
+            foreach ($eventos as $evento) {
+                if ($evento['imagen_portada']) {
+                    $path = __DIR__ . '/../View/' . $evento['imagen_portada'];
+                    if (file_exists($path)) unlink($path);
+                }
+                if ($evento['imagen_ubicacion']) {
+                    $path = __DIR__ . '/../View/' . $evento['imagen_ubicacion'];
+                    if (file_exists($path)) unlink($path);
+                }
+            }
+
+            // Borrar eventos y luego el usuario
+            $stmt = $this->conn->prepare("DELETE FROM eventos WHERE organizador_id = :id");
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+
+            $stmt = $this->conn->prepare("DELETE FROM usuarios WHERE id = :id");
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+        } catch (PDOException $e) {
+            error_log('Error en deleteUser: ' . $e->getMessage());
+            header('Location: ../View/pages/profile.php?error=db');
+            exit();
+        }
+
+        session_unset();
+        session_destroy();
+        header('Location: ../View/pages/login.php?success=deleted');
         exit();
     }
 
