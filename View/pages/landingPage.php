@@ -163,7 +163,7 @@ if (!isset($_SESSION['user_id'])) {
               <div class="event-stats">
                 <i class="fa-solid fa-users"></i> 85 personas van
               </div>
-              <a href="register.php" class="btn btn-secondary">RSVP Ahora</a>
+              <a href="events.php" class="btn btn-secondary">RSVP Ahora</a>
               <div class="event-actions">
                 <a href="#" aria-label="Añadir a Google Calendar"><i class="fa-brands fa-google"></i></a>
                 <a href="#" aria-label="Compartir en Twitter"><i class="fa-brands fa-twitter"></i></a>
@@ -187,7 +187,7 @@ if (!isset($_SESSION['user_id'])) {
               <div class="event-stats">
                 <i class="fa-solid fa-users"></i> 130 personas
               </div>
-              <a href="login.php" class="btn btn-secondary">Ver Detalles</a>
+              <a href="events.php" class="btn btn-secondary">Ver Detalles</a>
               <div class="event-actions">
                 <a href="#" aria-label="Añadir a Google Calendar"><i class="fa-brands fa-google"></i></a>
                 <a href="#" aria-label="Compartir en Twitter"><i class="fa-brands fa-twitter"></i></a>
@@ -211,7 +211,7 @@ if (!isset($_SESSION['user_id'])) {
               <div class="event-stats">
                 <i class="fa-solid fa-users"></i> 130 personas
               </div>
-              <a href="login.php" class="btn btn-secondary">Ver Detalles</a>
+              <a href="events.php" class="btn btn-secondary">Ver Detalles</a>
               <div class="event-actions">
                 <a href="#" aria-label="Añadir a Google Calendar"><i class="fa-brands fa-google"></i></a>
                 <a href="#" aria-label="Compartir en Twitter"><i class="fa-brands fa-twitter"></i></a>
