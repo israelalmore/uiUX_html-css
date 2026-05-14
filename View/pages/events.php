@@ -14,6 +14,7 @@ require_once __DIR__ . '/../../Config/Database.php';
 $eventos = [];
 $dbError = false;
 
+$sort = isset($_GET['sort']) && $_GET['sort'] === 'desc' ? 'DESC' : 'ASC';
 $q        = isset($_GET['q'])        ? trim((string) $_GET['q'])        : '';
 $category = isset($_GET['category']) ? trim((string) $_GET['category']) : '';
 $date     = isset($_GET['date'])     ? trim((string) $_GET['date'])     : '';
@@ -55,7 +56,7 @@ try {
     $params[':date'] = $date;
   }
 
-  $sql .= " ORDER BY fecha DESC, hora DESC";
+  $sql .= " ORDER BY fecha $sort, hora $sort";
 
   $stmt = $conn->prepare($sql);
   $stmt->execute($params);
@@ -168,7 +169,7 @@ try {
           class="filter-search"
           value="<?= htmlspecialchars($q) ?>" />
 
-        <select class="filter-category" name="category" aria-label="Filtrar por categoría">
+        <select class="filter-select filter-category" name="category" aria-label="Filtrar por categoría">
           <option value="">Todas las categorías</option>
           <?php foreach ($categorias as $cat): ?>
             <option value="<?= htmlspecialchars($cat) ?>" <?= $category === $cat ? 'selected' : '' ?>>
@@ -184,6 +185,10 @@ try {
           aria-label="Filtrar por fecha"
           value="<?= htmlspecialchars($date) ?>" />
 
+        <select class="filter-select filter-category" name="sort" aria-label="Ordenar por fecha">
+          <option value="asc" <?= $sort === 'ASC'  ? 'selected' : '' ?>>Más recientes primero</option>
+          <option value="desc" <?= $sort === 'DESC' ? 'selected' : '' ?>>Más antiguos primero</option>
+        </select>
         <div class="filter-actions">
           <button type="submit" class="filter-apply">
             <i class="fa-solid fa-sliders"></i>
@@ -229,33 +234,40 @@ try {
         <div class="event-grid">
           <?php foreach ($eventos as $evento): ?>
             <article class="event-card" tabindex="0">
-              <img
-                src="<?php echo !empty($evento['imagen_portada']) ? htmlspecialchars($evento['imagen_portada']) : '../Assets/img/images/events.jpg'; ?>"
-                alt="Imagen del evento <?php echo htmlspecialchars($evento['titulo']); ?>"
-                class="event-image" />
-              <div class="event-content">
-                <div class="event-header">
-                  <span class="event-category"><?php echo htmlspecialchars($evento['categoria']); ?></span>
+              <a href="eventDetails.php?id=<?php echo (int) $evento['id']; ?>">
+                <div class="event-image-wrapper">
+                  <img
+                    src="<?php echo !empty($evento['imagen_portada']) ? htmlspecialchars($evento['imagen_portada']) : '../Assets/img/images/events.jpg'; ?>"
+                    alt="Imagen del evento <?php echo htmlspecialchars($evento['titulo']); ?>"
+                    class="event-image" />
                 </div>
-                <h2 class="event-title"><?php echo htmlspecialchars($evento['titulo']); ?></h2>
-                <p class="event-date">
-                  <?php
-                  $fechaFmt = date('d/m/Y', strtotime($evento['fecha']));
-                  $horaFmt  = date('H:i', strtotime($evento['hora']));
-                  echo htmlspecialchars($fechaFmt . ' | ' . $horaFmt . 'h');
-                  ?>
-                </p>
-                <div class="event-stats">
-                  <i class="fa-solid fa-location-dot"></i>
-                  <?php echo htmlspecialchars($evento['ciudad']); ?>
-                </div>
-                <a href="eventDetails.php?id=<?php echo (int) $evento['id']; ?>" class="btn btn-primary">Ver Detalles</a>
-              </div>
-            </article>
-          <?php endforeach; ?>
+
+                <div class="event-content">
+                  <div class="event-header">
+                    <span class="event-category"><?php echo htmlspecialchars($evento['categoria']); ?></span>
+                  </div>
+                  <h2 class="event-title"><?php echo htmlspecialchars($evento['titulo']); ?></h2>
+                  <p class="event-date">
+                    <?php
+                    $fechaFmt = date('d/m/Y', strtotime($evento['fecha']));
+                    $horaFmt  = date('H:i', strtotime($evento['hora']));
+                    echo htmlspecialchars($fechaFmt . ' | ' . $horaFmt . 'h');
+                    ?>
+                  </p>
+                  <div class="event-stats">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <?php echo htmlspecialchars($evento['ciudad']); ?>
+                  </div>
+
+                  <a href="eventDetails.php?id=<?php echo (int) $evento['id']; ?>" class="btn btn-primary">Ver Detalles</a>
+              </a>
         </div>
-      <?php endif; ?>
+        </a>
+        </article>
+      <?php endforeach; ?>
     </div>
+  <?php endif; ?>
+  </div>
   </section>
 
   <footer class="site-footer">
