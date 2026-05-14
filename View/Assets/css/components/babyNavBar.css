@@ -1,6 +1,6 @@
 /* Header solo logo - Auth Pages */
 
-.nav-bar-ss {
+.nav-bar-login {
   width: 100%;
   padding: 2rem 0 1.5rem 0;
   display: flex;
@@ -8,23 +8,23 @@
   align-items: center;
 }
 
-.nav-bar-ss a {
+.nav-bar-login a {
   display: inline-flex;
   justify-content: center;
   align-items: center;
 }
 
-.nav-bar-ss .logo {
+.nav-bar-login .logo {
   width: 70px;
   height: auto;
   display: block;
 }
 @media (min-width: 768px) {
-  .nav-bar-ss {
+  .nav-bar-login {
     padding: 2.5rem 0 2rem 0;
   }
 
-  .nav-bar-ss .logo {
+  .nav-bar-login .logo {
     width: 85px;
   }
 }
