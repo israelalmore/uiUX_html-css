@@ -170,8 +170,8 @@ class userController
 
         // -- Contraseña nueva 
         $currentPassword = $_POST['current_password'] ?? '';
-        $newPassword     = $_POST['password'] ?? '';
-        $confirmPassword = $_POST['password2'] ?? '';
+        $newPassword     = $_POST['new_password'] ?? '';
+        $confirmPassword = $_POST['confirm_password'] ?? '';
         $passwordHash = null;
 
         if (!empty($newPassword)) {
