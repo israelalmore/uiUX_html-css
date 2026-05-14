@@ -5,6 +5,7 @@
 Forever Events es una plataforma web desarrollada en PHP utilizando el patrón de arquitectura MVC (Modelo-Vista-Controlador). Esta aplicación permite a los usuarios registrarse, iniciar sesión y gestionar eventos de manera intuitiva y eficiente. Diseñada para facilitar la organización de eventos inolvidables, desde bodas y celebraciones hasta eventos corporativos, Forever Events ofrece una experiencia completa para gestores y usuarios finales.
 
 El proyecto está estructurado en tres capas principales:
+
 - **Modelo**: Gestiona la lógica de datos y las interacciones con la base de datos MySQL.
 - **Vista**: Maneja la presentación y la interfaz de usuario con HTML, CSS y JavaScript.
 - **Controlador**: Coordina las solicitudes del usuario, procesa la lógica de negocio y actualiza las vistas.
