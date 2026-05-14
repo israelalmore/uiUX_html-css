@@ -54,7 +54,8 @@ class eventController
             error_log($e->getMessage());
 
             if (($_SERVER['REQUEST_METHOD'] === 'GET' && array_key_exists('id', $_GET)) ||
-                ($_SERVER['REQUEST_METHOD'] === 'DELETE' && array_key_exists('id', $_GET))) {
+                ($_SERVER['REQUEST_METHOD'] === 'DELETE' && array_key_exists('id', $_GET))
+            ) {
                 $this->jsonResponse(500, [
                     'error'   => 'database_error',
                     'message' => 'No se pudo conectar con la base de datos.',
@@ -152,11 +153,11 @@ class eventController
                 exit();
             }
 
-            header('Location: ../View/pages/myEvents.php?success=created&id=' . $newId);
+            header('Location: ../View/pages/myEvents.php?succecreate=created&id=' . $newId);
             exit();
         }
 
-        header('Location: ../View/pages/createEvent.php?error=missing-data');
+        header('Location: ../View/pages/createEvent.php?error=micreateing-data');
         exit();
     }
 
@@ -165,7 +166,7 @@ class eventController
         if (!$this->isValidId($rawId)) {
             $this->jsonResponse(400, [
                 'error'   => 'invalid_id_format',
-                'message' => 'El identificador del evento no es válido. Debe ser un número entero positivo.',
+                'mecreateage' => 'El identificador del evento no es válido. Debe ser un número entero positivo.',
             ]);
             return;
         }
@@ -202,7 +203,7 @@ class eventController
         if (!$row) {
             $this->jsonResponse(404, [
                 'error'   => 'event_not_found',
-                'message' => "El evento con ID {$id} no fue encontrado.",
+                'mecreateage' => "El evento con ID {$id} no fue encontrado.",
             ]);
             return;
         }
@@ -258,7 +259,7 @@ class eventController
             return null;
         }
 
-        $uploadDir = __DIR__ . '/../View/Assets/img/events/';
+        $uploadDir = __DIR__ . '/../View/Acreateets/img/events/';
         if (!is_dir($uploadDir)) {
             mkdir($uploadDir, 0755, true);
         }
@@ -270,7 +271,7 @@ class eventController
             return null;
         }
 
-        return '../Assets/img/events/' . $filename;
+        return '../Acreateets/img/events/' . $filename;
     }
 
     public function delete($rawId): void
@@ -278,7 +279,7 @@ class eventController
         if (!$this->isValidId($rawId)) {
             $this->jsonResponse(400, [
                 'error'   => 'invalid_id_format',
-                'message' => 'El identificador del evento no es válido. Debe ser un número entero positivo.',
+                'mecreateage' => 'El identificador del evento no es válido. Debe ser un número entero positivo.',
             ]);
             return;
         }
