@@ -137,9 +137,10 @@ if (!$evento && !$dbError) {
           <span>No se pudo cargar el evento. Inténtalo más tarde.</span>
         </div>
       <?php else: ?>
-        <article class="event-card">
+        <article class="event-card event-detail">
+
           <img
-            src="<?php echo !empty($evento['imagen_portada']) ? htmlspecialchars($evento['imagen_portada']) : '../Assets/img/images/events.jpg'; ?>"
+            src=" <?php echo !empty($evento['imagen_portada']) ? htmlspecialchars($evento['imagen_portada']) : '../Assets/img/images/events.jpg'; ?>"
             alt="Imagen del evento <?php echo htmlspecialchars($evento['titulo']); ?>"
             class="event-image" />
           <div class="event-content">
@@ -154,27 +155,33 @@ if (!$evento && !$dbError) {
               echo htmlspecialchars($fechaFmt . ' | ' . $horaFmt . 'h');
               ?>
             </p>
-            <p><?php echo nl2br(htmlspecialchars($evento['descripcion'])); ?></p>
-            <div class="event-stats">
-              <i class="fa-solid fa-location-dot"></i>
-              <?php echo htmlspecialchars($evento['direccion'] . ', ' . $evento['codigo_postal'] . ' ' . $evento['ciudad']); ?>
-            </div>
-            <div class="event-stats">
-              <i class="fa-solid fa-envelope"></i>
-              <a href="mailto:<?php echo htmlspecialchars($evento['email']); ?>">
-                <?php echo htmlspecialchars($evento['email']); ?>
-              </a>
-            </div>
-            <?php if (!empty($evento['organizador_nombre'])): ?>
+            <p class="event-description">
+              <?php echo nl2br(htmlspecialchars($evento['descripcion'])); ?>
+            </p>
+            <div class="event-meta">
               <div class="event-stats">
-                <i class="fa-solid fa-user"></i>
-                Organiza: <?php echo htmlspecialchars(trim($evento['organizador_nombre'] . ' ' . ($evento['organizador_apellido1'] ?? ''))); ?>
+                <i class="fa-solid fa-location-dot"></i>
+                <?php echo htmlspecialchars($evento['direccion'] . ', ' . $evento['codigo_postal'] . ' ' . $evento['ciudad']); ?>
               </div>
-            <?php endif; ?>
-            <a href="events.php" class="btn btn-primary">Volver</a>
-            <?php if ($isOrganizer): ?>
-              <button class="btn btn-secondary" onclick="deleteEvent(<?php echo $evento['id']; ?>)">Eliminar Evento</button>
-            <?php endif; ?>
+              <div class="event-stats">
+                <i class="fa-solid fa-envelope"></i>
+                <a href="mailto:<?php echo htmlspecialchars($evento['email']); ?>">
+                  <?php echo htmlspecialchars($evento['email']); ?>
+                </a>
+              </div>
+              <?php if (!empty($evento['organizador_nombre'])): ?>
+                <div class="event-stats">
+                  <i class="fa-solid fa-user"></i>
+                  Organiza: <?php echo htmlspecialchars(trim($evento['organizador_nombre'] . ' ' . ($evento['organizador_apellido1'] ?? ''))); ?>
+                </div>
+              <?php endif; ?>
+            </div>
+            <div class="event-actions-bar">
+              <a href="events.php" class="btn btn-primary">Volver</a>
+              <?php if ($isOrganizer): ?>
+                <button class="btn btn-secondary" onclick="deleteEvent(<?php echo $evento['id']; ?>)">Eliminar Evento</button>
+              <?php endif; ?>
+            </div>
           </div>
         </article>
       <?php endif; ?>
