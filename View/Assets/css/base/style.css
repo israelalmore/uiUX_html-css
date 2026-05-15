@@ -1,60 +1,165 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@400;600;700;800;900&display=swap");
 
 :root {
+  /* ─── Colores ─── */
   --primary-bg-color: #024ddf;
+  --primary-bg-dark: #02195f;
+  --primary-bg-darker: #010d3a;
   --primary-color: #ffffff;
-  --accent-color: #FFD700;
+  --accent-color: #ffd700;
+  --accent-hover: #ffc200;
+  --accent-soft: rgba(255, 215, 0, 0.12);
   --button-color: #000000;
-  --font-primary: "Inter", sans-serif;
-  --font-title: "Montserrat", sans-serif; /* Corrected font name */
+  --text-muted: rgba(255, 255, 255, 0.7);
+  --text-subtle: rgba(255, 255, 255, 0.5);
+  --surface-light: rgba(255, 255, 255, 0.06);
+  --surface-lighter: rgba(255, 255, 255, 0.1);
+  --border-soft: rgba(255, 255, 255, 0.1);
+  --border-medium: rgba(255, 255, 255, 0.18);
+  --danger: #ef4444;
+  --success: #22c55e;
+
+  /* ─── Tipografía ─── */
+  --font-primary: "Inter", system-ui, -apple-system, sans-serif;
+  --font-title: "Montserrat", system-ui, -apple-system, sans-serif;
+
+  /* ─── Radio (filosofía actual: campos rectos, cards leves) ─── */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --radius-full: 999px;
+
+  /* ─── Sombras ─── */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.25);
+  --shadow-xl: 0 24px 60px rgba(0, 0, 0, 0.35);
+  --shadow-glow: 0 0 40px rgba(255, 215, 0, 0.25);
+
+  /* ─── Transiciones ─── */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 0.15s;
+  --duration: 0.25s;
+  --duration-slow: 0.4s;
+
+  /* ─── Header sticky height (para scroll-margin) ─── */
+  --header-h: 76px;
 }
 
-/* Reset */
-* {
+/* ─── Reset ─── */
+*,
+*::before,
+*::after {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 1rem);
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   color: var(--primary-color);
   line-height: 1.6;
   font-family: var(--font-primary);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
   background-color: var(--primary-bg-color);
-  overflow-x: hidden;
+  /* Gradiente sutil que añade profundidad sin distraer */
+  background-image:
+    radial-gradient(ellipse 80% 60% at 20% 0%, rgba(80, 130, 255, 0.25) 0%, transparent 50%),
+    radial-gradient(ellipse 70% 50% at 100% 30%, rgba(2, 25, 95, 0.4) 0%, transparent 60%),
+    linear-gradient(180deg, var(--primary-bg-color) 0%, var(--primary-bg-dark) 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  /* `clip` evita scroll horizontal sin romper position: sticky */
+  overflow-x: clip;
+}
+
+/* En móvil, background-attachment: fixed puede causar jank y no
+   funciona en iOS Safari. Usamos scroll. */
+@media (max-width: 768px) {
+  body {
+    background-attachment: scroll;
+  }
 }
 
 img {
   max-width: 100%;
   height: auto;
+  display: block;
 }
 
 a {
   text-decoration: none;
   color: inherit;
+  transition: color var(--duration) var(--ease);
 }
 
 button,
 input,
-select {
+select,
+textarea {
   font-family: inherit;
+  font-size: inherit;
+  color: inherit;
 }
 
-/* Typography */
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+/* ─── Tipografía ─── */
 h1 {
   font-family: var(--font-title);
-  font-size: clamp(2.5rem, 8vw, 4rem); /* Responsive font size */
-  font-weight: 700;
+  font-size: clamp(2.25rem, 6vw, 3.75rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
 }
 
 h2 {
   font-family: var(--font-title);
-  font-size: clamp(1.5rem, 6vw, 2.5rem); /* Responsive font size */
-  font-weight: 400;
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
 }
 
-/* Screen reader only */
+h3 {
+  font-family: var(--font-title);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+/* Selección de texto */
+::selection {
+  background: var(--accent-color);
+  color: var(--button-color);
+}
+
+/* ─── Focus visible global ─── */
+:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Quita el focus visible del :focus general (no :focus-visible) */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ─── Screen reader only ─── */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -67,21 +172,60 @@ h2 {
   border-width: 0;
 }
 
-/* ─── Utilidades compartidas del sistema visual ─── */
+/* ─── Utilidades compartidas ─── */
 .hero-tag {
-  display: inline-block;
-  padding: 0.4rem 1rem;
-  background-color: rgba(255, 215, 0, 0.15);
-  border: 1px solid var(--accent-color);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 1rem;
+  background-color: var(--accent-soft);
+  border: 1px solid rgba(255, 215, 0, 0.4);
   color: var(--accent-color);
-  border-radius: 999px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   font-family: var(--font-primary);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .alt-bg {
-  background-color: #013ca7;
+  background-color: var(--primary-bg-dark);
+}
+
+/* ─── Animaciones para usuarios sin reduced motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ─── Scrollbar custom (WebKit) ─── */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius-full);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 215, 0, 0.5);
+  background-clip: padding-box;
+  border: 2px solid transparent;
 }

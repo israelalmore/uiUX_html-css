@@ -85,13 +85,7 @@ if ($_SESSION['user_type'] === 2) {
       </nav>
     </div>
   </header>
-  <script>
-    const header = document.querySelector(".nav-bar");
-    const mobileNavIcon = document.querySelector(".mobile-nav-icon");
-    mobileNavIcon.addEventListener("click", () => {
-      header.classList.toggle("nav-active");
-    });
-  </script>
+  <script src="../Assets/js/navbar.js" defer></script>
 
   <main class="create-event">
     <div class="container">

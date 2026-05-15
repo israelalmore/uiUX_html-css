@@ -14,9 +14,9 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Montserrat:wght@400;700;800&display=swap"
     rel="stylesheet" />
 
-  <link rel="stylesheet" href="../Assets/css/pages/register.css" />
   <link rel="stylesheet" href="../Assets/css/main.css" />
   <link rel="stylesheet" href="../Assets/css/components/babyNavBar.css" />
+  <link rel="stylesheet" href="../Assets/css/pages/register.css" />
 </head>
 
 <body>
@@ -57,23 +57,35 @@
           <div class="form-row">
             <div class="field">
               <label for="name">Nombre</label>
-              <input id="name" name="name" type="text" required />
+              <div class="input-icon">
+                <i class="fa-solid fa-user" aria-hidden="true"></i>
+                <input id="name" name="name" type="text" placeholder="Ej. María" required />
+              </div>
             </div>
 
             <div class="field">
               <label for="surname1">Primer apellido</label>
-              <input id="surname1" name="surname1" type="text" required />
+              <div class="input-icon">
+                <i class="fa-solid fa-id-badge" aria-hidden="true"></i>
+                <input id="surname1" name="surname1" type="text" placeholder="Ej. García" required />
+              </div>
             </div>
           </div>
 
           <div class="field">
-            <label for="surname2">Segundo apellido</label>
-            <input id="surname2" name="surname2" type="text" />
+            <label for="surname2">Segundo apellido <span class="field-hint">(opcional)</span></label>
+            <div class="input-icon">
+              <i class="fa-solid fa-id-badge" aria-hidden="true"></i>
+              <input id="surname2" name="surname2" type="text" placeholder="Ej. Pérez" />
+            </div>
           </div>
 
           <div class="field">
             <label for="date">Fecha de nacimiento</label>
-            <input id="date" name="date" type="date" required />
+            <div class="input-icon">
+              <i class="fa-solid fa-cake-candles" aria-hidden="true"></i>
+              <input id="date" name="date" type="date" required />
+            </div>
           </div>
         </div>
 
@@ -101,12 +113,18 @@
 
           <div class="field">
             <label for="email">Correo electrónico</label>
-            <input id="email" name="email" type="email" required />
+            <div class="input-icon">
+              <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+              <input id="email" name="email" type="email" placeholder="ejemplo@correo.com" required />
+            </div>
           </div>
 
           <div class="field">
             <label for="telephone">Teléfono</label>
-            <input id="telephone" name="telephone" type="tel" required />
+            <div class="input-icon">
+              <i class="fa-solid fa-phone" aria-hidden="true"></i>
+              <input id="telephone" name="telephone" type="tel" placeholder="Ej. 612 345 678" required />
+            </div>
           </div>
 
         </div>
@@ -114,18 +132,26 @@
         <div class="form-block">
           <h2>Identificación</h2>
 
-          <div class="field">
-            <label for="type_doc">Tipo de documento</label>
-            <select id="type_doc" name="type_doc" required>
-              <option value="1">DNI</option>
-              <option value="2">NIE</option>
-              <option value="3">NIF</option>
-            </select>
-          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="type_doc">Tipo de documento</label>
+              <div class="input-icon">
+                <i class="fa-solid fa-id-card" aria-hidden="true"></i>
+                <select id="type_doc" name="type_doc" required>
+                  <option value="1">DNI</option>
+                  <option value="2">NIE</option>
+                  <option value="3">NIF</option>
+                </select>
+              </div>
+            </div>
 
-          <div class="field">
-            <label for="document">Documento</label>
-            <input id="document" name="document" type="text" required />
+            <div class="field">
+              <label for="document">Número de documento</label>
+              <div class="input-icon">
+                <i class="fa-solid fa-hashtag" aria-hidden="true"></i>
+                <input id="document" name="document" type="text" placeholder="Ej. 12345678A" required />
+              </div>
+            </div>
           </div>
         </div>
 
@@ -134,8 +160,9 @@
 
           <div class="field">
             <label for="pass">Clave de acceso</label>
-            <div class="input-wrapper">
-              <input id="pass" name="password" type="password" required />
+            <div class="input-wrapper input-icon">
+              <i class="fa-solid fa-lock" aria-hidden="true"></i>
+              <input id="pass" name="password" type="password" placeholder="Mínimo 8 caracteres" required />
               <button
                 type="button"
                 class="toggle-password"
@@ -157,8 +184,9 @@
 
           <div class="field">
             <label for="pass2">Repetir clave</label>
-            <div class="input-wrapper">
-              <input id="pass2" name="password2" type="password" required />
+            <div class="input-wrapper input-icon">
+              <i class="fa-solid fa-lock" aria-hidden="true"></i>
+              <input id="pass2" name="password2" type="password" placeholder="Repite tu contraseña" required />
               <button
                 type="button"
                 class="toggle-password"

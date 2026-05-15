@@ -1,0 +1,261 @@
+/* ═══════════════════════════════════════════════════════════
+   SISTEMA DE FORMULARIOS — Forever Events
+   Inputs, selects, labels e iconos unificados
+   Profesional, rectangular, accesible. NO ovalado.
+   ═══════════════════════════════════════════════════════════ */
+
+/* ─── Bloques de campo ────────────────────────────────────── */
+.field,
+.form-field,
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.field label,
+.form-field label,
+.form-group label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--button-color);
+  letter-spacing: 0.01em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.field-hint {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.45);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* ─── Input base unificado ────────────────────────────────── */
+.field input,
+.field select,
+.field textarea,
+.form-field input,
+.form-field select,
+.form-field textarea,
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  height: 48px;
+  box-sizing: border-box;
+  padding: 0 1rem;
+  border-radius: 0;
+  border: 1.5px solid rgba(0, 0, 0, 0.18);
+  background-color: #f7f8fa;
+  color: var(--button-color);
+  font-size: 0.95rem;
+  line-height: 1.2;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.field textarea,
+.form-field textarea,
+.form-group textarea {
+  height: auto;
+  min-height: 120px;
+  padding: 0.85rem 1rem;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+.field input::placeholder,
+.field textarea::placeholder,
+.form-field input::placeholder,
+.form-field textarea::placeholder,
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.field input:hover,
+.field select:hover,
+.field textarea:hover,
+.form-field input:hover,
+.form-field select:hover,
+.form-field textarea:hover,
+.form-group input:hover,
+.form-group select:hover,
+.form-group textarea:hover {
+  background-color: #fff;
+  border-color: rgba(0, 0, 0, 0.22);
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus,
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus,
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  background-color: #fff;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2);
+}
+
+.field input[readonly],
+.form-field input[readonly],
+.form-group input[readonly] {
+  background-color: #ececf0;
+  color: rgba(0, 0, 0, 0.55);
+  cursor: not-allowed;
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+/* ─── Select: flecha custom ───────────────────────────────── */
+.field select,
+.form-field select,
+.form-group select {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  padding-right: 2.5rem;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23666" height="14" viewBox="0 0 24 24" width="14" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 0.85rem;
+}
+
+/* ─── Date input ──────────────────────────────────────────── */
+.field input[type="date"],
+.form-field input[type="date"],
+.form-group input[type="date"] {
+  font-family: inherit;
+}
+
+.field input[type="date"]::-webkit-calendar-picker-indicator,
+.form-field input[type="date"]::-webkit-calendar-picker-indicator,
+.form-group input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: opacity(0.55);
+  cursor: pointer;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   INPUT CON ICONO IZQUIERDO  (.input-icon)
+   Wrap: <div class="input-icon"><i class="fa-..."></i><input/></div>
+   ═══════════════════════════════════════════════════════════ */
+.input-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon > i {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 0.95rem;
+  pointer-events: none;
+  transition: color 0.2s ease;
+  z-index: 2;
+}
+
+.input-icon > input,
+.input-icon > select {
+  padding-left: 2.8rem;
+}
+
+.input-icon:focus-within > i {
+  color: var(--accent-color);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   INPUT WRAPPER (con toggle de contraseña a la derecha)
+   ═══════════════════════════════════════════════════════════ */
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-wrapper > input {
+  padding-right: 2.8rem;
+}
+
+.input-wrapper.input-icon > input {
+  padding-left: 2.8rem;
+  padding-right: 2.8rem;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 0.55rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.4rem;
+  color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0;
+  transition: color 0.2s ease, background 0.2s ease;
+  z-index: 2;
+}
+
+.toggle-password:hover {
+  color: var(--button-color);
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.toggle-password:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+.toggle-password svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
+.toggle-password .icon-eye { display: block; }
+.toggle-password .icon-eye-off { display: none; }
+.toggle-password[aria-pressed="true"] .icon-eye { display: none; }
+.toggle-password[aria-pressed="true"] .icon-eye-off { display: block; }
+
+/* ═══════════════════════════════════════════════════════════
+   MENSAJES DE AVISO / ERROR / ÉXITO
+   Estiliza los <p style="color:red|green"> existentes.
+   ═══════════════════════════════════════════════════════════ */
+form > p[style*="color: red"],
+form > p[style*="color:red"] {
+  background: rgba(220, 53, 69, 0.08);
+  border: 1px solid rgba(220, 53, 69, 0.28);
+  color: #b91c2c !important;
+  padding: 0.7rem 1rem;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  margin: 0;
+}
+
+form > p[style*="color: green"],
+form > p[style*="color:green"] {
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: #15803d !important;
+  padding: 0.7rem 1rem;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  margin: 0;
+}

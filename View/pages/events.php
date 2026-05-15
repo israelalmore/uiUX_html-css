@@ -143,14 +143,7 @@ try {
       </nav>
     </div>
   </header>
-  <script>
-    const header = document.querySelector(".nav-bar");
-    const mobileNavIcon = document.querySelector(".mobile-nav-icon");
-
-    mobileNavIcon.addEventListener("click", () => {
-      header.classList.toggle("nav-active");
-    });
-  </script>
+  <script src="../Assets/js/navbar.js" defer></script>
   <section class="events-page">
     <div class="container">
       <div class="page-hero">

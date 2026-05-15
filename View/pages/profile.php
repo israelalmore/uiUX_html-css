@@ -91,16 +91,15 @@ try {
     </div>
   </header>
 
-  <script>
-    const header = document.querySelector(".nav-bar");
-    const mobileNavIcon = document.querySelector(".mobile-nav-icon");
-
-    mobileNavIcon.addEventListener("click", () => {
-      header.classList.toggle("nav-active");
-    });
-  </script>
+  <script src="../Assets/js/navbar.js" defer></script>
 
   <main class="profile-wrapper">
+    <section class="profile-hero">
+      <span class="hero-tag">Mi cuenta</span>
+      <h1>Editar perfil</h1>
+      <p>Actualiza tu información personal y mantén tu cuenta segura.</p>
+    </section>
+
     <section class="profile-card" aria-labelledby="profile-title">
 
       <form
@@ -124,7 +123,7 @@ try {
         <?php endif; ?>
 
         <div class="profile-layout">
-          <div class="profile-avatar">
+          <aside class="profile-avatar">
             <div class="avatar-container">
               <img
                 src="<?= !empty($_SESSION['user_avatar']) ? htmlspecialchars($_SESSION['user_avatar']) : '../Assets/img/icons/account.png' ?>"
@@ -132,7 +131,7 @@ try {
                 class="avatar-image" />
 
               <?php if ($_SESSION['user_type'] == 1): ?>
-                <label for="avatar-upload" class="avatar-upload-btn">
+                <label for="avatar-upload" class="avatar-upload-btn" aria-label="Cambiar foto de perfil">
                   <i class="fa-solid fa-camera"></i>
                 </label>
                 <input
@@ -144,100 +143,170 @@ try {
               <?php endif; ?>
             </div>
 
-            <h2 class="profile-title">Mi perfil</h2>
+            <h2 class="profile-name" id="profile-title">
+              <?= htmlspecialchars(trim(($user['nombre'] ?? '') . ' ' . ($user['apellido1'] ?? ''))) ?: 'Mi perfil' ?>
+            </h2>
 
-            <?php if ($_SESSION['user_type'] == 1): ?>
-              <p class="avatar-text">Añadir o cambiar foto</p>
-            <?php endif; ?>
-          </div>
+            <p class="profile-email-display">
+              <i class="fa-solid fa-envelope"></i>
+              <?= htmlspecialchars($user['email'] ?? '') ?>
+            </p>
 
-          <div class="form-grid">
+            <span class="profile-role-badge">
+              <?php if ((int)($_SESSION['user_type'] ?? 0) === 1): ?>
+                <i class="fa-solid fa-calendar-check"></i> Gestor de eventos
+              <?php else: ?>
+                <i class="fa-solid fa-user"></i> Cliente
+              <?php endif; ?>
+            </span>
+          </aside>
+
+          <div class="profile-sections">
+            <section class="form-section">
+              <header class="section-header">
+                <i class="fa-solid fa-user-pen"></i>
+                <div>
+                  <h3>Información personal</h3>
+                  <p>Tus datos de identificación.</p>
+                </div>
+              </header>
+
+              <div class="form-grid">
             <div class="form-field">
               <label for="name">Nombre</label>
-              <input
-                id="name"
-                name="name"
-                type="text"
-                placeholder="Nombre de usuario"
-                value="<?= htmlspecialchars($user['nombre']) ?>" />
+              <div class="input-icon">
+                <i class="fa-solid fa-user" aria-hidden="true"></i>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  placeholder="Ej. María"
+                  value="<?= htmlspecialchars($user['nombre']) ?>" />
+              </div>
             </div>
 
             <div class="form-field">
-              <label for="surname1">Apellido 1</label>
-              <input
-                id="surname1"
-                type="text"
-                name="surname1"
-                placeholder="Primer apellido"
-                value="<?= htmlspecialchars($user['apellido1']) ?>" />
+              <label for="surname1">Primer apellido</label>
+              <div class="input-icon">
+                <i class="fa-solid fa-id-badge" aria-hidden="true"></i>
+                <input
+                  id="surname1"
+                  type="text"
+                  name="surname1"
+                  placeholder="Ej. García"
+                  value="<?= htmlspecialchars($user['apellido1']) ?>" />
+              </div>
             </div>
 
             <div class="form-field">
-              <label for="surname2">Apellido 2</label>
-              <input
-                id="surname2"
-                type="text"
-                name="surname2"
-                placeholder="Segundo apellido"
-                value="<?= htmlspecialchars($user['apellido2'] ?? '') ?>" />
+              <label for="surname2">Segundo apellido</label>
+              <div class="input-icon">
+                <i class="fa-solid fa-id-badge" aria-hidden="true"></i>
+                <input
+                  id="surname2"
+                  type="text"
+                  name="surname2"
+                  placeholder="Ej. Pérez"
+                  value="<?= htmlspecialchars($user['apellido2'] ?? '') ?>" />
+              </div>
             </div>
 
             <div class="form-field">
               <label for="gender">Género</label>
-              <select id="gender">
-                <option>Hombre</option>
-                <option>Mujer</option>
-                <option>Otro</option>
-              </select>
+              <div class="input-icon">
+                <i class="fa-solid fa-venus-mars" aria-hidden="true"></i>
+                <select id="gender">
+                  <option>Hombre</option>
+                  <option>Mujer</option>
+                  <option>Otro</option>
+                </select>
+              </div>
             </div>
 
             <div class="form-field">
               <label for="date">Fecha de nacimiento</label>
-              <input
-                id="date"
-                name="date"
-                type="date"
-                value="<?= htmlspecialchars($user['fecha_nacimiento']) ?>" />
+              <div class="input-icon">
+                <i class="fa-solid fa-cake-candles" aria-hidden="true"></i>
+                <input
+                  id="date"
+                  name="date"
+                  type="date"
+                  value="<?= htmlspecialchars($user['fecha_nacimiento']) ?>" />
+              </div>
             </div>
+              </div>
+            </section>
 
+            <section class="form-section">
+              <header class="section-header">
+                <i class="fa-solid fa-address-book"></i>
+                <div>
+                  <h3>Contacto</h3>
+                  <p>Cómo podemos comunicarnos contigo.</p>
+                </div>
+              </header>
+
+              <div class="form-grid">
             <div class="form-field">
               <label for="telephone">Teléfono</label>
-              <input
-                id="telephone"
-                name="telephone"
-                type="tel"
-                placeholder="+34 --"
-                value="<?= htmlspecialchars($user['telefono']) ?>" />
+              <div class="input-icon">
+                <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                <input
+                  id="telephone"
+                  name="telephone"
+                  type="tel"
+                  placeholder="Ej. 612 345 678"
+                  value="<?= htmlspecialchars($user['telefono']) ?>" />
+              </div>
             </div>
 
             <div class="form-field">
               <label for="document">Documento</label>
-              <input
-                id="document"
-                type="text"
-                placeholder="Documento"
-                value="<?= htmlspecialchars($user['documento']) ?>"
-                readonly />
+              <div class="input-icon">
+                <i class="fa-solid fa-id-card" aria-hidden="true"></i>
+                <input
+                  id="document"
+                  type="text"
+                  placeholder="Documento"
+                  value="<?= htmlspecialchars($user['documento']) ?>"
+                  readonly />
+              </div>
             </div>
 
             <div class="form-field full">
               <label for="email">Correo electrónico</label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                placeholder="mail@gmail.com"
-                value="<?= htmlspecialchars($user['email']) ?>" />
+              <div class="input-icon">
+                <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="ejemplo@correo.com"
+                  value="<?= htmlspecialchars($user['email']) ?>" />
+              </div>
             </div>
+              </div>
+            </section>
 
+            <section class="form-section">
+              <header class="section-header">
+                <i class="fa-solid fa-shield-halved"></i>
+                <div>
+                  <h3>Seguridad</h3>
+                  <p>Cambia tu contraseña periódicamente.</p>
+                </div>
+              </header>
+
+              <div class="form-grid">
             <div class="form-field full">
-              <label for="current_password">Contraseña Actual</label>
-              <div class="input-wrapper">
+              <label for="current_password">Contraseña actual</label>
+              <div class="input-wrapper input-icon">
+                <i class="fa-solid fa-lock" aria-hidden="true"></i>
                 <input
                   type="password"
                   id="current_password"
                   name="current_password"
-                  placeholder="Introduce tu contraseña"
+                  placeholder="Introduce tu contraseña actual"
                   autocomplete="current-password" />
                 <button
                   type="button"
@@ -257,14 +326,15 @@ try {
             </div>
 
             <div class="form-field full">
-              <label for="new_password">Nueva Contraseña</label>
-              <div class="input-wrapper">
+              <label for="new_password">Nueva contraseña</label>
+              <div class="input-wrapper input-icon">
+                <i class="fa-solid fa-lock" aria-hidden="true"></i>
                 <input
                   type="password"
                   id="new_password"
                   name="new_password"
-                  placeholder="Introduce tu contraseña"
-                  autocomplete="current-password" />
+                  placeholder="Mínimo 8 caracteres"
+                  autocomplete="new-password" />
                 <button
                   type="button"
                   class="toggle-password"
@@ -283,14 +353,15 @@ try {
             </div>
 
             <div class="form-field full">
-              <label for="confirm_password">Confirmar Nueva Contraseña</label>
-              <div class="input-wrapper">
+              <label for="confirm_password">Confirmar nueva contraseña</label>
+              <div class="input-wrapper input-icon">
+                <i class="fa-solid fa-lock" aria-hidden="true"></i>
                 <input
                   type="password"
                   id="confirm_password"
                   name="confirm_password"
-                  placeholder="Introduce tu contraseña"
-                  autocomplete="current-password" />
+                  placeholder="Repite la nueva contraseña"
+                  autocomplete="new-password" />
                 <button
                   type="button"
                   class="toggle-password"
@@ -308,9 +379,13 @@ try {
               </div>
             </div>
 
-            <div class="form-actions full">
+              </div>
+            </section>
+
+            <div class="form-actions">
               <button type="submit" name="update" class="primary-btn">
-                Guardar Cambios
+                <i class="fa-solid fa-floppy-disk"></i>
+                Guardar cambios
               </button>
             </div>
           </div>
@@ -318,10 +393,17 @@ try {
       </form>
 
       <div class="danger-zone">
-        <h3 id="danger-title" class="danger-title">Botón del pánico</h3>
-        <p class="danger-description">
-          Al eliminar tu cuenta se borrarán todos tus datos. Esta acción no se puede deshacer.
-        </p>
+        <header class="danger-header">
+          <span class="danger-icon">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+          </span>
+          <div>
+            <h3 id="danger-title" class="danger-title">Zona de peligro</h3>
+            <p class="danger-description">
+              Al eliminar tu cuenta se borrarán todos tus datos de forma permanente. Esta acción no se puede deshacer.
+            </p>
+          </div>
+        </header>
 
         <form class="danger-form"
           action="../../Controller/userController.php"
@@ -333,12 +415,16 @@ try {
           <?php endif; ?>
 
           <div class="form-field">
-            <label for="delete_password">Confirma tu contraseña</label>
-            <input type="password" id="delete_password" name="delete_password" required />
+            <label for="delete_password">Confirma tu contraseña para continuar</label>
+            <div class="input-icon">
+              <i class="fa-solid fa-lock" aria-hidden="true"></i>
+              <input type="password" id="delete_password" name="delete_password" placeholder="Tu contraseña actual" required />
+            </div>
           </div>
 
           <button type="submit" name="deleteUser" class="danger-btn">
-            Eliminar Cuenta
+            <i class="fa-solid fa-trash"></i>
+            Eliminar cuenta
           </button>
         </form>
       </div>

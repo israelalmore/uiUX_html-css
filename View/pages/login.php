@@ -58,18 +58,22 @@
 
         <div class="form-group">
           <label for="user">Correo electrónico</label>
-          <input
-            type="email"
-            id="user"
-            name="user"
-            placeholder="ejemplo@correo.com"
-            autocomplete="email"
-            required />
+          <div class="input-icon">
+            <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+            <input
+              type="email"
+              id="user"
+              name="user"
+              placeholder="ejemplo@correo.com"
+              autocomplete="email"
+              required />
+          </div>
         </div>
 
         <div class="form-group">
           <label for="password">Contraseña</label>
-          <div class="input-wrapper">
+          <div class="input-wrapper input-icon">
+            <i class="fa-solid fa-lock" aria-hidden="true"></i>
             <input
               type="password"
               id="password"

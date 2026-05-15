@@ -1,3 +1,6 @@
+/* login.css — estilos específicos de la página de login.
+   El sistema de inputs/iconos/toggle vive en base/forms.css */
+
 .auth {
   min-height: 100vh;
   display: flex;
@@ -7,6 +10,7 @@
   gap: 2.5rem;
 }
 
+/* ─── Branding ────────────────────────────────────────────── */
 .auth-brand {
   text-align: center;
   color: var(--primary-color);
@@ -18,6 +22,13 @@
 
 .brand-logo {
   width: 120px;
+  display: inline-block;
+}
+
+.brand-logo img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 .auth-brand h1 {
@@ -39,14 +50,24 @@
   align-self: center;
 }
 
+/* ─── Tarjeta ─────────────────────────────────────────────── */
 .auth-card {
   background-color: var(--primary-color);
-  border-radius: 20px;
-  padding: 2rem 1.75rem;
+  border-radius: 22px;
+  padding: 2.25rem 1.75rem;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+  gap: 1.75rem;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+.auth-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
 }
 
 .auth-header h2 {
@@ -55,190 +76,101 @@
   font-weight: 700;
   letter-spacing: -0.01em;
   color: var(--button-color);
+  margin: 0;
 }
 
 .auth-header span {
-  font-size: 0.85rem;
-  opacity: 0.6;
+  font-size: 0.88rem;
+  opacity: 0.65;
   color: var(--button-color);
 }
 
+/* ─── Formulario ──────────────────────────────────────────── */
 .auth-form {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-
-.form-group label {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--button-color);
-}
-
-.form-group input {
-  padding: 0.9rem 1rem;
-  border-radius: 12px;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  font-size: 1rem;
-  transition: all 0.2s ease;
-  outline: none;
-}
-
-.form-group input:focus {
-  border-color: var(--accent-color);
-  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.3);
-}
-
-.form-group input:invalid:not(:placeholder-shown) {
-  border-color: #ff4d4f;
-}
-
-.form-group input:valid:not(:placeholder-shown) {
-  border-color: #2ecc71;
+  gap: 1.15rem;
 }
 
 .auth-options {
   display: flex;
   justify-content: flex-end;
+  margin-top: -0.35rem;
 }
 
 .auth-options a {
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   font-weight: 600;
   color: var(--button-color);
+  opacity: 0.75;
+  transition: opacity 0.2s ease;
 }
 
+.auth-options a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/* ─── Botón principal ─────────────────────────────────────── */
 .primary-btn {
   background-color: var(--accent-color);
-  color: black;
+  color: var(--button-color);
   border: none;
   border-radius: 12px;
-  padding: 1rem;
+  padding: 0.95rem 1rem;
   font-size: 1rem;
   font-weight: 700;
+  font-family: inherit;
   cursor: pointer;
-  transition:
-    transform 0.05s ease,
-    box-shadow 0.2s ease;
+  transition: transform 0.1s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
 .primary-btn:hover {
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  background-color: #e6c200;
+  box-shadow: 0 12px 30px rgba(255, 215, 0, 0.35);
 }
 
 .primary-btn:active {
   transform: scale(0.97);
 }
 
-.primary-btn:focus {
-  outline: 2px solid black;
+.primary-btn:focus-visible {
+  outline: 2px solid var(--button-color);
   outline-offset: 3px;
 }
 
-.toggle-password {
-  position: absolute;
-  right: 0.6rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0.25rem;
-  color: #6b7280;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 4px;
-  transition: color 0.2s ease;
-}
-
-.toggle-password:hover {
-  color: #111827;
-}
-
-.toggle-password:focus-visible {
-  outline: 2px solid #3b82f6;
-  outline-offset: 2px;
-}
-
-.toggle-password svg {
-  width: 1.25rem;
-  height: 1.25rem;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  pointer-events: none;
-}
-
-.toggle-password .icon-eye {
-  display: block;
-}
-.toggle-password .icon-eye-off {
-  display: none;
-}
-
-.toggle-password[aria-pressed="true"] .icon-eye {
-  display: none;
-}
-.toggle-password[aria-pressed="true"] .icon-eye-off {
-  display: block;
-}
-
-.input-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-  padding: 0;
-  border: none;
-  background: transparent;
-}
-
-.input-wrapper input {
-  flex: 1;
-  min-width: 0;
-  padding: 0.9rem 2.8rem 0.9rem 1rem;
-  border-radius: 12px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  font-size: 0.95rem;
-  background-color: #fff;
-  color: var(--button-color);
-  outline: none;
-  transition: 0.2s ease;
-}
-
+/* ─── Footer ──────────────────────────────────────────────── */
 .auth-footer {
   text-align: center;
-  font-size: 0.85rem;
+  font-size: 0.88rem;
   color: var(--button-color);
+}
+
+.auth-footer span {
+  opacity: 0.7;
+  margin-right: 0.35rem;
 }
 
 .auth-footer a {
   font-weight: 700;
+  color: var(--button-color);
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 215, 0, 0.6);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.2s ease;
 }
 
-@media (min-width: 768px) {
-  .auth {
-    align-items: center;
-  }
-
-  .auth-card {
-    width: 100%;
-    max-width: 420px;
-  }
+.auth-footer a:hover {
+  text-decoration-color: var(--accent-color);
 }
 
+/* ─── Responsive ──────────────────────────────────────────── */
 @media (min-width: 1024px) {
   .auth {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 6rem;
+    gap: 5rem;
     padding: 4rem;
   }
 
@@ -252,7 +184,11 @@
     font-size: 2.25rem;
   }
 
+  .auth-brand p {
+    max-width: none;
+  }
+
   .auth-card {
-    max-width: 440px;
+    margin: 0;
   }
 }

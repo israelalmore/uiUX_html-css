@@ -109,13 +109,8 @@ $deleted = $_GET['deleted'] ?? '';
       </nav>
     </div>
   </header>
+  <script src="../Assets/js/navbar.js" defer></script>
   <script>
-    const header = document.querySelector(".nav-bar");
-    const mobileNavIcon = document.querySelector(".mobile-nav-icon");
-    mobileNavIcon.addEventListener("click", () => {
-      header.classList.toggle("nav-active");
-    });
-
     function deleteEvent(id) {
       if (confirm('¿Estás seguro de que quieres eliminar este evento? Esta acción no se puede deshacer.')) {
         fetch(`../../Controller/eventController.php?id=${id}`, {
