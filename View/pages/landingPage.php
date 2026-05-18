@@ -31,6 +31,10 @@ if (!isset($_SESSION['user_id'])) {
 
   <link rel="stylesheet" href="../Assets/css/main.css" />
   <link rel="stylesheet" href="../Assets/css/pages/landingpage.css" />
+
+  <!-- Slick Carousel (CSS, local) -->
+  <link rel="stylesheet" href="../Assets/vendor/slick/slick.min.css" />
+  <link rel="stylesheet" href="../Assets/vendor/slick/slick-theme.min.css" />
 </head>
 
 <body>
@@ -135,81 +139,113 @@ if (!isset($_SESSION['user_id'])) {
         </div>
       </div>
     </section>
-    <section class="featured-events">
+    <!-- Slider de conciertos (Slick) -->
+    <section class="slider-section concerts-section">
       <div class="container">
-        <h3 class="section-title">Eventos que te Podrían Gustar</h3>
-        <div class="event-grid">
-          <article class="event-card">
-            <img
-              src="../Assets/img/images/LandingPage2.avif"
-              alt="Concierto de rock"
-              class="event-image" />
-            <div class="event-content">
-              <div class="event-header">
-                <span class="event-category">Música</span>
-                <div class="event-rating">
-                  <i class="fa-solid fa-star"></i> 4.9 (120)
-                </div>
-              </div>
-              <h4 class="event-title">Noche de Rock Acústico</h4>
-              <p class="event-date">Sábado, 25 de Marzo | 21:00h</p>
-              <div class="event-stats">
-                <i class="fa-solid fa-users"></i> 85 personas van
-              </div>
-              <a href="events.php" class="btn btn-secondary">RSVP Ahora</a>
-              <div class="event-actions">
-                <a href="#" aria-label="Añadir a Google Calendar"><i class="fa-brands fa-google"></i></a>
-                <a href="#" aria-label="Compartir en Twitter"><i class="fa-brands fa-twitter"></i></a>
-              </div>
+        <h3 class="section-title">Próximos Conciertos</h3>
+        <div class="concerts-slider">
+          <article class="concert-card">
+            <div class="concert-card__media">
+              <img src="../Assets/img/images/LandingPage2.avif" alt="Noche de Rock Acústico" />
+            </div>
+            <div class="concert-card__body">
+              <h4 class="concert-card__title">Noche de Rock Acústico</h4>
+              <p class="concert-card__meta">Sábado, 25 de Marzo · 21:00h</p>
             </div>
           </article>
-          <article class="event-card">
-            <img
-              src="../Assets/img/images/landingPage.jpg"
-              alt="Evento de Networking"
-              class="event-image" />
-            <div class="event-content">
-              <div class="event-header">
-                <span class="event-category">Tecnología</span>
-                <div class="event-rating">
-                  <i class="fa-solid fa-star"></i> 5.0 (30)
-                </div>
-              </div>
-              <h4 class="event-title">Tech Innovators Meetup</h4>
-              <p class="event-date">Jueves, 30 de Marzo | 18:00h</p>
-              <div class="event-stats">
-                <i class="fa-solid fa-users"></i> 130 personas
-              </div>
-              <a href="events.php" class="btn btn-secondary">Ver Detalles</a>
-              <div class="event-actions">
-                <a href="#" aria-label="Añadir a Google Calendar"><i class="fa-brands fa-google"></i></a>
-                <a href="#" aria-label="Compartir en Twitter"><i class="fa-brands fa-twitter"></i></a>
-              </div>
+          <article class="concert-card">
+            <div class="concert-card__media">
+              <img src="../Assets/img/images/landingPage.jpg" alt="Indie Fest Barcelona" />
+            </div>
+            <div class="concert-card__body">
+              <h4 class="concert-card__title">Indie Fest Barcelona</h4>
+              <p class="concert-card__meta">Viernes, 12 de Abril · 20:00h</p>
             </div>
           </article>
-          <article class="event-card">
-            <img
-              src="../Assets/img/images/landingPage.jpg"
-              alt="Evento de Networking"
-              class="event-image" />
-            <div class="event-content">
-              <div class="event-header">
-                <span class="event-category">Tecnología</span>
-                <div class="event-rating">
-                  <i class="fa-solid fa-star"></i> 5.0 (30)
-                </div>
-              </div>
-              <h4 class="event-title">Tech Innovators Meetup</h4>
-              <p class="event-date">Jueves, 30 de Marzo | 18:00h</p>
-              <div class="event-stats">
-                <i class="fa-solid fa-users"></i> 130 personas
-              </div>
-              <a href="events.php" class="btn btn-secondary">Ver Detalles</a>
-              <div class="event-actions">
-                <a href="#" aria-label="Añadir a Google Calendar"><i class="fa-brands fa-google"></i></a>
-                <a href="#" aria-label="Compartir en Twitter"><i class="fa-brands fa-twitter"></i></a>
-              </div>
+          <article class="concert-card">
+            <div class="concert-card__media">
+              <img src="../Assets/img/images/events.jpg" alt="DJ Set Electrónica" />
             </div>
+            <div class="concert-card__body">
+              <h4 class="concert-card__title">DJ Set Electrónica</h4>
+              <p class="concert-card__meta">Sábado, 20 de Abril · 23:30h</p>
+            </div>
+          </article>
+          <article class="concert-card">
+            <div class="concert-card__media">
+              <img src="../Assets/img/images/LandingPage2.avif" alt="Jazz en directo" />
+            </div>
+            <div class="concert-card__body">
+              <h4 class="concert-card__title">Jazz en Directo</h4>
+              <p class="concert-card__meta">Domingo, 28 de Abril · 19:00h</p>
+            </div>
+          </article>
+          <article class="concert-card">
+            <div class="concert-card__media">
+              <img src="../Assets/img/images/landingPage.jpg" alt="Pop Latino" />
+            </div>
+            <div class="concert-card__body">
+              <h4 class="concert-card__title">Pop Latino Tour</h4>
+              <p class="concert-card__meta">Sábado, 11 de Mayo · 22:00h</p>
+            </div>
+          </article>
+          <article class="concert-card">
+            <div class="concert-card__media">
+              <img src="../Assets/img/images/events.jpg" alt="Concierto solidario" />
+            </div>
+            <div class="concert-card__body">
+              <h4 class="concert-card__title">Concierto Solidario</h4>
+              <p class="concert-card__meta">Domingo, 26 de Mayo · 18:00h</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slider de promotores (Slick — configuración independiente) -->
+    <section class="slider-section promoters-section">
+      <div class="container">
+        <h3 class="section-title">Nuestros Promotores</h3>
+        <div class="promoters-slider">
+          <article class="promoter-card">
+            <img class="promoter-card__logo" src="../Assets/img/icons/account.png" alt="Logo Live Nation" />
+            <h4 class="promoter-card__name">Live Nation</h4>
+            <p class="promoter-card__desc">Grandes giras internacionales en España.</p>
+          </article>
+          <article class="promoter-card">
+            <img class="promoter-card__logo" src="../Assets/img/icons/instagramLogo.png" alt="Logo Mad Cool" />
+            <h4 class="promoter-card__name">Mad Cool Events</h4>
+            <p class="promoter-card__desc">Festivales urbanos y experiencias únicas.</p>
+          </article>
+          <article class="promoter-card">
+            <img class="promoter-card__logo" src="../Assets/img/icons/facebookLogo.png" alt="Logo Primavera Sound" />
+            <h4 class="promoter-card__name">Primavera Sound</h4>
+            <p class="promoter-card__desc">Indie, alternativa y descubrimientos.</p>
+          </article>
+          <article class="promoter-card">
+            <img class="promoter-card__logo" src="../Assets/img/icons/youtubeLogo.png" alt="Logo Sonar" />
+            <h4 class="promoter-card__name">Sónar Music</h4>
+            <p class="promoter-card__desc">Electrónica y cultura digital.</p>
+          </article>
+          <article class="promoter-card">
+            <img class="promoter-card__logo" src="../Assets/img/icons/account.png" alt="Logo Doctor Music" />
+            <h4 class="promoter-card__name">Doctor Music</h4>
+            <p class="promoter-card__desc">Conciertos de leyenda desde 1989.</p>
+          </article>
+          <article class="promoter-card">
+            <img class="promoter-card__logo" src="../Assets/img/icons/instagramLogo.png" alt="Logo Riff Producciones" />
+            <h4 class="promoter-card__name">Riff Producciones</h4>
+            <p class="promoter-card__desc">Rock, metal y bandas emergentes.</p>
+          </article>
+          <article class="promoter-card">
+            <img class="promoter-card__logo" src="../Assets/img/icons/facebookLogo.png" alt="Logo Last Tour" />
+            <h4 class="promoter-card__name">Last Tour</h4>
+            <p class="promoter-card__desc">Bilbao BBK Live y giras nacionales.</p>
+          </article>
+          <article class="promoter-card">
+            <img class="promoter-card__logo" src="../Assets/img/icons/youtubeLogo.png" alt="Logo Get In" />
+            <h4 class="promoter-card__name">Get In Producciones</h4>
+            <p class="promoter-card__desc">Música urbana y festivales temáticos.</p>
           </article>
         </div>
       </div>
@@ -358,6 +394,11 @@ if (!isset($_SESSION['user_id'])) {
       <p>© 2025 Forever Events. Todos los derechos reservados.</p>
     </div>
   </footer>
+
+  <!-- jQuery + Slick (locales) + script de configuración de los sliders -->
+  <script src="../Assets/vendor/jquery-3.7.1.min.js"></script>
+  <script src="../Assets/vendor/slick/slick.min.js"></script>
+  <script src="../Assets/js/sliders.js"></script>
 </body>
 
 </html>

@@ -1,84 +1,118 @@
+/* ─────────────────────────────────────────────────────────────
+   Página Crear Evento
+   Alineado al sistema oscuro/azul + acento dorado del proyecto
+   (consistente con events.css y eventDetails.css).
+   ───────────────────────────────────────────────────────────── */
+
 .create-event {
   padding: 2.5rem 1.5rem 5rem;
   display: flex;
   justify-content: center;
-  background-color: var(--primary-bg-color);
 }
 
-.container {
+.create-event .container {
   width: 100%;
   max-width: 900px;
 }
 
-.page-hero {
+/* ─── Hero de página ──────────────────────────────────────── */
+.create-event .page-hero {
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.85rem;
   margin-bottom: 2.5rem;
+  padding: 1.5rem 0 0.5rem;
 }
 
-.page-title {
+.create-event .hero-tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-color);
+  background: var(--accent-soft);
+  border: 1px solid rgba(255, 215, 0, 0.25);
+  padding: 0.35rem 1rem;
+  border-radius: var(--radius-full);
+}
+
+.create-event .page-title {
   font-family: var(--font-title);
-  font-size: clamp(2rem, 6vw, 2.8rem);
-  text-align: center;
+  font-size: clamp(2rem, 6vw, 2.75rem);
+  font-weight: 800;
   margin: 0;
   color: var(--primary-color);
   letter-spacing: -0.02em;
   line-height: 1.1;
 }
 
-.page-subtitle {
+.create-event .page-subtitle {
   font-size: 1.05rem;
-  text-align: center;
   margin: 0 auto;
   max-width: 560px;
-  color: var(--primary-color);
-  opacity: 0.85;
+  color: var(--text-muted);
+  line-height: 1.55;
 }
 
+/* ─── Formulario ──────────────────────────────────────────── */
 .event-form {
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: linear-gradient(180deg,
+    rgba(255, 255, 255, 0.06) 0%,
+    rgba(255, 255, 255, 0.025) 100%);
+  border: 1px solid var(--border-medium);
   padding: 2.5rem;
-  border-radius: 24px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.75rem;
   color: var(--primary-color);
-  transition: all 0.3s ease;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 
+/* ─── Secciones (fieldset) ────────────────────────────────── */
 .form-section {
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 16px;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
   padding: 1.5rem;
-  background-color: rgba(255, 255, 255, 0.03);
-  transition: all 0.2s ease;
+  background: var(--surface-light);
+  transition:
+    border-color var(--duration) var(--ease),
+    background-color var(--duration) var(--ease),
+    box-shadow var(--duration) var(--ease);
 }
 
-.form-section:hover {
+.form-section:hover,
+.form-section:focus-within {
   border-color: rgba(255, 215, 0, 0.4);
-  background-color: rgba(255, 255, 255, 0.05);
+  background: var(--surface-lighter);
+  box-shadow: 0 0 0 1px rgba(255, 215, 0, 0.1);
 }
 
 .form-section legend {
   font-family: var(--font-title);
   font-weight: 700;
-  font-size: 1.1rem;
-  margin-bottom: 1rem;
+  font-size: 1.05rem;
+  margin-bottom: 1.1rem;
   padding: 0 0.5rem;
   color: var(--accent-color);
   letter-spacing: -0.01em;
 }
 
+/* ─── Grupos / filas ─────────────────────────────────────── */
 .form-group {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   margin-bottom: 1rem;
+}
+
+.form-group:last-child {
+  margin-bottom: 0;
 }
 
 .form-row {
@@ -87,54 +121,108 @@
   gap: 1rem;
 }
 
-@media(min-width: 768px){
+@media (min-width: 640px) {
   .form-row {
     flex-direction: row;
-    gap: 1.5rem;
+    gap: 1.25rem;
   }
   .form-row .form-group {
     flex: 1;
+    margin-bottom: 0;
   }
 }
 
-label {
+.event-form label {
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
+  color: var(--primary-color);
+  letter-spacing: 0.01em;
+}
+
+.event-form .required {
+  color: var(--accent-color);
+  margin-left: 2px;
+}
+
+/* ─── Inputs / select / textarea ──────────────────────────── */
+.event-form input,
+.event-form select,
+.event-form textarea {
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--border-medium);
+  font-size: 0.95rem;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--primary-color);
+  font-family: inherit;
+  outline: none;
+  transition:
+    border-color var(--duration-fast) var(--ease),
+    background-color var(--duration-fast) var(--ease),
+    box-shadow var(--duration-fast) var(--ease);
+  width: 100%;
+}
+
+.event-form input::placeholder,
+.event-form textarea::placeholder {
+  color: var(--text-subtle);
+}
+
+.event-form input:hover,
+.event-form select:hover,
+.event-form textarea:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.event-form input:focus,
+.event-form select:focus,
+.event-form textarea:focus {
+  border-color: var(--accent-color);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.18);
+}
+
+.event-form textarea {
+  min-height: 130px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+/* Date/time pickers en modo oscuro */
+.event-form input[type="date"],
+.event-form input[type="time"] {
+  color-scheme: dark;
+}
+
+/* Select con flecha personalizada */
+.event-form select {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23FFD700" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 0.95rem center;
+  background-size: 1rem;
+  padding-right: 2.6rem;
+}
+
+.event-form select option {
+  background-color: var(--primary-bg-darker);
   color: var(--primary-color);
 }
 
-input, select, textarea {
-  padding: 0.9rem 1rem;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  font-size: 0.95rem;
-  background-color: #fff;
-  color: var(--button-color);
-  transition: 0.3s ease;
-  outline: none;
-  font-family: inherit;
-}
-
-input:focus, select:focus, textarea:focus {
-  border-color: var(--accent-color);
-  box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.25);
-}
-
-textarea {
-  min-height: 110px;
-  resize: vertical;
-}
-
+/* ─── Subida de imágenes ─────────────────────────────────── */
 .upload-grid {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
-@media(min-width: 768px){
+@media (min-width: 640px) {
   .upload-grid {
     flex-direction: row;
-    gap: 1.5rem;
+    gap: 1.25rem;
   }
 }
 
@@ -146,52 +234,117 @@ textarea {
 
 .file-upload {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  padding: 1.4rem;
-  border: 2px dashed var(--accent-color);
-  border-radius: 14px;
+  gap: 0.6rem;
+  padding: 1.75rem 1rem;
+  border: 2px dashed rgba(255, 215, 0, 0.45);
+  border-radius: var(--radius-lg);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition:
+    background-color var(--duration) var(--ease),
+    border-color var(--duration) var(--ease),
+    transform var(--duration-fast) var(--ease);
   color: var(--primary-color);
-  background-color: rgba(255, 215, 0, 0.06);
+  background: rgba(255, 215, 0, 0.04);
   text-align: center;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.file-upload i {
+  font-size: 1.6rem;
+  color: var(--accent-color);
+}
+
+.file-upload__label {
+  display: block;
+  font-weight: 700;
+}
+
+.file-upload__hint {
+  display: block;
+  font-size: 0.78rem;
   font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.01em;
 }
 
 .file-upload:hover {
-  background-color: rgba(255, 215, 0, 0.12);
+  background: rgba(255, 215, 0, 0.1);
+  border-color: var(--accent-color);
   transform: translateY(-2px);
 }
 
-input[type="file"] {
+.file-upload.has-file {
+  border-style: solid;
+  background: rgba(34, 197, 94, 0.08);
+  border-color: rgba(34, 197, 94, 0.5);
+}
+
+.file-upload.has-file i {
+  color: var(--success);
+}
+
+.event-form input[type="file"] {
   display: none;
 }
 
+/* ─── Botón submit ────────────────────────────────────────── */
 .submit-btn {
   width: 100%;
-  padding: 1rem;
-  border-radius: 16px;
-  background-color: var(--accent-color);
+  padding: 1.05rem 1rem;
+  border-radius: var(--radius-md);
+  background: var(--accent-color);
   color: var(--button-color);
-  font-weight: 700;
+  font-weight: 800;
+  font-family: inherit;
   border: none;
   font-size: 1.05rem;
+  letter-spacing: 0.02em;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition:
+    background-color var(--duration-fast) var(--ease),
+    transform var(--duration-fast) var(--ease),
+    box-shadow var(--duration-fast) var(--ease);
 }
 
 .submit-btn:hover {
-  box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+  background: var(--accent-hover);
+  box-shadow: 0 12px 30px rgba(255, 215, 0, 0.25);
   transform: translateY(-2px);
 }
 
-@media(min-width: 1024px){
-  .page-title, .page-subtitle {
-    text-align: center;
+.submit-btn:active {
+  transform: translateY(0);
+}
+
+.submit-btn:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 3px;
+}
+
+/* ─── Responsive ──────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .create-event {
+    padding: 1.5rem 1rem 3.5rem;
   }
   .event-form {
-    gap: 2.5rem;
+    padding: 1.5rem 1.25rem;
+    gap: 1.25rem;
+  }
+  .form-section {
+    padding: 1.1rem;
+  }
+  .form-section legend {
+    font-size: 0.95rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .event-form {
+    gap: 2rem;
+    padding: 3rem;
   }
 }

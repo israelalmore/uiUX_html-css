@@ -144,6 +144,8 @@ try {
     </div>
   </header>
   <script src="../Assets/js/navbar.js" defer></script>
+  <script src="../Assets/vendor/jquery-3.7.1.min.js" defer></script>
+  <script src="../Assets/js/imageHover.js" defer></script>
   <section class="events-page">
     <div class="container">
       <div class="page-hero">
@@ -229,10 +231,17 @@ try {
             <article class="event-card" tabindex="0">
               <a href="eventDetails.php?id=<?php echo (int) $evento['id']; ?>">
                 <div class="event-image-wrapper">
+                  <?php
+                    $hoverFecha  = date('d/m/Y', strtotime($evento['fecha']));
+                    $hoverHora   = date('H:i', strtotime($evento['hora']));
+                    $hoverMsg    = $hoverFecha . ' · ' . $hoverHora . 'h · ' . $evento['ciudad'];
+                  ?>
                   <img
                     src="<?php echo !empty($evento['imagen_portada']) ? htmlspecialchars($evento['imagen_portada']) : '../Assets/img/images/events.jpg'; ?>"
                     alt="Imagen del evento <?php echo htmlspecialchars($evento['titulo']); ?>"
-                    class="event-image" />
+                    class="event-image"
+                    data-hover-title="<?php echo htmlspecialchars($evento['titulo']); ?>"
+                    data-hover-msg="<?php echo htmlspecialchars($hoverMsg); ?>" />
                 </div>
 
                 <div class="event-content">

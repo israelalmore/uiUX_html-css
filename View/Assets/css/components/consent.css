@@ -1,0 +1,171 @@
+/* ─────────────────────────────────────────────────────────────
+   Aviso de consentimiento + estado del login (jQuery + storage)
+   ───────────────────────────────────────────────────────────── */
+
+/* Banner principal ─────────────────────────────────────────── */
+.cookie-banner {
+  position: fixed;
+  left: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 1100;
+  max-width: 580px;
+  margin: 0 auto;
+  padding: 1.4rem 1.6rem;
+  background:
+    radial-gradient(ellipse 70% 50% at 0% 0%, rgba(255, 215, 0, 0.08) 0%, transparent 60%),
+    linear-gradient(180deg, #02195f 0%, #010d3a 100%);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 22px;
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+  animation: cookie-slide-up 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.cookie-banner__title {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin: 0 0 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  letter-spacing: -0.01em;
+}
+
+.cookie-banner__title i {
+  color: #ffd700;
+  font-size: 1.25rem;
+}
+
+.cookie-banner__text {
+  font-size: 0.94rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.82);
+  margin: 0 0 1.1rem;
+}
+
+.cookie-banner__actions {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.cookie-banner__btn {
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 0.6rem 1.2rem;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  letter-spacing: 0.01em;
+  transition:
+    transform 0.15s ease,
+    background-color 0.15s ease,
+    box-shadow 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.cookie-banner__btn:hover { transform: translateY(-1px); }
+.cookie-banner__btn:active { transform: translateY(0); }
+
+.cookie-banner__btn--ghost {
+  background: transparent;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.28);
+}
+.cookie-banner__btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+.cookie-banner__btn--accept {
+  background: #ffd700;
+  color: #000000;
+}
+.cookie-banner__btn--accept:hover {
+  background: #ffc200;
+  box-shadow: 0 10px 24px rgba(255, 215, 0, 0.3);
+}
+
+/* Botón flotante para reabrir el aviso ─────────────────────── */
+.cookie-reopen {
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+  z-index: 1099;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.1rem;
+  background: linear-gradient(180deg, #02195f 0%, #010d3a 100%);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+  transition:
+    transform 0.15s ease,
+    background-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+.cookie-reopen i { color: #ffd700; }
+.cookie-reopen:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.45);
+}
+
+/* Mensaje informativo cuando el login está bloqueado ───────── */
+.cookie-blocked-msg {
+  margin-top: 0.85rem;
+  padding: 0.85rem 1rem;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: #fecaca;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+/* Estado deshabilitado del botón login ─────────────────────── */
+.js-cookie-protected:disabled,
+.js-cookie-protected[disabled] {
+  opacity: 0.55;
+  cursor: not-allowed;
+  background-color: #4b5563 !important;
+  color: #d1d5db !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+/* Clase utilitaria ─────────────────────────────────────────── */
+.is-hidden { display: none !important; }
+
+@keyframes cookie-slide-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Mobile ────────────────────────────────────────────────── */
+@media (max-width: 540px) {
+  .cookie-banner {
+    padding: 1.1rem 1.1rem 1.2rem;
+    border-radius: 18px;
+  }
+  .cookie-banner__title { font-size: 1.05rem; }
+  .cookie-banner__text { font-size: 0.88rem; }
+  .cookie-banner__actions { flex-direction: column-reverse; }
+  .cookie-banner__btn { width: 100%; padding: 0.7rem 1rem; }
+  .cookie-reopen { left: 0.75rem; bottom: 0.75rem; padding: 0.55rem 0.95rem; }
+}

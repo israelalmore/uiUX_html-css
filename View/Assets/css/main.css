@@ -5,3 +5,7 @@
 /* Componentes */
 @import url("components/navbar.css");
 @import url("components/footer.css");
+@import url("components/modal.css");
+@import url("components/imageHover.css");
+@import url("components/consent.css");
+@import url("components/sliders.css");

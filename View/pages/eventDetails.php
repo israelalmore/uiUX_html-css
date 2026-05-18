@@ -99,28 +99,37 @@ if (!$evento && !$dbError) {
     </div>
   </header>
   <script src="../Assets/js/navbar.js" defer></script>
+  <script src="../Assets/vendor/jquery-3.7.1.min.js"></script>
+  <script src="../Assets/js/modal.js"></script>
   <script>
     function deleteEvent(id) {
-      if (confirm('¿Estás seguro de que quieres eliminar este evento? Esta acción no se puede deshacer.')) {
-        fetch(`../../Controller/eventController.php?id=${id}`, {
-            method: 'DELETE'
-          })
-          .then(response => {
-            if (response.status === 204) {
-              window.location.href = 'myEvents.php?deleted=1';
-            } else if (response.status === 404) {
-              alert('El evento no fue encontrado.');
-            } else if (response.status === 403) {
-              alert('No tienes permisos para eliminar este evento.');
-            } else {
-              alert('Error al eliminar el evento.');
-            }
-          })
-          .catch(error => {
-            console.error('Error:', error);
-            alert('Error de conexión al eliminar el evento.');
-          });
-      }
+      $.uiModal.confirm({
+        title: 'Eliminar evento',
+        message: '¿Estás seguro de que quieres eliminar este evento? Esta acción no se puede deshacer.',
+        confirmText: 'Eliminar',
+        cancelText: 'Cancelar',
+        variant: 'danger',
+        onConfirm: function () {
+          fetch(`../../Controller/eventController.php?id=${id}`, {
+              method: 'DELETE'
+            })
+            .then(response => {
+              if (response.status === 204) {
+                window.location.href = 'myEvents.php?deleted=1';
+              } else if (response.status === 404) {
+                $.uiModal.alert({ title: 'No encontrado', message: 'El evento no fue encontrado.' });
+              } else if (response.status === 403) {
+                $.uiModal.alert({ title: 'Sin permisos', message: 'No tienes permisos para eliminar este evento.' });
+              } else {
+                $.uiModal.alert({ title: 'Error', message: 'Error al eliminar el evento.' });
+              }
+            })
+            .catch(error => {
+              console.error('Error:', error);
+              $.uiModal.alert({ title: 'Error de conexión', message: 'Error de conexión al eliminar el evento.' });
+            });
+        }
+      });
     }
   </script>
 

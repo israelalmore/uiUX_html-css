@@ -42,7 +42,7 @@
         <span>Accede a tu panel seguro</span>
       </header>
 
-      <form action="../../Controller/userController.php" method="post" class="auth-form" novalidate>
+      <form action="../../Controller/userController.php" method="post" class="auth-form js-cookie-form" novalidate>
 
         <?php if (isset($_GET['error']) && $_GET['error'] === 'credenciales'): ?>
           <p style="color: red;">Email o contraseña incorrectos</p>
@@ -102,7 +102,12 @@
           <a href="forgotPassword.php">¿Olvidaste tu contraseña?</a>
         </div>
 
-        <button type="submit" name="login" class="primary-btn">Iniciar sesión</button>
+        <button type="submit" name="login" class="primary-btn js-cookie-protected" disabled>Iniciar sesión</button>
+
+        <p id="cookie-blocked-msg" class="cookie-blocked-msg is-hidden" role="status">
+          <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+          Debes aceptar las cookies para poder iniciar sesión.
+        </p>
       </form>
 
       <footer class="auth-footer">
@@ -112,6 +117,31 @@
     </section>
   </main>
   <script src="../Assets/js/hidePassword.js"></script>
+
+  <!-- Aviso de cookies -->
+  <aside id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Aviso de cookies">
+    <h3 class="cookie-banner__title">
+      <i class="fa-solid fa-cookie-bite" aria-hidden="true"></i>
+      Usamos cookies
+    </h3>
+    <p class="cookie-banner__text">
+      Utilizamos cookies para mejorar tu experiencia y permitir el inicio de sesión.
+      Necesitamos tu consentimiento para continuar.
+    </p>
+    <div class="cookie-banner__actions">
+      <button type="button" id="cookie-reject" class="cookie-banner__btn cookie-banner__btn--ghost">Rechazar</button>
+      <button type="button" id="cookie-accept" class="cookie-banner__btn cookie-banner__btn--accept">Aceptar cookies</button>
+    </div>
+  </aside>
+
+  <!-- Botón flotante para reabrir el aviso si el usuario rechazó -->
+  <button type="button" id="cookie-reopen" class="cookie-reopen is-hidden" aria-label="Revisar aviso de cookies">
+    <i class="fa-solid fa-cookie-bite" aria-hidden="true"></i>
+    <span>Cookies</span>
+  </button>
+
+  <script src="../Assets/vendor/jquery-3.7.1.min.js"></script>
+  <script src="../Assets/js/consent.js"></script>
 </body>
 
 </html>

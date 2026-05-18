@@ -1,0 +1,80 @@
+/* ─────────────────────────────────────────────────────────────
+   Tooltip on-hover sobre imágenes (jQuery)
+   - Overlay con gradiente y blur sutil
+   - pointer-events: none → no interfiere con clicks/links
+   - Anima con jQuery .fadeIn / .fadeOut
+   ───────────────────────────────────────────────────────────── */
+
+.has-img-hover {
+  position: relative;
+  overflow: hidden;
+}
+
+.img-hover-msg {
+  position: absolute;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1.1rem;
+  text-align: center;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 50%, rgba(2, 25, 95, 0.55) 0%, rgba(1, 13, 58, 0.85) 100%);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  color: var(--primary-color, #fff);
+  font-family: var(--font-primary, "Inter", sans-serif);
+  font-weight: 500;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  pointer-events: none;
+  border-radius: inherit;
+  z-index: 2;
+}
+
+.img-hover-msg__inner {
+  max-width: 92%;
+  display: block;
+  transform: translateY(6px);
+  opacity: 0;
+  animation: img-hover-pop 0.35s var(--ease, ease) 0.05s forwards;
+}
+
+.img-hover-msg__title {
+  display: block;
+  font-family: var(--font-title, "Montserrat", sans-serif);
+  font-weight: 800;
+  font-size: 1.1rem;
+  margin-bottom: 0.4rem;
+  color: var(--accent-color, #ffd700);
+  letter-spacing: -0.01em;
+}
+
+.img-hover-msg__body {
+  display: block;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.9rem;
+}
+
+@keyframes img-hover-pop {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Mobile: padding/fuente reducidos */
+@media (max-width: 540px) {
+  .img-hover-msg {
+    padding: 0.75rem;
+    font-size: 0.85rem;
+  }
+  .img-hover-msg__title {
+    font-size: 0.98rem;
+  }
+}
+
+/* Imágenes muy pequeñas (iconos): solo cuerpo */
+@media (max-height: 120px) {
+  .img-hover-msg__title { display: none; }
+}

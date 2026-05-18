@@ -86,6 +86,8 @@ if ($_SESSION['user_type'] === 2) {
     </div>
   </header>
   <script src="../Assets/js/navbar.js" defer></script>
+  <script src="../Assets/vendor/jquery-3.7.1.min.js" defer></script>
+  <script src="../Assets/js/fileUpload.js" defer></script>
 
   <main class="create-event">
     <div class="container">
@@ -196,7 +198,11 @@ if ($_SESSION['user_type'] === 2) {
           <legend>Imágenes</legend>
           <div class="upload-grid">
             <div class="upload-card">
-              <label class="file-upload" for="cover-image"><i class="fa fa-cloud-upload"></i> Portada</label>
+              <label class="file-upload" for="cover-image">
+                <i class="fa-solid fa-cloud-arrow-up" aria-hidden="true"></i>
+                <span class="file-upload__label">Imagen de portada</span>
+                <span class="file-upload__hint">PNG, JPG · máx 5 MB</span>
+              </label>
               <input
                 type="file"
                 id="cover-image"
@@ -204,7 +210,11 @@ if ($_SESSION['user_type'] === 2) {
                 accept="image/*" />
             </div>
             <div class="upload-card">
-              <label class="file-upload" for="location-image"><i class="fa fa-cloud-upload"></i> Ubicación</label>
+              <label class="file-upload" for="location-image">
+                <i class="fa-solid fa-cloud-arrow-up" aria-hidden="true"></i>
+                <span class="file-upload__label">Imagen de ubicación</span>
+                <span class="file-upload__hint">PNG, JPG · máx 5 MB</span>
+              </label>
               <input
                 type="file"
                 id="location-image"

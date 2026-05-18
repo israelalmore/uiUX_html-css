@@ -1,0 +1,243 @@
+/* ─────────────────────────────────────────────────────────────
+   Sliders Slick (conciertos + promotores)
+   - Tarjetas con tema oscuro/dorado del proyecto
+   - Override del tema base de Slick
+   - Responsive en 3+ breakpoints (configurados en sliders.js)
+   ───────────────────────────────────────────────────────────── */
+
+.slider-section {
+  padding: 4rem 0 5rem;
+  position: relative;
+}
+
+.slider-section .section-title {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  font-family: var(--font-title);
+  font-size: clamp(1.6rem, 4.5vw, 2.25rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--primary-color);
+}
+
+.slider-section .section-title::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 3px;
+  background: var(--accent-color);
+  border-radius: 2px;
+  margin: 0.75rem auto 0;
+}
+
+/* Padding entre slides */
+.concerts-slider .slick-slide,
+.promoters-slider .slick-slide {
+  padding: 0.5rem 0.75rem;
+  box-sizing: border-box;
+}
+
+.concerts-slider .slick-list,
+.promoters-slider .slick-list {
+  margin: 0 -0.75rem;
+}
+
+/* ─── Tarjeta de concierto ─────────────────────────────────── */
+.concert-card {
+  background: linear-gradient(180deg,
+    rgba(255, 255, 255, 0.07) 0%,
+    rgba(255, 255, 255, 0.025) 100%);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition:
+    transform 0.35s var(--ease),
+    border-color 0.35s var(--ease),
+    box-shadow 0.35s var(--ease);
+}
+
+.concert-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 215, 0, 0.5);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(255, 215, 0, 0.1);
+}
+
+.concert-card__media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+
+.concert-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s var(--ease);
+}
+
+.concert-card:hover .concert-card__media img {
+  transform: scale(1.06);
+}
+
+.concert-card__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+    transparent 50%,
+    rgba(1, 13, 58, 0.75) 100%);
+  pointer-events: none;
+}
+
+.concert-card__body {
+  padding: 1.1rem 1.2rem 1.3rem;
+}
+
+.concert-card__title {
+  font-family: var(--font-title);
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0 0 0.3rem;
+  color: var(--primary-color);
+  letter-spacing: -0.01em;
+}
+
+.concert-card__meta {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* ─── Tarjeta de promotor ──────────────────────────────────── */
+.promoter-card {
+  background: linear-gradient(180deg,
+    rgba(255, 255, 255, 0.06) 0%,
+    rgba(255, 255, 255, 0.02) 100%);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  padding: 1.6rem 1.25rem;
+  text-align: center;
+  transition:
+    transform 0.3s var(--ease),
+    border-color 0.3s var(--ease),
+    box-shadow 0.3s var(--ease);
+  height: 100%;
+}
+
+.promoter-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 215, 0, 0.5);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.3);
+}
+
+.promoter-card__logo {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 0.9rem;
+  display: block;
+  background: var(--surface-lighter);
+  padding: 0.5rem;
+  border: 1px solid var(--border-soft);
+  transition: transform 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+
+.promoter-card:hover .promoter-card__logo {
+  transform: scale(1.05);
+  border-color: var(--accent-color);
+}
+
+.promoter-card__name {
+  font-family: var(--font-title);
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 0.35rem;
+  color: var(--primary-color);
+}
+
+.promoter-card__desc {
+  font-size: 0.84rem;
+  line-height: 1.45;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* ─── Override del tema base de Slick ──────────────────────── */
+/* Flechas */
+.slick-prev, .slick-next {
+  width: 44px;
+  height: 44px;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-medium);
+  border-radius: 50%;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+.slick-prev:hover, .slick-next:hover,
+.slick-prev:focus, .slick-next:focus {
+  background: rgba(255, 215, 0, 0.15);
+  border-color: var(--accent-color);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.slick-prev { left: -22px; }
+.slick-next { right: -22px; }
+
+.slick-prev::before, .slick-next::before {
+  font-family: 'slick';
+  font-size: 22px;
+  color: var(--accent-color);
+  opacity: 1;
+}
+
+/* Dots */
+.slick-dots {
+  bottom: -2.5rem;
+}
+.slick-dots li {
+  margin: 0 4px;
+}
+.slick-dots li button::before {
+  font-size: 10px;
+  color: var(--primary-color);
+  opacity: 0.35;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+.slick-dots li:hover button::before {
+  opacity: 0.7;
+}
+.slick-dots li.slick-active button::before {
+  color: var(--accent-color);
+  opacity: 1;
+}
+
+/* ─── Responsive: flechas más cerca / más pequeñas ─────────── */
+@media (max-width: 1024px) {
+  .slick-prev { left: -8px; }
+  .slick-next { right: -8px; }
+}
+
+@media (max-width: 640px) {
+  .slider-section {
+    padding: 3rem 0 4rem;
+  }
+  .slick-prev, .slick-next {
+    width: 36px;
+    height: 36px;
+  }
+  .slick-prev::before, .slick-next::before {
+    font-size: 18px;
+  }
+  .concert-card__body { padding: 0.9rem 1rem 1.1rem; }
+  .promoter-card { padding: 1.3rem 1rem; }
+  .promoter-card__logo { width: 72px; height: 72px; }
+}
