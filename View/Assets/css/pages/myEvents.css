@@ -22,12 +22,37 @@
   border: 1px solid rgba(255, 80, 80, 0.45);
 }
 
+.event-card .btn.btn-edit {
+  margin-top: 0.5rem;
+  background-color: transparent;
+  color: #ffd84a;
+  border: 1px solid rgba(255, 200, 0, 0.55);
+  box-shadow: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  text-decoration: none;
+}
+
+.event-card .btn.btn-edit:hover,
+.event-card .btn.btn-edit:focus-visible {
+  background-color: rgba(255, 200, 0, 0.18);
+  color: #fff;
+  border-color: #ffc200;
+  transform: translateY(-2px);
+}
+
 .event-card .btn.btn-secondary {
   margin-top: 0.5rem;
   background-color: transparent;
   color: #ffd1d1;
   border: 1px solid rgba(255, 80, 80, 0.55);
   box-shadow: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
 }
 
 .event-card .btn.btn-secondary:hover {

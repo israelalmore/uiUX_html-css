@@ -40,6 +40,7 @@ try {
 $success = $_GET['success'] ?? '';
 $createdId = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 $deleted = $_GET['deleted'] ?? '';
+$updated = $_GET['updated'] ?? '';
 ?>
 
 <head>
@@ -162,6 +163,13 @@ $deleted = $_GET['deleted'] ?? '';
     </div>
   <?php endif; ?>
 
+  <?php if ($updated === '1'): ?>
+    <div class="flash flash-success" role="status">
+      <i class="fa-solid fa-circle-check"></i>
+      <span>Evento actualizado correctamente.</span>
+    </div>
+  <?php endif; ?>
+
   <?php if ($dbError): ?>
     <div class="flash flash-error" role="alert">
       <i class="fa-solid fa-triangle-exclamation"></i>
@@ -210,7 +218,12 @@ $deleted = $_GET['deleted'] ?? '';
                   <?php echo htmlspecialchars($evento['ciudad']); ?>
                 </div>
                 <a href="eventDetails.php?id=<?php echo $evento['id']; ?>" class="btn btn-primary">Ver Detalles</a>
-                <button class="btn btn-secondary" onclick="deleteEvent(<?php echo $evento['id']; ?>)">Eliminar</button>
+                <a href="editEvent.php?id=<?php echo $evento['id']; ?>" class="btn btn-edit">
+                  <i class="fa-solid fa-pen-to-square"></i> Editar
+                </a>
+                <button class="btn btn-secondary" onclick="deleteEvent(<?php echo $evento['id']; ?>)">
+                  <i class="fa-solid fa-trash"></i> Eliminar
+                </button>
               </div>
             </article>
           <?php endforeach; ?>

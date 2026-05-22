@@ -11,6 +11,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $controller->create();
     }
 
+    if (isset($_POST['update'])) {
+        $rawId = $_POST['id'] ?? null;
+        $controller->update($rawId);
+        exit();
+    }
+
     header('Location: ../View/pages/createEvent.php');
     exit();
 }
@@ -272,6 +278,155 @@ class eventController
         }
 
         return '../Acreateets/img/events/' . $filename;
+    }
+
+    public function update($rawId): void
+    {
+        if (!isset($_SESSION['user_id'])) {
+            header('Location: ../View/pages/login.php');
+            exit();
+        }
+
+        if ((int) ($_SESSION['user_type'] ?? 0) !== 1) {
+            header('Location: ../View/pages/landingPage.php');
+            exit();
+        }
+
+        if (!$this->isValidId($rawId)) {
+            header('Location: ../View/pages/myEvents.php?error=invalid-id');
+            exit();
+        }
+
+        $id = (int) $rawId;
+
+        try {
+            $stmt = $this->conn->prepare(
+                "SELECT organizador_id, imagen_portada, imagen_ubicacion FROM eventos WHERE id = :id"
+            );
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            $current = $stmt->fetch();
+        } catch (PDOException $e) {
+            error_log('Error al consultar evento para actualización ' . $id . ': ' . $e->getMessage());
+            header('Location: ../View/pages/myEvents.php?error=db');
+            exit();
+        }
+
+        if (!$current) {
+            header('Location: ../View/pages/myEvents.php?error=not-found');
+            exit();
+        }
+
+        if ((int) $current['organizador_id'] !== (int) $_SESSION['user_id']) {
+            header('Location: ../View/pages/myEvents.php?error=forbidden');
+            exit();
+        }
+
+        if (
+            empty($_POST['title']) ||
+            empty($_POST['description']) ||
+            empty($_POST['category']) ||
+            empty($_POST['event_date']) ||
+            empty($_POST['event_time']) ||
+            empty($_POST['location']) ||
+            empty($_POST['postal_code']) ||
+            empty($_POST['city']) ||
+            empty($_POST['email'])
+        ) {
+            header('Location: ../View/pages/editEvent.php?id=' . $id . '&error=missing-data');
+            exit();
+        }
+
+        if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+            header('Location: ../View/pages/editEvent.php?id=' . $id . '&error=email-invalid');
+            exit();
+        }
+
+        $fecha = $_POST['event_date'];
+        $hora  = $_POST['event_time'];
+
+        if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $fecha)) {
+            header('Location: ../View/pages/editEvent.php?id=' . $id . '&error=date-invalid');
+            exit();
+        }
+        if (!preg_match('/^\d{2}:\d{2}(:\d{2})?$/', $hora)) {
+            header('Location: ../View/pages/editEvent.php?id=' . $id . '&error=time-invalid');
+            exit();
+        }
+
+        try {
+            $stmt = $this->conn->prepare(
+                "SELECT id FROM eventos WHERE titulo = :titulo AND fecha = :fecha AND id <> :id"
+            );
+            $stmt->execute([
+                ':titulo' => $_POST['title'],
+                ':fecha'  => $fecha,
+                ':id'     => $id,
+            ]);
+
+            if ($stmt->fetch()) {
+                header('Location: ../View/pages/editEvent.php?id=' . $id . '&error=event-exists');
+                exit();
+            }
+
+            $newCover    = $this->uploadImage('cover_image', 'cover');
+            $newLocation = $this->uploadImage('location_image', 'location');
+
+            $coverPath    = $newCover !== null ? $newCover : $current['imagen_portada'];
+            $locationPath = $newLocation !== null ? $newLocation : $current['imagen_ubicacion'];
+
+            $stmt = $this->conn->prepare(
+                "UPDATE eventos SET
+                    titulo = :titulo,
+                    descripcion = :descripcion,
+                    categoria = :categoria,
+                    fecha = :fecha,
+                    hora = :hora,
+                    direccion = :direccion,
+                    codigo_postal = :codigo_postal,
+                    ciudad = :ciudad,
+                    email = :email,
+                    imagen_portada = :portada,
+                    imagen_ubicacion = :ubicacion
+                 WHERE id = :id AND organizador_id = :organizador"
+            );
+
+            $stmt->bindValue(':titulo', $_POST['title'], PDO::PARAM_STR);
+            $stmt->bindValue(':descripcion', $_POST['description'], PDO::PARAM_STR);
+            $stmt->bindValue(':categoria', $_POST['category'], PDO::PARAM_STR);
+            $stmt->bindValue(':fecha', $fecha, PDO::PARAM_STR);
+            $stmt->bindValue(':hora', $hora, PDO::PARAM_STR);
+            $stmt->bindValue(':direccion', $_POST['location'], PDO::PARAM_STR);
+            $stmt->bindValue(':codigo_postal', $_POST['postal_code'], PDO::PARAM_STR);
+            $stmt->bindValue(':ciudad', $_POST['city'], PDO::PARAM_STR);
+            $stmt->bindValue(':email', $_POST['email'], PDO::PARAM_STR);
+            $stmt->bindValue(':portada', $coverPath, $coverPath === null ? PDO::PARAM_NULL : PDO::PARAM_STR);
+            $stmt->bindValue(':ubicacion', $locationPath, $locationPath === null ? PDO::PARAM_NULL : PDO::PARAM_STR);
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmt->bindValue(':organizador', (int) $_SESSION['user_id'], PDO::PARAM_INT);
+
+            $stmt->execute();
+
+            if ($newCover !== null && !empty($current['imagen_portada'])) {
+                $oldCover = __DIR__ . '/../View/' . $current['imagen_portada'];
+                if (file_exists($oldCover)) {
+                    @unlink($oldCover);
+                }
+            }
+            if ($newLocation !== null && !empty($current['imagen_ubicacion'])) {
+                $oldLocation = __DIR__ . '/../View/' . $current['imagen_ubicacion'];
+                if (file_exists($oldLocation)) {
+                    @unlink($oldLocation);
+                }
+            }
+        } catch (PDOException $e) {
+            error_log('Error al actualizar evento ' . $id . ': ' . $e->getMessage());
+            header('Location: ../View/pages/editEvent.php?id=' . $id . '&error=db');
+            exit();
+        }
+
+        header('Location: ../View/pages/myEvents.php?updated=1');
+        exit();
     }
 
     public function delete($rawId): void
